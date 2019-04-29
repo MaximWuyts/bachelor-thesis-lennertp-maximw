@@ -7,7 +7,7 @@ import bgImage from '../../assets/backgroundimage.png';
 
 const { width: WIDTH } = Dimensions.get('window');
 
-class LoginScreen extends React.Component {
+class RegistrationScreen extends React.Component {
 
     constructor(props) {
         super(props)
@@ -37,6 +37,32 @@ class LoginScreen extends React.Component {
                 <View style={styles.logoContainer}>
                     <Image source={logo} style={styles.logo} />
                 </View>
+
+
+                <View style={styles.inputContainer}>
+                    <Icon name='md-contact' size={30} color={'rgba(255,255,255,0.7)'}
+                        style={styles.inputIcon}
+                    />
+                    <TextInput
+                        style={styles.inputStyle}
+                        placeholder={'first name'}
+                        placeholderTextColor={'rgba(255,255,255,0.7)'}
+                        underlineColorAndroid='transparent'
+                    />
+                </View>
+
+                <View style={styles.inputContainer}>
+                    <Icon name='md-contact' size={30} color={'rgba(255,255,255,0.7)'}
+                        style={styles.inputIcon}
+                    />
+                    <TextInput
+                        style={styles.inputStyle}
+                        placeholder={'last  name'}
+                        placeholderTextColor={'rgba(255,255,255,0.7)'}
+                        underlineColorAndroid='transparent'
+                    />
+                </View>
+
                 <View style={styles.inputContainer}>
                     <Icon name='md-mail' size={30} color={'rgba(255,255,255,0.7)'}
                         style={styles.inputIcon}
@@ -64,17 +90,14 @@ class LoginScreen extends React.Component {
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.btnLogin}>
-                    <Text style={styles.textStyle}>Login</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={{ marginTop: 20 }}>
-                    <Text style={styles.textStyle}>Forgot password?</Text>
+                <TouchableOpacity
+                    style={styles.btnLogin}>
+                    <Text style={styles.textStyle}>Create Account</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => { this.props.navigation.navigate("Registration") }}
+                    onPress={() => { this.props.navigation.navigate("Login") }}
                     style={{ marginTop: 20 }}>
-                    <Text style={styles.textStyle}>New Here?</Text>
+                    <Text style={styles.textStyle}>Log In!</Text>
                 </TouchableOpacity>
 
 
@@ -105,11 +128,11 @@ const styles = StyleSheet.create({
         },
     },
     logoContainer: {
-        marginBottom: 100,
+        marginBottom: 40,
         alignItems: 'center'
     },
     inputContainer: {
-        marginTop: 25
+        marginTop: 20
     },
     inputStyle: {
         width: WIDTH - 55,
@@ -141,7 +164,7 @@ const styles = StyleSheet.create({
         width: WIDTH - 55,
         height: 50,
         borderRadius: 30,
-        marginTop: 60,
+        marginTop: 40,
         backgroundColor: 'rgba(4,167,241,0.75)'
     },
     textStyle: {
@@ -153,4 +176,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LoginScreen;
+export default RegistrationScreen;
