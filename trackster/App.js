@@ -5,7 +5,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 //Screens
 import LoginScreen from './src/screens/auth/LoginScreen';
 import RegistrationScreen from './src/screens/auth/RegistrationScreen';
-
+import BeginScreen from './src/screens/auth/BeginScreen';
 
 export default class App extends Component {
   render() {
@@ -19,6 +19,12 @@ export default class App extends Component {
 
 
 const MainNavigator = createStackNavigator({
+  BeginScreen: {
+    screen: BeginScreen,
+    navigationOptions: {
+      header: null
+    },
+  },
   Login: {
     screen: LoginScreen,
     navigationOptions: {
@@ -30,7 +36,7 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       header: null
     },
-  }
+  },
 });
 
 const AppContainer = createAppContainer(MainNavigator);

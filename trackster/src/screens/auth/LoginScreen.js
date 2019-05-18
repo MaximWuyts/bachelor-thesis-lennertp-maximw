@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, StatusBar, Image, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
-import logo from '../../assets/icon-eindwerk.png';
-import bgImage from '../../assets/backgroundimage.png';
+import logo from '../../../assets/icon.png';
+import bgImage from '../../../assets/achtergrond.png';
 
 
 const { width: WIDTH } = Dimensions.get('window');
