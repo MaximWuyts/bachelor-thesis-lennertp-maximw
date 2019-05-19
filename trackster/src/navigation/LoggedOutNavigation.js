@@ -27,7 +27,7 @@ const LoggedOutNavigator = createStackNavigator({
             header: null
         },
     },
-    Test: {
+    Home: {
         screen: TabNavigator,
         navigationOptions: {
             header: null
