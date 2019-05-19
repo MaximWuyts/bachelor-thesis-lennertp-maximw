@@ -1,46 +1,52 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { fire } from './src/keys/firebaseKeys';
+import { Spinner } from './src/components/Spinner';
+import LoggedOutNavigation from './src/navigation/LoggedOutNavigation';
+import LoggedInNavigation from './src/navigation/LoggedInNavigation';
 
-//Screens
-import LoginScreen from './src/screens/auth/LoginScreen';
-import RegistrationScreen from './src/screens/auth/RegistrationScreen';
-import BeginScreen from './src/screens/auth/BeginScreen';
 
 export default class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAuthenticationReady: false,
+      isAuthenticated: false,
+      user: null
+    };
+    fire.auth().onAuthStateChanged(this.onAuthStateChanged);
+  }
+
+
+  onAuthStateChanged = (user) => {
+    this.setState({
+      isAuthenticationReady: true,
+      isAuthenticated: !!user,
+      user
+    })
+  }
+
   render() {
-    return (
-      <View style={{ flex: 1 }}>
-        <AppContainer />
-      </View>
-    );
+    if (!this.state.isAuthenticationReady) {
+      return (
+        <Spinner size="large" />
+      )
+    }
+    else {
+      return (
+
+        <View style={{ flex: 1 }}>
+          {(this.state.isAuthenticated) ? <LoggedInNavigation screenProps={{ user: this.state.user }} /> : <LoggedOutNavigation />}
+        </View>
+
+      );
+    }
   }
 }
 
 
-const MainNavigator = createStackNavigator({
 
-  BeginScreen: {
-    screen: BeginScreen,
-    navigationOptions: {
-      header: null
-    },
-  },
-  Login: {
-    screen: LoginScreen,
-    navigationOptions: {
-      header: null
-    }
-  },
-  Registration: {
-    screen: RegistrationScreen,
-    navigationOptions: {
-      header: null
-    },
-  },
-});
-
-const AppContainer = createAppContainer(MainNavigator);
 
 const styles = StyleSheet.create({
 

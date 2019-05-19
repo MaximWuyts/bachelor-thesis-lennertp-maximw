@@ -33,7 +33,7 @@ class LoginScreen extends React.Component {
                     translucent={false}
                     animated={false}
                     hidden={false}
-                    backgroundColor="rgba(83, 79, 98, 0.8)"
+                    backgroundColor="#04A7F1"
                     barStyle="light-content" />
                 <View style={styles.logoContainer}>
                     <Image source={logo} style={styles.logo} />
