@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, StatusBar, Image, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Alert, StatusBar, Image, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
 import logo from '../../../assets/icon.png';
 import LinearGradient from 'react-native-linear-gradient';
-import bgImage from '../../../assets/achtergrond.png';
-import { Card } from 'native-base'
+import { fire } from '../../keys/firebaseKeys';
+import { Spinner } from '../../components/Spinner';
 
 const { width: WIDTH } = Dimensions.get('window');
 
@@ -15,7 +15,9 @@ class LoginScreen extends React.Component {
         this.state = {
             showPassword: true,
             pressed: false,
-
+            email: "",
+            password: "",
+            loading: false
         }
     }
 
@@ -24,6 +26,33 @@ class LoginScreen extends React.Component {
             this.setState({ showPassword: false, pressed: true })
         }
         else this.setState({ showPassword: true, pressed: false })
+    }
+
+    onLoginPress = () => {
+        const { email, password } = this.state;
+        this.setState({ loading: true })
+        fire.auth().signInWithEmailAndPassword(email, password)
+            .then(() => {
+                Alert.alert('Welcome back!')
+                this.setState({ loading: false })
+            }, (error) => {
+                Alert.alert(error.message);
+                this.setState({ loading: false })
+            });
+    }
+
+    renderButton() {
+        if (this.state.loading) {
+            return <Spinner size="small" />
+        }
+        return (
+
+            <TouchableOpacity
+                onPress={this.onLoginPress}
+                style={styles.btnLogin}>
+                <Text style={styles.textStyle}>Login</Text>
+            </TouchableOpacity>
+        );
     }
 
     render = () => {
@@ -49,9 +78,12 @@ class LoginScreen extends React.Component {
                         <TextInput
                             style={styles.inputStyle}
                             selectionColor={"#fff"}
+                            value={this.state.email}
                             placeholder={'user@mail.com'}
                             placeholderTextColor={'#FFFFFF'}
                             underlineColorAndroid='transparent'
+                            onChangeText={(text) => { this.setState({ email: text }) }}
+
                         />
                     </View>
                     <View style={styles.inputContainer}>
@@ -60,11 +92,13 @@ class LoginScreen extends React.Component {
                         />
                         <TextInput
                             style={styles.inputStyle}
+                            value={this.state.password}
                             placeholder={'password'}
                             selectionColor={"#fff"}
                             secureTextEntry={this.state.showPassword}
                             placeholderTextColor={'#FFFFFF'}
                             underlineColorAndroid='transparent'
+                            onChangeText={(text) => { this.setState({ password: text }) }}
                         />
                         <TouchableOpacity onPress={this.showPassword} style={styles.btnEye}>
                             <Icon name={this.state.pressed == false ? "md-eye-off" : "md-eye"} size={25} color={"#fff"} />
@@ -77,10 +111,7 @@ class LoginScreen extends React.Component {
                 </View>
 
 
-                <TouchableOpacity style={styles.btnLogin}>
-                    <Text style={styles.textStyle}>Login</Text>
-                </TouchableOpacity>
-
+                {this.renderButton()}
 
 
             </LinearGradient>

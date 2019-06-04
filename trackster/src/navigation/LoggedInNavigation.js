@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
+import EvilIcon from 'react-native-vector-icons/EvilIcons'
 
 //SCREENS
 import HomeScreen from '../screens/HomeScreen';
@@ -21,7 +22,7 @@ const TabNavigator = createBottomTabNavigator({
         screen: SubscriptionScreen,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => (
-                <Icon name="social-youtube" size={28} color={tintColor} />)
+                <EvilIcon name="play" size={42} color={tintColor} />)
         },
     },
     Warranties: {

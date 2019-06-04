@@ -55,6 +55,7 @@ class RegistrationScreen extends React.Component {
                 });
     }
 
+
     renderButton() {
         if (this.state.loading) {
             return <Spinner size="small" />
