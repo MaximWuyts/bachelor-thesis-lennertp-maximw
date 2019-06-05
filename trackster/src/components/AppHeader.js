@@ -20,11 +20,11 @@ class AppHeader extends React.Component {
                         source={require('../../assets/menu.png')} style={iconStyle} />
                 </TouchableOpacity>
 
-
-                <View style={{ marginLeft: 115 }}>
-                    <Text style={textHeaderStyle}>{this.props.headerText}</Text>
-                </View>
-
+                <TouchableOpacity>
+                    <View style={{ marginLeft: 115 }}>
+                        <Text style={textHeaderStyle}>{this.props.headerText}</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -33,7 +33,6 @@ class AppHeader extends React.Component {
 const styles = {
 
     headerStyle: {
-        height: 50,
         paddingTop: 30,
         paddingBottom: 50,
         paddingLeft: 20,
@@ -50,7 +49,6 @@ const styles = {
 
     },
     iconStyle: {
-        color: "#fff",
         paddingBottom: 0,
         marginTop: 10,
         width: 40,

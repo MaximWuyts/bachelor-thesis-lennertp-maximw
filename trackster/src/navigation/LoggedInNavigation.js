@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import EvilIcon from 'react-native-vector-icons/EvilIcons'
 
@@ -8,7 +8,8 @@ import HomeScreen from '../screens/HomeScreen';
 import SubscriptionScreen from '../../src/screens/SubscriptionScreen';
 import WarrantyScreen from '../screens/WarrantyScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-
+import AddWarrantieScreen from '../screens/AddWarrantieScreen';
+import AddSubscriptionScreen from '../screens/AddSubscriptionScreen';
 
 const TabNavigator = createBottomTabNavigator({
     Home: {
@@ -58,12 +59,37 @@ const TabNavigator = createBottomTabNavigator({
     })
 
 
-const MainNavigator = createAppContainer(TabNavigator);
+
+const RootNavigation = createStackNavigator({
+    Home: {
+        screen: TabNavigator,
+        navigationOptions: {
+            header: null
+        }
+    },
+    AddWarrantie: {
+        screen: AddWarrantieScreen,
+        navigationOptions: {
+            header: null
+        },
+    },
+    AddSubscription: {
+        screen: AddSubscriptionScreen,
+        navigationOptions: {
+            header: null
+        },
+    },
+
+});
+
+const Root = createAppContainer(RootNavigation);
+
+
 
 class LoggedInNavigation extends React.Component {
     render = () => {
         return (
-            <MainNavigator />
+            <Root />
         )
     }
 }

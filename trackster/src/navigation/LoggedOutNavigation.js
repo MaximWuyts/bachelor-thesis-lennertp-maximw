@@ -6,6 +6,7 @@ import TabNavigator from './LoggedInNavigation';
 import LoginScreen from '../screens/auth/LoginScreen';
 import RegistrationScreen from '../screens/auth/RegistrationScreen';
 import BeginScreen from '../screens/auth/BeginScreen';
+import AddDocScreens from '../screens/AddWarrantieScreen';
 
 const LoggedOutNavigator = createStackNavigator({
 
@@ -32,7 +33,7 @@ const LoggedOutNavigator = createStackNavigator({
         navigationOptions: {
             header: null
         }
-    }
+    },
 });
 
 const RootNavigator = createAppContainer(LoggedOutNavigator);

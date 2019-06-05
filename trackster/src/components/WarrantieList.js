@@ -4,7 +4,6 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 class WarrantieList extends React.Component {
     render() {
-        const { account } = this.props;
         const WarrantieListArray = 0;
         const { listViewstyle, leftTextStyle, rightTextStyle, listViewstyleNoBorder, iconStyle, noListViewstyle, noListTextStyle, noListTextStyle2 } = styles
         return (
@@ -16,7 +15,8 @@ class WarrantieList extends React.Component {
                     WarrantieListArray === 0 ?
                         <View style={noListViewstyle}>
                             <Text style={noListTextStyle}>No saved warranties</Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => this.props.navProp.navigate('AddWarrantie')}>
                                 <Text style={noListTextStyle2}>Add now!</Text>
                             </TouchableOpacity>
 

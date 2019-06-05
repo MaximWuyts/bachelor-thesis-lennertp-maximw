@@ -1,18 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, StatusBar, Dimensions } from 'react-native';
-import bgImage from '../../assets/achtergrond.png';
-import AppHeader from '../components/AppHeader';
-import { Content, Card } from 'native-base';
-import WarrantieList from '../components/WarrantieList';
-import SubscriptionList from '../components/SubscriptionList';
+import { StyleSheet, Text, View, ImageBackground, StatusBar } from 'react-native';
+import bgImage from '../../assets/otherback.png';
+import AppOtherHeader from '../components/AppOtherHeader';
+import { Content, Card } from 'native-base'
+import AddDocument from '../components/AddDocument';
+import Icon from 'react-native-vector-icons/AntDesign';
 
+class AddSubscriptionScreen extends React.Component {
+    constructor(props) {
+        super(props);
 
-class HomeScreen extends React.Component {
-
+    }
     render = () => {
-
-        const { listViewstyle, textHeaderStyle, contentStyle, textHeaderStyle2 } = styles
-
+        const { listViewstyle, textHeaderStyle, contentStyle, contentStyle2, importIconStyle } = styles
         return (
             <ImageBackground source={bgImage} style={styles.backgroundContainer}>
                 <StatusBar
@@ -21,21 +21,24 @@ class HomeScreen extends React.Component {
                     hidden={false}
                     backgroundColor="transparent"
                     barStyle="light-content" />
-
-                <AppHeader headerText="Home" />
+                <AppOtherHeader headerText={"Add Warrantie"} navProp={this.props.navigation} />
 
                 <Content style={listViewstyle}>
                     <View>
-                        <Text style={textHeaderStyle}>Upcomming Warranties</Text>
+                        <Text style={textHeaderStyle}>General Info</Text>
                     </View>
                     <Card style={contentStyle}>
-                        <WarrantieList navProp={this.props.navigation} />
+                        <AddDocument formType="subscription" />
                     </Card>
                     <View style={{ marginTop: 20, marginBottom: 15 }}>
-                        <Text style={textHeaderStyle2}>Upcomming Subscriptions</Text>
+                        <Text style={textHeaderStyle}>Important Documents</Text>
                     </View>
                     <Card style={contentStyle}>
-                        <SubscriptionList navProp={this.props.navigation} />
+                        <View style={contentStyle2}>
+                            <Icon name="upload" size={30} color={"#04A7F1"} style={importIconStyle} />
+                        </View>
+
+
                     </Card>
 
                 </Content>
@@ -61,6 +64,7 @@ const styles = StyleSheet.create({
         color: "#fff",
         marginTop: 12.5,
         marginBottom: 15,
+        fontWeight: "700",
         textAlign: "center"
     },
     textHeaderStyle2: {
@@ -81,6 +85,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         elevation: 3,
     },
+    contentStyle2: {
+        margin: 20,
+        padding: 40,
+        justifyContent: "center",
+        alignItems: "center",
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: '#04A7F1'
+    },
+    importIconStyle: {
+        padding: 10,
+    }
 });
 
-export default HomeScreen;
+export default AddSubscriptionScreen;
