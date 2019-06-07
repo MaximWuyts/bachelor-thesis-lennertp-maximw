@@ -12,7 +12,6 @@ class HomeScreen extends React.Component {
     render = () => {
 
         const { listViewstyle, textHeaderStyle, contentStyle, textHeaderStyle2 } = styles
-
         return (
             <ImageBackground source={bgImage} style={styles.backgroundContainer}>
                 <StatusBar
@@ -29,13 +28,13 @@ class HomeScreen extends React.Component {
                         <Text style={textHeaderStyle}>Upcomming Warranties</Text>
                     </View>
                     <Card style={contentStyle}>
-                        <WarrantieList navProp={this.props.navigation} />
+                        <WarrantieList screenProps={this.props.screenProps} navProp={this.props.navigation} />
                     </Card>
                     <View style={{ marginTop: 20, marginBottom: 15 }}>
                         <Text style={textHeaderStyle2}>Upcomming Subscriptions</Text>
                     </View>
                     <Card style={contentStyle}>
-                        <SubscriptionList navProp={this.props.navigation} />
+                        <SubscriptionList screenProps={this.props.screenProps} navProp={this.props.navigation} />
                     </Card>
 
                 </Content>

@@ -87,9 +87,11 @@ const Root = createAppContainer(RootNavigation);
 
 
 class LoggedInNavigation extends React.Component {
+
     render = () => {
+
         return (
-            <Root />
+            <Root screenProps={this.props.screenProps} />
         )
     }
 }

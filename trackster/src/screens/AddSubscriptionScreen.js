@@ -4,14 +4,54 @@ import bgImage from '../../assets/otherback.png';
 import AppOtherHeader from '../components/AppOtherHeader';
 import { Content, Card } from 'native-base'
 import AddDocument from '../components/AddDocument';
+import { fire } from '../keys/firebaseKeys';
 import Icon from 'react-native-vector-icons/AntDesign';
+import moment from "moment";
+import AddButton from '../components/AddButton';
 
 class AddSubscriptionScreen extends React.Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            name: undefined,
+            type: undefined,
+            price: undefined,
+            productType: undefined,
+            chosenDate: new Date(),
+            urlLink: undefined
+        };
     }
+
+    handleChange = (name, event) => {
+        this.setState({
+            [name]: event
+        })
+    }
+
+    setDate = (newDate) => {
+        let formattedDate = moment(newDate).format('MM-DD-YYYY');
+        console.log('m', formattedDate);
+        this.setState({ chosenDate: formattedDate });
+    }
+
+
+    handleSubmit = (event) => {
+        fire.database().ref(`subscriptions/${this.props.screenProps.user.uid}`).push({
+            name: this.state.name,
+            type: this.state.type,
+            price: this.state.price,
+            productType: this.state.productType,
+            chosenDate: this.state.chosenDate,
+            urlLink: this.state.urlLink
+        }).then(() => {
+            this.props.navigation.navigate("Home");
+        })
+    }
+
+
+
     render = () => {
+        console.log('deze', this.state.chosenDate);
         const { listViewstyle, textHeaderStyle, contentStyle, contentStyle2, importIconStyle } = styles
         return (
             <ImageBackground source={bgImage} style={styles.backgroundContainer}>
@@ -21,27 +61,35 @@ class AddSubscriptionScreen extends React.Component {
                     hidden={false}
                     backgroundColor="transparent"
                     barStyle="light-content" />
-                <AppOtherHeader headerText={"Add Warrantie"} navProp={this.props.navigation} />
+                <AppOtherHeader headerText={"Add Subscription"} navProp={this.props.navigation} />
 
                 <Content style={listViewstyle}>
                     <View>
                         <Text style={textHeaderStyle}>General Info</Text>
                     </View>
                     <Card style={contentStyle}>
-                        <AddDocument formType="subscription" />
+                        <AddDocument
+                            formType="subscription"
+                            handleChange={this.handleChange}
+                            setDate={this.setDate}
+                            name={this.state.name}
+                            type={this.state.type}
+                            productType={this.state.productType}
+                            price={this.state.price}
+                            urlLink={this.state.urlLink}
+                        />
                     </Card>
-                    <View style={{ marginTop: 20, marginBottom: 15 }}>
+                    <View style={{ marginTop: 20, marginBottom: 5 }}>
                         <Text style={textHeaderStyle}>Important Documents</Text>
                     </View>
                     <Card style={contentStyle}>
                         <View style={contentStyle2}>
                             <Icon name="upload" size={30} color={"#04A7F1"} style={importIconStyle} />
                         </View>
-
-
                     </Card>
 
                 </Content>
+                <AddButton handleSubmit={this.handleSubmit}>Add Subscription</AddButton>
             </ImageBackground>
         )
     }
@@ -62,7 +110,6 @@ const styles = StyleSheet.create({
     textHeaderStyle: {
         fontSize: 20,
         color: "#fff",
-        marginTop: 12.5,
         marginBottom: 15,
         fontWeight: "700",
         textAlign: "center"
@@ -87,7 +134,7 @@ const styles = StyleSheet.create({
     },
     contentStyle2: {
         margin: 20,
-        padding: 40,
+        padding: 20,
         justifyContent: "center",
         alignItems: "center",
         borderWidth: 1,
