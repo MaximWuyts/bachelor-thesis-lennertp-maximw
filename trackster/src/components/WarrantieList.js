@@ -1,10 +1,75 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { db, fire } from '../keys/firebaseKeys';
 import Icon from 'react-native-vector-icons/Ionicons'
+import moment from "moment";
 
 class WarrantieList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            warranties: []
+        }
+    }
+
+    componentDidMount = () => {
+        let warranties = [];
+        db.ref(`warranties/${this.props.screenProps.user.uid}`).on('value', (snap) => {
+            if (snap.val()) {
+                let values = snap.val();
+                console.log('val', values);
+                Object.keys(values).forEach(key => {
+                    warranties.push({
+                        id: key,
+                        value: values[key]
+                    })
+                });
+                this.setState({
+                    warranties
+                })
+            }
+        });
+    }
+
+    getIcon = (productType) => {
+        if (productType === 'online') {
+            return <Icon name='md-laptop' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+        }
+        if (productType === 'financial') {
+            return <Icon name='md-card' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+        }
+        if (productType === 'transport') {
+            return <Icon name='md-car' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+        }
+        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+    }
+
+    calculateDaysLeft = (endDate) => {
+        let startDate = moment()
+        if (!moment.isMoment(startDate)) startDate = moment(startDate);
+        if (!moment.isMoment(endDate)) endDate = moment(endDate);
+        console.log(endDate);
+        console.log(startDate);
+        let days = endDate.diff(startDate, "days");
+        if (days <= 30) {
+            return <Text style={styles.rightTextStyle}>{days} days left</Text>
+        }
+        if (days > 30 && days < 40) {
+            return <Text style={styles.rightTextStyle}>1 month left</Text>
+        }
+        if (days > 60) {
+            return <Text style={styles.rightTextStyle}>2 months left</Text>
+        }
+        if (days > 365) {
+            return <Text style={styles.rightTextStyle}>1 year left</Text>
+        }
+        else
+            <Text style={styles.rightTextStyle}>3 years left</Text>
+
+    }
+
     render() {
-        const WarrantieListArray = 0;
+        console.log('deefdsf', this.state.warranties);
         const { listViewstyle, leftTextStyle, rightTextStyle, listViewstyleNoBorder, iconStyle, noListViewstyle, noListTextStyle, noListTextStyle2 } = styles
         return (
             // <TouchableOpacity onPress={() =>
@@ -12,7 +77,7 @@ class WarrantieList extends React.Component {
             // >
             <View>
                 {
-                    WarrantieListArray === 0 ?
+                    this.state.warranties.length === 1 ?
                         <View style={noListViewstyle}>
                             <Text style={noListTextStyle}>No saved warranties</Text>
                             <TouchableOpacity
@@ -23,17 +88,21 @@ class WarrantieList extends React.Component {
                         </View>
                         :
                         <View>
-                            <View style={listViewstyle}>
-                                <Icon name='md-car' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
-                                <Text style={leftTextStyle}>Audi R8</Text>
-                                <Text style={rightTextStyle}>2 days</Text>
-                            </View>
-                            <View style={listViewstyle}>
-                                <Icon name='md-laptop' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
-                                <Text style={leftTextStyle}>Acer Aspire</Text>
-                                <Text style={rightTextStyle}>1 week</Text>
-                            </View>
-                            <View style={listViewstyle}>
+                            <FlatList
+
+                                data={this.state.warranties}
+                                renderItem={({ item, index }) => {
+                                    console.log('test222')
+                                    return (
+                                        <View style={listViewstyle}>
+                                            {this.getIcon(item.value.productType)}
+                                            <Text style={leftTextStyle}>{item.value.name}</Text>
+                                            {this.calculateDaysLeft(item.value.chosenDate)}
+                                        </View>
+                                    )
+                                }}
+                            />
+                            {/* <View style={listViewstyle}>
                                 <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
                                 <Text style={leftTextStyle}>Iphone X</Text>
                                 <Text style={rightTextStyle}>3 weeks</Text>
@@ -42,7 +111,7 @@ class WarrantieList extends React.Component {
                                 <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
                                 <Text style={leftTextStyle}>Iphone X</Text>
                                 <Text style={rightTextStyle}>3 weeks</Text>
-                            </View>
+                            </View> */}
                         </View>
                 }
             </View>

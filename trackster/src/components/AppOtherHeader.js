@@ -34,7 +34,7 @@ class AppOtherHeader extends React.Component {
 const styles = StyleSheet.create({
     headerStyle: {
         marginTop: 30,
-        paddingBottom: 50,
+        paddingBottom: 40,
         paddingLeft: 20,
         paddingRight: 38.5,
         flexDirection: 'row',
