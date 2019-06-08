@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, StatusBar, Image, Dimensions, TextInput, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
-import logo from '../../../assets/icon.png';
-import bgImage from '../../../assets/achtergrond.png';
+import Logo from '../../../assets/white-logo-rev.png';
+import Back from '../../../assets/register.jpg';
 import { Card } from 'native-base';
 import { fire } from '../../keys/firebaseKeys';
 import { db } from '../../keys/firebaseKeys';
@@ -71,15 +71,16 @@ class RegistrationScreen extends React.Component {
 
     render = () => {
         return (
-            <ImageBackground source={bgImage} style={styles.backgroundContainer}>
+            <ImageBackground source={Back} style={styles.backgroundContainer}>
                 <StatusBar
-                    translucent={false}
+                    translucent={true}
                     animated={false}
                     hidden={false}
-                    backgroundColor="#04A7F1"
+                    backgroundColor="black"
+                    opacity={0.7}
                     barStyle="light-content" />
                 <View style={styles.logoContainer}>
-                    <Image source={logo} style={styles.logo} />
+                    <Image source={Logo} style={styles.logo} />
                 </View>
 
                 <Card style={styles.cardStyle}>
@@ -159,9 +160,9 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     logo: {
-        width: 150,
+        width: 120,
         opacity: 0.8,
-        height: 170,
+        height: 140,
         shadowColor: 'black',
         shadowOpacity: 0.5,
         shadowRadius: 5,
@@ -190,11 +191,11 @@ const styles = StyleSheet.create({
     inputStyle: {
         width: WIDTH - 100,
         height: 50,
-        borderRadius: 30,
         fontSize: 18,
         paddingLeft: 75,
-        backgroundColor: 'rgba(69,187,239,1)',
-        marginHorizontal: 25
+        marginHorizontal: 25,
+        borderBottomWidth: 1,
+        borderBottomColor: 'white',
     },
     inputIcon: {
         position: 'absolute',
@@ -219,7 +220,8 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 30,
         marginTop: 20,
-        backgroundColor: '#65D8B9'
+        borderColor: 'white',
+        borderWidth: 1
     },
     cardStyle: {
         paddingTop: 20,
@@ -227,7 +229,11 @@ const styles = StyleSheet.create({
         paddingBottom: 40,
         width: WIDTH - 55,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor: 'transparent',
+        borderWidth: 0,
+        borderColor: 'transparent',
+        elevation: 0
     },
     textStyle: {
         color: 'rgba(255,255,255,1)',
