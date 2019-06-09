@@ -30,7 +30,6 @@ class AddSubscriptionScreen extends React.Component {
 
     setDate = (newDate) => {
         let formattedDate = moment(newDate).format('MM-DD-YYYY');
-        console.log('m', formattedDate);
         this.setState({ chosenDate: formattedDate });
     }
 
@@ -51,7 +50,6 @@ class AddSubscriptionScreen extends React.Component {
 
 
     render = () => {
-        console.log('deze', this.state.chosenDate);
         const { listViewstyle, textHeaderStyle, contentStyle, contentStyle2, importIconStyle } = styles
         return (
             <ImageBackground source={bgImage} style={styles.backgroundContainer}>

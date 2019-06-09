@@ -9,23 +9,23 @@ class AppOtherHeader extends React.Component {
     }
 
     render = () => {
-
-        const { headerStyle, textHeaderStyle, iconStyle } = styles;
+        console.log('ppp', this.props.navProp)
+        const { headerStyle, textHeaderStyle, iconStyle, textHeaderStyle2 } = styles;
         return (
             <View style={headerStyle}>
-
                 <TouchableOpacity
-                    onPress={() => this.props.navProp.goBack()}>
+                    onPress={() => this.props.navProp.goBack(null)}>
                     <Icon name='ios-arrow-back' size={32} color={'#FFFFFF'}
-                        style={{ marginTop: 10 }}
+                        style={iconStyle}
                     />
                 </TouchableOpacity>
 
-
-                <View style={{ marginLeft: 115 }}>
+                <View>
                     <Text style={textHeaderStyle}>{this.props.headerText}</Text>
                 </View>
-
+                <View>
+                    <Text style={textHeaderStyle2}> </Text>
+                </View>
             </View>
         )
     }
@@ -33,26 +33,33 @@ class AppOtherHeader extends React.Component {
 
 const styles = StyleSheet.create({
     headerStyle: {
+        flex: 1,
         marginTop: 30,
-        paddingBottom: 40,
-        paddingLeft: 20,
-        paddingRight: 38.5,
-        flexDirection: 'row',
-
+        maxHeight: 50,
+        backgroundColor: "transparent",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     textHeaderStyle: {
-        fontSize: 20,
+        flex: 1,
+        fontSize: 23,
         color: "#fff",
-        marginTop: 12.5,
         fontWeight: "700",
-
+        marginBottom: 10,
+        textAlign: "right"
+    },
+    textHeaderStyle2: {
+        flex: 3,
+        fontSize: 23,
+        color: "#fff",
+        fontWeight: "700",
+        marginBottom: 10,
+        textAlign: "right"
     },
     iconStyle: {
-        color: "#fff",
-        paddingBottom: 0,
-        marginTop: 10,
-        paddingLeft: 12.5,
-        paddingRight: 12.5
+        flex: 3,
+        paddingLeft: 15,
     }
 });
 
