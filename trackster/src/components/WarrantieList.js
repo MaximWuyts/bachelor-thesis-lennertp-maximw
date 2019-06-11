@@ -93,24 +93,18 @@ class WarrantieList extends React.Component {
                                 renderItem={({ item, index }) => {
 
                                     return (
-                                        <View style={(index === this.state.warranties.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
-                                            {this.getIcon(item.value.productType)}
-                                            <Text style={leftTextStyle}>{item.value.name}</Text>
-                                            {this.calculateDaysLeft(item.value.chosenDate)}
-                                        </View>
+                                        <TouchableOpacity onPress={() =>
+                                            this.props.navProp.navigate('Detail', { item: item, formType: "warranty" })}
+                                        >
+                                            <View style={(index === this.state.warranties.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
+                                                {this.getIcon(item.value.productType)}
+                                                <Text style={leftTextStyle}>{item.value.name}</Text>
+                                                {this.calculateDaysLeft(item.value.chosenDate)}
+                                            </View>
+                                        </TouchableOpacity>
                                     )
                                 }}
                             />
-                            {/* <View style={listViewstyle}>
-                                <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
-                                <Text style={leftTextStyle}>Iphone X</Text>
-                                <Text style={rightTextStyle}>3 weeks</Text>
-                            </View>
-                            <View style={listViewstyleNoBorder}>
-                                <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
-                                <Text style={leftTextStyle}>Iphone X</Text>
-                                <Text style={rightTextStyle}>3 weeks</Text>
-                            </View> */}
                         </View>
                 }
             </View>
@@ -125,15 +119,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 15,
         paddingBottom: 7.5,
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         borderBottomWidth: 1,
-        borderBottomColor: "#D8D8D8"
+        borderBottomColor: "#D8D8D8",
+        paddingLeft: 15,
+        paddingRight: 15,
     },
     noListViewstyle: {
         flexDirection: 'column',
         marginTop: 15,
         padding: 30,
-
         justifyContent: "center",
         alignItems: "center",
     },
@@ -149,12 +144,13 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         paddingBottom: 20
     },
-
     listViewstyleNoBorder: {
         flexDirection: 'row',
+        paddingLeft: 15,
+        paddingRight: 15,
         marginTop: 15,
         paddingBottom: 7.5,
-        justifyContent: "space-around",
+        justifyContent: "space-between",
     },
     leftTextStyle: {
         fontSize: 17,

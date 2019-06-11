@@ -10,6 +10,8 @@ import WarrantyScreen from '../screens/WarrantyScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import AddWarrantieScreen from '../screens/AddWarrantieScreen';
 import AddSubscriptionScreen from '../screens/AddSubscriptionScreen';
+import DetailScreen from '../screens/DetailScreen';
+import EditDetailScreen from '../screens/EditDetailScreen';
 
 const TabNavigator = createBottomTabNavigator({
     Home: {
@@ -75,6 +77,18 @@ const RootNavigation = createStackNavigator({
     },
     AddSubscription: {
         screen: AddSubscriptionScreen,
+        navigationOptions: {
+            header: null
+        },
+    },
+    Detail: {
+        screen: DetailScreen,
+        navigationOptions: {
+            header: null
+        },
+    },
+    EditDetail: {
+        screen: EditDetailScreen,
         navigationOptions: {
             header: null
         },

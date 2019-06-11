@@ -9,7 +9,7 @@ class AppOtherHeader extends React.Component {
     }
 
     render = () => {
-        console.log('ppp', this.props.navProp)
+        console.log('ppp', this.props.formType)
         const { headerStyle, textHeaderStyle, iconStyle, textHeaderStyle2 } = styles;
         return (
             <View style={headerStyle}>
@@ -24,7 +24,13 @@ class AppOtherHeader extends React.Component {
                     <Text style={textHeaderStyle}>{this.props.headerText}</Text>
                 </View>
                 <View>
-                    <Text style={textHeaderStyle2}> </Text>
+                    {this.props.formType === "detail" ?
+                        <Icon
+                            onPress={this.props.onEditPress}
+                            name='md-create' size={32} color={'#FFFFFF'}
+                            style={textHeaderStyle2}
+                        />
+                        : <Text style={textHeaderStyle2}> </Text>}
                 </View>
             </View>
         )
@@ -53,13 +59,14 @@ const styles = StyleSheet.create({
         flex: 3,
         fontSize: 23,
         color: "#fff",
+        paddingRight: 20,
         fontWeight: "700",
         marginBottom: 10,
         textAlign: "right"
     },
     iconStyle: {
         flex: 3,
-        paddingLeft: 15,
+        paddingLeft: 20,
     }
 });
 

@@ -4,21 +4,23 @@ import bgImage from '../../assets/otherback.png';
 import AppOtherHeader from '../components/AppOtherHeader';
 import { Content, Card } from 'native-base'
 import AddDocument from '../components/AddDocument';
-import { fire } from '../keys/firebaseKeys';
 import Icon from 'react-native-vector-icons/AntDesign';
-import moment from "moment";
+import EditDocument from '../components/EditDocument';
 import AddButton from '../components/AddButton';
+import moment from "moment";
+import { fire } from '../keys/firebaseKeys';
 
-class AddWarrantieScreen extends React.Component {
+class EditDetailScreen extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            name: undefined,
-            warrantyDuration: undefined,
-            price: undefined,
-            productType: undefined,
-            chosenDate: new Date(),
-            urlLink: undefined
+            name: this.props.navigation.state.params.item.value.name,
+            type: this.props.navigation.state.params.item.value.type,
+            price: this.props.navigation.state.params.item.value.price,
+            productType: this.props.navigation.state.params.item.value.productType,
+            chosenDate: this.props.navigation.state.params.item.value.chosenDate,
+            urlLink: this.props.navigation.state.params.item.value.urlLink
         };
     }
 
@@ -34,11 +36,10 @@ class AddWarrantieScreen extends React.Component {
         this.setState({ chosenDate: formattedDate });
     }
 
-
-    handleSubmit = (event) => {
-        fire.database().ref(`warranties/${this.props.screenProps.user.uid}`).push({
+    handleSubmitSubscription = (event) => {
+        fire.database().ref(`subscriptions/${this.props.screenProps.user.uid}/${this.props.navigation.state.params.item.id}`).update({
             name: this.state.name,
-            warrantyDuration: this.state.warrantyDuration,
+            type: this.state.type,
             price: this.state.price,
             productType: this.state.productType,
             chosenDate: this.state.chosenDate,
@@ -48,8 +49,44 @@ class AddWarrantieScreen extends React.Component {
         })
     }
 
+    handleSubmitWarranty = (event) => {
+        fire.database().ref(`warranties/${this.props.screenProps.user.uid}/${this.props.navigation.state.params.item.id}`).update({
+            name: this.state.name,
+            price: this.state.price,
+            warrantyDuration: this.state.warrantyDuration,
+            productType: this.state.productType,
+            chosenDate: this.state.chosenDate,
+            urlLink: this.state.urlLink
+        }).then(() => {
+            this.props.navigation.navigate("Home");
+        })
+    }
+
+    calculateDaysLeft = (endDate) => {
+        let startDate = moment()
+        if (!moment.isMoment(startDate)) startDate = moment(startDate);
+        if (!moment.isMoment(endDate)) endDate = moment(endDate);
+        let days = endDate.diff(startDate, "days");
+        if (days <= 30) {
+            return <Text style={styles.rightTextStyle}>{days} days left</Text>
+        }
+        if (days > 30 && days < 40) {
+            return <Text>1 month left</Text>
+        }
+        if (days > 60) {
+            return <Text>2 months left</Text>
+        }
+        if (days > 365) {
+            return <Text>1 year left</Text>
+        }
+        else
+            <Text>3 years left</Text>
+
+    }
+
 
     render = () => {
+        console.log('tests', this.props.navigation.state.params.formType);
         const { listViewstyle, textHeaderStyle, contentStyle, contentStyle2, importIconStyle } = styles
         return (
             <ImageBackground source={bgImage} style={styles.backgroundContainer}>
@@ -59,36 +96,46 @@ class AddWarrantieScreen extends React.Component {
                     hidden={false}
                     backgroundColor="transparent"
                     barStyle="light-content" />
-                <AppOtherHeader headerText={"Add Warrantie"} navProp={this.props.navigation} />
+                <AppOtherHeader formType={"detail"} headerText={this.props.navigation.state.params.item.value.name} navProp={this.props.navigation} />
 
                 <Content style={listViewstyle}>
                     <View>
                         <Text style={textHeaderStyle}>General Info</Text>
                     </View>
                     <Card style={contentStyle}>
-                        <AddDocument
-                            formType="warranty"
+                        <EditDocument
                             handleChange={this.handleChange}
-                            setDate={this.setDate}
+                            formType={this.props.navigation.state.params.formType}
+                            calculateDaysLeft={this.calculateDaysLeft}
                             warrantyDuration={this.state.warrantyDuration}
                             name={this.state.name}
+                            type={this.state.type}
                             productType={this.state.productType}
                             price={this.state.price}
                             urlLink={this.state.urlLink}
+                            chosenDate={this.state.chosenDate}
                         />
                     </Card>
-                    <View style={{ marginTop: 20, marginBottom: 15 }}>
+                    <View style={{ marginTop: 20, marginBottom: 5 }}>
                         <Text style={textHeaderStyle}>Important Documents</Text>
                     </View>
                     <Card style={contentStyle}>
                         <View style={contentStyle2}>
                             <Icon name="upload" size={30} color={"#04A7F1"} style={importIconStyle} />
                         </View>
-
-
                     </Card>
+
                 </Content>
-                <AddButton handleSubmit={this.handleSubmit}>Add Subscription</AddButton>
+
+                {this.props.navigation.state.params.formType === "subscription" ?
+                    <View>
+                        <AddButton handleSubmit={this.handleSubmitSubscription}>Edit Subscription</AddButton>
+                    </View> :
+                    <View>
+                        <AddButton handleSubmit={this.handleSubmitWarranty}>Edit Warranty</AddButton>
+                    </View>
+                }
+
             </ImageBackground>
         )
     }
@@ -145,4 +192,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AddWarrantieScreen;
+export default EditDetailScreen;
