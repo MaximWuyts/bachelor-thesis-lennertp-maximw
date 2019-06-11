@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, StatusBar, Image, Dimensions, TextInput, TouchableOpacity, Alert } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Icon from 'react-native-vector-icons/Ionicons';
 import Logo from '../../../assets/white-logo-rev.png';
 import Back from '../../../assets/register.jpg';
 import { Card } from 'native-base';
@@ -72,6 +73,14 @@ class RegistrationScreen extends React.Component {
     render = () => {
         return (
             <ImageBackground source={Back} style={styles.backgroundContainer}>
+              <KeyboardAwareScrollView
+                style={styles.scrollView}
+                automaticallyAdjustContentInsets={false}
+                keyboardShouldPersistTaps='always'
+                scrollEventThrottle={10}
+                extraHeight={250}
+                resetScrollToCoords={{x: 0, y: 0}}
+              >
                 <StatusBar
                     translucent={true}
                     animated={false}
@@ -145,7 +154,7 @@ class RegistrationScreen extends React.Component {
                 {this.renderButton()}
 
 
-
+              </KeyboardAwareScrollView>
             </ImageBackground>
         )
     }
@@ -163,6 +172,7 @@ const styles = StyleSheet.create({
         width: 120,
         opacity: 0.8,
         height: 140,
+        marginTop: 60,
         shadowColor: 'black',
         shadowOpacity: 0.5,
         shadowRadius: 5,
@@ -196,6 +206,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 25,
         borderBottomWidth: 1,
         borderBottomColor: 'white',
+        color: 'white'
     },
     inputIcon: {
         position: 'absolute',

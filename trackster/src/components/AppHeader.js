@@ -34,7 +34,7 @@ const styles = {
 
     headerStyle: {
         paddingTop: 30,
-        paddingBottom: 50,
+        paddingBottom: 20,
         paddingLeft: 20,
         paddingRight: 38.5,
         flexDirection: 'row',

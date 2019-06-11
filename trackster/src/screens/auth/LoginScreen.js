@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Alert, StatusBar, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Alert, StatusBar, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground, ScrollView } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/Ionicons'
 import Logo from '../../../assets/white-logo-rev.png';
 import Back from '../../../assets/login.jpg';
@@ -57,7 +58,16 @@ class LoginScreen extends React.Component {
 
     render = () => {
         return (
+
             <ImageBackground source={Back} style={styles.background}>
+              <KeyboardAwareScrollView
+                style={styles.scrollView}
+                automaticallyAdjustContentInsets={false}
+                keyboardShouldPersistTaps='always'
+                scrollEventThrottle={10}
+                extraHeight={250}
+                resetScrollToCoords={{x: 0, y: 0}}
+              >
                 <StatusBar
                     translucent={false}
                     animated={false}
@@ -114,21 +124,24 @@ class LoginScreen extends React.Component {
 
                 {this.renderButton()}
 
-
+              </KeyboardAwareScrollView>
             </ImageBackground>
+
         )
     }
 }
 
 const styles = StyleSheet.create({
+    scrollView: {
+        flex: 1
+    },
     background: {
         flex: 1,
         height: null,
         width: null,
         justifyContent: "center",
         alignItems: "center",
-        width: '100%',
-        height: '100%'
+        flex: 1
     },
     logo: {
         width: 120,
@@ -154,7 +167,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         borderBottomWidth: 1,
         borderBottomColor: "#fff",
-        marginHorizontal: 25
+        marginHorizontal: 25,
+        color: "white"
     },
     inputIcon: {
         position: 'absolute',
@@ -175,7 +189,7 @@ const styles = StyleSheet.create({
     btnLogin: {
         width: WIDTH - 55,
         height: 50,
-        marginBottom: 75,
+        marginTop: 75,
         borderRadius: 30,
         borderWidth: 1,
         borderColor: "#fff",

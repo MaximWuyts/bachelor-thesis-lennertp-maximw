@@ -51,14 +51,12 @@ const styles = StyleSheet.create({
         fontFamily: "HelveticaNeueBold",
     },
     listViewstyle: {
-
         paddingRight: 10,
         paddingLeft: 10
     },
     textHeaderStyle: {
         fontSize: 20,
         color: "#fff",
-        marginTop: 12.5,
         marginBottom: 15,
         textAlign: "center"
     },
