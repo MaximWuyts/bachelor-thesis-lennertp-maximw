@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Alert, StatusBar, Image, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Alert, StatusBar, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground, ScrollView } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/Ionicons'
-import logo from '../../../assets/icon.png';
-import LinearGradient from 'react-native-linear-gradient';
+import Logo from '../../../assets/white-logo-rev.png';
+import Back from '../../../assets/login.jpg';
 import { fire } from '../../keys/firebaseKeys';
 import { Spinner } from '../../components/Spinner';
 
@@ -57,15 +58,25 @@ class LoginScreen extends React.Component {
 
     render = () => {
         return (
-            <LinearGradient colors={['#04A7F1', '#65D8B9']} style={styles.linearGradient}>
+
+            <ImageBackground source={Back} style={styles.background}>
+              <KeyboardAwareScrollView
+                style={styles.scrollView}
+                automaticallyAdjustContentInsets={false}
+                keyboardShouldPersistTaps='always'
+                scrollEventThrottle={10}
+                extraHeight={250}
+                resetScrollToCoords={{x: 0, y: 0}}
+              >
                 <StatusBar
                     translucent={false}
                     animated={false}
                     hidden={false}
-                    backgroundColor="#04A7F1"
+                    opacity={0.7}
+                    backgroundColor="black"
                     barStyle="light-content" />
                 <View style={styles.logoContainer}>
-                    <Image source={logo} style={styles.logo} />
+                    <Image source={Logo} style={styles.logo} />
                 </View>
                 <View style={styles.headerStyle}>
                     <Text style={styles.headerText}>Xpyre</Text>
@@ -113,23 +124,27 @@ class LoginScreen extends React.Component {
 
                 {this.renderButton()}
 
+              </KeyboardAwareScrollView>
+            </ImageBackground>
 
-            </LinearGradient>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    linearGradient: {
+    scrollView: {
+        flex: 1
+    },
+    background: {
         flex: 1,
         height: null,
         width: null,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        flex: 1
     },
     logo: {
         width: 120,
-        opacity: 0.8,
         height: 140,
         shadowColor: 'black',
         shadowOpacity: 0.5,
@@ -145,15 +160,15 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     inputStyle: {
-        width: WIDTH - 75,
+        width: WIDTH - 100,
         height: 60,
-        borderRadius: 30,
         fontSize: 18,
         paddingLeft: 75,
         backgroundColor: 'transparent',
-        borderWidth: 1,
-        borderColor: "#fff",
-        marginHorizontal: 25
+        borderBottomWidth: 1,
+        borderBottomColor: "#fff",
+        marginHorizontal: 25,
+        color: "white"
     },
     inputIcon: {
         position: 'absolute',
@@ -172,9 +187,9 @@ const styles = StyleSheet.create({
         opacity: 0.6
     },
     btnLogin: {
-        width: WIDTH - 75,
-        height: 60,
-        marginBottom: 75,
+        width: WIDTH - 55,
+        height: 50,
+        marginTop: 75,
         borderRadius: 30,
         borderWidth: 1,
         borderColor: "#fff",
@@ -185,7 +200,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         alignSelf: "center",
         textAlign: 'center',
-        marginTop: 15
+        marginTop: 10
     },
     textStyle2: {
         color: '#fff',
@@ -207,8 +222,9 @@ const styles = StyleSheet.create({
     },
     headerText: {
         textAlign: 'center',
-        fontSize: 100,
-        fontFamily: "Taibaijan",
+        fontSize: 80,
+        marginTop: 20,
+        fontFamily: "SackersGothicStd-Light",
         color: "#E8E8E8",
     },
 });

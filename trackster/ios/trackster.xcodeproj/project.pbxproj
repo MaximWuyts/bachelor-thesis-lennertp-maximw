@@ -66,6 +66,9 @@
 		6912A526292D455E932F55ED /* Taibaijan Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BCDCE77B5AC8488AB20E4578 /* Taibaijan Bold.otf */; };
 		00FBC76D9C4B4490858B69B6 /* Taibaijan Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD8566C61FD44CD68652F399 /* Taibaijan Italic.otf */; };
 		261C338B229146E99F48887A /* Taibaijan.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CBB4688AC764DC2AB65E984 /* Taibaijan.otf */; };
+		A63BFEC265B74D3395F6F378 /* HelveticaNeueBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5B1BEC950494F548CE07D80 /* HelveticaNeueBold.ttf */; };
+		8592E6D3D0334F8D81103E57 /* HelveticaNeueLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33AFA26104614736BFD59CAC /* HelveticaNeueLight.ttf */; };
+		EE107512D2C64A3E8DC6C4A1 /* SackersGothicStd-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = F7F93ECEE9064AC8BEAA91F7 /* SackersGothicStd-Light.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -403,6 +406,9 @@
 		BCDCE77B5AC8488AB20E4578 /* Taibaijan Bold.otf */ = {isa = PBXFileReference; name = "Taibaijan Bold.otf"; path = "../assets/fonts/Taibaijan Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		CD8566C61FD44CD68652F399 /* Taibaijan Italic.otf */ = {isa = PBXFileReference; name = "Taibaijan Italic.otf"; path = "../assets/fonts/Taibaijan Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		5CBB4688AC764DC2AB65E984 /* Taibaijan.otf */ = {isa = PBXFileReference; name = "Taibaijan.otf"; path = "../assets/fonts/Taibaijan.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B5B1BEC950494F548CE07D80 /* HelveticaNeueBold.ttf */ = {isa = PBXFileReference; name = "HelveticaNeueBold.ttf"; path = "../assets/fonts/HelveticaNeueBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		33AFA26104614736BFD59CAC /* HelveticaNeueLight.ttf */ = {isa = PBXFileReference; name = "HelveticaNeueLight.ttf"; path = "../assets/fonts/HelveticaNeueLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F7F93ECEE9064AC8BEAA91F7 /* SackersGothicStd-Light.otf */ = {isa = PBXFileReference; name = "SackersGothicStd-Light.otf"; path = "../assets/fonts/SackersGothicStd-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -701,6 +707,9 @@
 				BCDCE77B5AC8488AB20E4578 /* Taibaijan Bold.otf */,
 				CD8566C61FD44CD68652F399 /* Taibaijan Italic.otf */,
 				5CBB4688AC764DC2AB65E984 /* Taibaijan.otf */,
+				B5B1BEC950494F548CE07D80 /* HelveticaNeueBold.ttf */,
+				33AFA26104614736BFD59CAC /* HelveticaNeueLight.ttf */,
+				F7F93ECEE9064AC8BEAA91F7 /* SackersGothicStd-Light.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1174,6 +1183,9 @@
 				6912A526292D455E932F55ED /* Taibaijan Bold.otf in Resources */,
 				00FBC76D9C4B4490858B69B6 /* Taibaijan Italic.otf in Resources */,
 				261C338B229146E99F48887A /* Taibaijan.otf in Resources */,
+				A63BFEC265B74D3395F6F378 /* HelveticaNeueBold.ttf in Resources */,
+				8592E6D3D0334F8D81103E57 /* HelveticaNeueLight.ttf in Resources */,
+				EE107512D2C64A3E8DC6C4A1 /* SackersGothicStd-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

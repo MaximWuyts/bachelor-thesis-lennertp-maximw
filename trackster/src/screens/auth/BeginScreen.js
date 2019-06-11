@@ -1,19 +1,20 @@
 import React from 'react';
-import { StyleSheet, Dimensions, Text, View, TouchableOpacity, Image, StatusBar } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import Logo from '../../../assets/icon.png';
+import { StyleSheet, Dimensions, Text, View, TouchableOpacity, Image, StatusBar, ImageBackground } from 'react-native';
+import Logo from '../../../assets/white-logo-rev.png';
+import Back from '../../../assets/home.jpg';
 
 const { width: WIDTH } = Dimensions.get('window');
 
 class BeginScreen extends React.Component {
     render = () => {
         return (
-            <LinearGradient colors={['#04A7F1', '#65D8B9']} style={styles.linearGradient}>
+            <ImageBackground source={Back} style={styles.background}>
                 <StatusBar
-                    translucent={false}
+                    translucent={true}
                     animated={false}
                     hidden={false}
-                    backgroundColor="#04A7F1"
+                    backgroundColor="black"
+                    opacity={0.7}
                     barStyle="light-content" />
                 <View style={styles.logoContainer}>
                     <Image source={Logo} style={styles.logo} />
@@ -34,31 +35,29 @@ class BeginScreen extends React.Component {
                     </TouchableOpacity>
                 </View>
 
-            </LinearGradient>
+            </ImageBackground>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    linearGradient: {
+    background: {
         flex: 1,
+        width: '100%',
+        height: '100%'
     },
     headerStyle: {
         flex: 2
     },
     headerText: {
         textAlign: 'center',
-        fontSize: 120,
-        fontFamily: "Taibaijan",
-        color: "#E8E8E8",
-        textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: { width: -1, height: 1 },
-        textShadowRadius: 10
+        fontSize: 80,
+        fontFamily: "SackersGothicStd-Light",
+        color: "#E8E8E8"
     },
     logo: {
-        width: 200,
-        opacity: 0.8,
-        height: 233,
+        width: 150,
+        height: 180,
         shadowColor: 'black',
         shadowOpacity: 0.5,
         shadowRadius: 5,
@@ -77,15 +76,19 @@ const styles = StyleSheet.create({
     loginStyle: {
         width: WIDTH - 75,
         height: 50,
-        borderRadius: 10,
-        backgroundColor: '#65D8B9'
+        borderRadius: 40,
+        borderStyle: 'solid',
+        borderColor: 'white',
+        borderWidth: 1
     },
     createStyle: {
         width: WIDTH - 75,
         height: 50,
-        borderRadius: 10,
+        borderRadius: 40,
         marginTop: 20,
-        backgroundColor: '#04A7F1'
+        borderStyle: 'solid',
+        borderColor: 'white',
+        borderWidth: 1
     },
     textStyle: {
         color: '#fff',
