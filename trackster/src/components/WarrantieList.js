@@ -14,21 +14,23 @@ class WarrantieList extends React.Component {
 
     componentDidMount = () => {
         let warranties = [];
-        db.ref(`warranties/${this.props.screenProps.user.uid}`).on('value', (snap) => {
-            if (snap.val()) {
-                let values = snap.val();
-                console.log('val', values);
-                Object.keys(values).forEach(key => {
-                    warranties.push({
-                        id: key,
-                        value: values[key]
+        db.ref(`warranties/${this.props.screenProps.user.uid}`)
+            .orderByChild('date')
+            .on('value', (snap) => {
+                if (snap.val()) {
+                    let values = snap.val();
+                    console.log('dwee2', values);
+                    Object.keys(values).forEach(key => {
+                        warranties.push({
+                            id: key,
+                            value: values[key]
+                        })
+                    });
+                    this.setState({
+                        warranties
                     })
-                });
-                this.setState({
-                    warranties
-                })
-            }
-        });
+                }
+            });
     }
 
     getIcon = (productType) => {
@@ -48,8 +50,6 @@ class WarrantieList extends React.Component {
         let startDate = moment()
         if (!moment.isMoment(startDate)) startDate = moment(startDate);
         if (!moment.isMoment(endDate)) endDate = moment(endDate);
-        console.log(endDate);
-        console.log(startDate);
         let days = endDate.diff(startDate, "days");
         if (days <= 30) {
             return <Text style={styles.rightTextStyle}>{days} days left</Text>
@@ -69,7 +69,6 @@ class WarrantieList extends React.Component {
     }
 
     render() {
-        console.log('deefdsf', this.state.warranties);
         const { listViewstyle, leftTextStyle, rightTextStyle, listViewstyleNoBorder, iconStyle, noListViewstyle, noListTextStyle, noListTextStyle2 } = styles
         return (
             // <TouchableOpacity onPress={() =>
@@ -77,7 +76,7 @@ class WarrantieList extends React.Component {
             // >
             <View>
                 {
-                    this.state.warranties.length === 1 ?
+                    this.state.warranties.length === 0 ?
                         <View style={noListViewstyle}>
                             <Text style={noListTextStyle}>No saved warranties</Text>
                             <TouchableOpacity
@@ -92,9 +91,9 @@ class WarrantieList extends React.Component {
 
                                 data={this.state.warranties}
                                 renderItem={({ item, index }) => {
-                                    console.log('test222')
+
                                     return (
-                                        <View style={listViewstyle}>
+                                        <View style={(index === this.state.warranties.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
                                             {this.getIcon(item.value.productType)}
                                             <Text style={leftTextStyle}>{item.value.name}</Text>
                                             {this.calculateDaysLeft(item.value.chosenDate)}
