@@ -91,12 +91,17 @@ class SubscriptionList extends React.Component {
                                 data={this.state.subscriptions}
                                 renderItem={({ item, index }) => {
                                     return (
-                                        <View style={(index === this.state.subscriptions.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
-                                            {this.getIcon(item.value.productType)}
-                                            <Text style={leftTextStyle}>{item.value.name}</Text>
-                                            <Text style={rightTextStyle}>€ {item.value.price}</Text>
-                                            {this.calculateDaysLeft(item.value.chosenDate)}
-                                        </View>)
+                                        <TouchableOpacity onPress={() =>
+                                            this.props.navProp.navigate('Detail', { item: item, formType: "subscription" })}
+                                        >
+                                            <View style={(index === this.state.subscriptions.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
+                                                {this.getIcon(item.value.productType)}
+                                                <Text style={leftTextStyle}>{item.value.name}</Text>
+                                                <Text style={rightTextStyle}>€ {item.value.price}</Text>
+                                                {this.calculateDaysLeft(item.value.chosenDate)}
+                                            </View>
+                                        </TouchableOpacity>
+                                    )
                                 }}
                             />
                         </View>
@@ -112,7 +117,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 15,
         paddingBottom: 7.5,
-        justifyContent: "space-around",
+        justifyContent: "space-between",
+        paddingLeft: 15,
+        paddingRight: 15,
         borderBottomWidth: 1,
         borderBottomColor: "#D8D8D8"
     },
@@ -120,19 +127,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 15,
         paddingBottom: 7.5,
-        justifyContent: "space-around",
+        justifyContent: "space-between",
+        paddingLeft: 15,
+        paddingRight: 15,
     },
     leftTextStyle: {
         fontSize: 17,
         color: "#343434",
-        textAlign: 'left',
         fontWeight: "bold"
 
     },
     rightTextStyle: {
         fontSize: 17,
         color: "#343434",
-        textAlign: 'right',
         fontWeight: "bold"
 
     },
@@ -141,7 +148,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         marginTop: 15,
         padding: 30,
-
         justifyContent: "center",
         alignItems: "center",
     },

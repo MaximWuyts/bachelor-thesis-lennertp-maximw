@@ -4,9 +4,10 @@ import { Form, Item, Input, Picker, DatePicker } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 
-const AddDocument = ({ handleChange, name, price, productType, urlLink, type, setDate, formType, warrantyDuration }) => {
 
+const EditDocument = ({ handleChange, name, price, productType, urlLink, type, setDate, formType, warrantyDuration }) => {
 
+    console.log('this', productType, "en", type);
     return (
         <View>
             <Form>
@@ -111,4 +112,4 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
 
 
 
-export default AddDocument;
+export default EditDocument;
