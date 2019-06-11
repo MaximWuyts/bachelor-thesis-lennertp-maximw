@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, StatusBar, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, StatusBar, TouchableOpacity } from 'react-native';
 import bgImage from '../../assets/achtergrond.png';
 import AppHeader from '../components/AppHeader';
 import { Content, Card } from 'native-base';
@@ -7,10 +7,14 @@ import WarrantieList from '../components/WarrantieList';
 import SubscriptionList from '../components/SubscriptionList';
 
 
+
 class HomeScreen extends React.Component {
 
+    constructor(props) {
+        super(props);
+    }
     render = () => {
-
+        console.log('props', this.props);
         const { listViewstyle, textHeaderStyle, contentStyle, textHeaderStyle2 } = styles
         return (
             <ImageBackground source={bgImage} style={styles.backgroundContainer}>
@@ -29,12 +33,22 @@ class HomeScreen extends React.Component {
                     </View>
                     <Card style={contentStyle}>
                         <WarrantieList screenProps={this.props.screenProps} navProp={this.props.navigation} />
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Warranties')}>
+                            <Text
+                                style={{ color: "#04A7F1", textAlign: "right", paddingRight: 20, paddingBottom: 10 }}>more</Text>
+                        </TouchableOpacity>
                     </Card>
                     <View style={{ marginTop: 20, marginBottom: 15 }}>
                         <Text style={textHeaderStyle2}>Upcomming Subscriptions</Text>
                     </View>
                     <Card style={contentStyle}>
                         <SubscriptionList screenProps={this.props.screenProps} navProp={this.props.navigation} />
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Subscription')}>
+                            <Text
+                                style={{ color: "#04A7F1", textAlign: "right", paddingRight: 20, paddingBottom: 10 }}>more</Text>
+                        </TouchableOpacity>
+
+
                     </Card>
 
                 </Content>
