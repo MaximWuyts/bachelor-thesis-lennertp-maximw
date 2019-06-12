@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import EditDocument from '../components/EditDocument';
 import ShowDocument from '../components/ShowDocument';
 import moment from "moment";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class DetailScreen extends React.Component {
 
@@ -38,24 +39,33 @@ class DetailScreen extends React.Component {
     // }
 
     calculateDaysLeft = (endDate) => {
-        let startDate = moment()
-        if (!moment.isMoment(startDate)) startDate = moment(startDate);
-        if (!moment.isMoment(endDate)) endDate = moment(endDate);
-        let days = endDate.diff(startDate, "days");
-        if (days <= 30) {
-            return <Text style={styles.rightTextStyle}>{days} days left</Text>
+        endDate = !moment.isMoment(endDate) && moment(endDate)
+        let startDate = moment().startOf('day');
+        let diff = moment.duration(endDate.diff(startDate)).asDays();
+        if (diff <= 30) {
+            return <Text style={styles.rightTextStyle}>{diff} days left</Text>
         }
-        if (days > 30 && days < 40) {
+        if (diff >= 30 && diff < 40) {
             return <Text>1 month left</Text>
         }
-        if (days > 60) {
-            return <Text>2 months left</Text>
+        if (diff >= 40 && diff < 75) {
+            return <Text>3 months left</Text>
         }
-        if (days > 365) {
+        if (diff >= 75 && diff < 200) {
+            return <Text>5 months left</Text>
+        }
+        if (diff >= 200 && diff < 365) {
+            return <Text>8 months left</Text>
+        }
+        if (diff >= 365 && diff < 500) {
             return <Text>1 year left</Text>
         }
-        else
-            <Text>3 years left</Text>
+        if (diff >= 500 & diff < 730) {
+            return <Text>2 years left</Text>
+        }
+        if (diff >= 730) {
+            return <Text>3 years left</Text>
+        }
 
     }
 
@@ -63,11 +73,14 @@ class DetailScreen extends React.Component {
         this.props.navigation.navigate('EditDetail', { item: this.props.navigation.state.params.item, formType: this.props.navigation.state.params.formType })
     }
 
+    onDeletePress = () => {
+
+    }
 
 
     render = () => {
         console.log('tests', this.props.navigation.state.params.item);
-        const { listViewstyle, textHeaderStyle, contentStyle, contentStyle2, importIconStyle } = styles
+        const { listViewstyle, textHeaderStyle, contentStyle, contentStyle2, importIconStyle, deleteTextStyle } = styles
         return (
             <ImageBackground source={bgImage} style={styles.backgroundContainer}>
                 <StatusBar
@@ -105,7 +118,14 @@ class DetailScreen extends React.Component {
                     </Card>
 
                 </Content>
-            </ImageBackground>
+                <TouchableOpacity
+                    onPress={this.onDeletePress}
+                >
+                    <View>
+                        <Text style={deleteTextStyle}>Delete</Text>
+                    </View>
+                </TouchableOpacity>
+            </ImageBackground >
         )
     }
 }
@@ -146,6 +166,7 @@ const styles = StyleSheet.create({
         shadowRadius: 8.30,
         backgroundColor: "#fff",
         elevation: 3,
+        marginBottom: 30
     },
     contentStyle2: {
         margin: 20,
@@ -158,6 +179,13 @@ const styles = StyleSheet.create({
     },
     importIconStyle: {
         padding: 10,
+    },
+    deleteTextStyle: {
+        fontSize: 25,
+        color: "#E03B3B",
+        textAlign: "center",
+        marginBottom: 20,
+        fontWeight: "bold"
     }
 });
 

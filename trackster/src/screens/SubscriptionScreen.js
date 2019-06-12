@@ -19,7 +19,7 @@ class SubscriptionScreen extends React.Component {
                     backgroundColor="transparent"
                     barStyle="light-content" />
 
-                <AppHeader headerText="Subscriptions" />
+                <AppHeader headerText="Subscriptions" navProp={this.props.navigation} />
                 <Content style={listViewstyle}>
                     <View style={{ marginTop: 20, marginBottom: 5 }}>
                         <Text style={textHeaderStyle}>Upcomming Subscriptions</Text>

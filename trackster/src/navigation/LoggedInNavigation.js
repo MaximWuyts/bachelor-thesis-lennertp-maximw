@@ -1,5 +1,6 @@
 import React from 'react';
-import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
+import { Text, View, SafeAreaView, ScrollView, Image } from 'react-native';
+import { createBottomTabNavigator, createAppContainer, createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import EvilIcon from 'react-native-vector-icons/EvilIcons'
 
@@ -12,6 +13,7 @@ import AddWarrantieScreen from '../screens/AddWarrantieScreen';
 import AddSubscriptionScreen from '../screens/AddSubscriptionScreen';
 import DetailScreen from '../screens/DetailScreen';
 import EditDetailScreen from '../screens/EditDetailScreen';
+import TimelineScreen from '../screens/TimeLineScreen';
 
 const TabNavigator = createBottomTabNavigator({
     Home: {
@@ -60,11 +62,68 @@ const TabNavigator = createBottomTabNavigator({
         }
     })
 
+const CustomDrawerComponent = (props) => (
+    <SafeAreaView style={{ flex: 1, }}>
+        <View style={{ height: 150, alignItems: "center", justifyContent: "center" }}>
+            <Image source={require('../../assets/logobg.png')} style={{ width: 110, height: 130, }} />
+        </View>
+        <ScrollView>
+            <DrawerItems
+                {...props} />
+        </ScrollView>
+    </SafeAreaView>
+)
 
+
+const AppDrawerNavigator = createDrawerNavigator({
+    Home: {
+        screen: TabNavigator,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Timeline: {
+        screen: TimelineScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Dashboard: {
+        screen: TimelineScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Profile: {
+        screen: TimelineScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Logout: {
+        screen: TimelineScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
+},
+    {
+        contentComponent: CustomDrawerComponent,
+        contentOptions: {
+            labelStyle: {
+                fontSize: 17
+            },
+            inactiveTintColor: "#575757",
+            activeTintColor: '#fff',
+            activeBackgroundColor: "#04A7F1"
+        }
+    }
+
+)
 
 const RootNavigation = createStackNavigator({
     Home: {
-        screen: TabNavigator,
+        screen: AppDrawerNavigator,
         navigationOptions: {
             header: null
         }

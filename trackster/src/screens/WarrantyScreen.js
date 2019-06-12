@@ -18,7 +18,7 @@ class WarrantieScreen extends React.Component {
                     backgroundColor="transparent"
                     barStyle="light-content" />
 
-                <AppHeader headerText="Warranties" />
+                <AppHeader headerText="Warranties" navProp={this.props.navigation} />
                 <Content style={listViewstyle}>
                     <View style={{ marginTop: 20, marginBottom: 5 }}>
                         <Text style={textHeaderStyle}>Upcomming Warranties</Text>

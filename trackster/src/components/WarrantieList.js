@@ -46,25 +46,36 @@ class WarrantieList extends React.Component {
         return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
     }
 
+
     calculateDaysLeft = (endDate) => {
-        let startDate = moment()
-        if (!moment.isMoment(startDate)) startDate = moment(startDate);
-        if (!moment.isMoment(endDate)) endDate = moment(endDate);
-        let days = endDate.diff(startDate, "days");
-        if (days <= 30) {
-            return <Text style={styles.rightTextStyle}>{days} days left</Text>
+        const { rightTextStyle } = styles;
+        endDate = !moment.isMoment(endDate) && moment(endDate)
+        let startDate = moment().startOf('day');
+        let diff = moment.duration(endDate.diff(startDate)).asDays();
+        if (diff <= 30) {
+            return <Text style={rightTextStyle}>{diff} days left</Text>
         }
-        if (days > 30 && days < 40) {
-            return <Text style={styles.rightTextStyle}>1 month left</Text>
+        if (diff >= 30 && diff < 40) {
+            return <Text style={rightTextStyle}>1 month left</Text>
         }
-        if (days > 60) {
-            return <Text style={styles.rightTextStyle}>2 months left</Text>
+        if (diff >= 40 && diff < 75) {
+            return <Text style={rightTextStyle}>3 months left</Text>
         }
-        if (days > 365) {
-            return <Text style={styles.rightTextStyle}>1 year left</Text>
+        if (diff >= 75 && diff < 200) {
+            return <Text style={rightTextStyle}>5 months left</Text>
         }
-        else
-            <Text style={styles.rightTextStyle}>3 years left</Text>
+        if (diff >= 200 && diff < 365) {
+            return <Text style={rightTextStyle}>8 months left</Text>
+        }
+        if (diff >= 365 && diff < 500) {
+            return <Text style={rightTextStyle}>1 year left</Text>
+        }
+        if (diff >= 500 & diff < 730) {
+            return <Text style={rightTextStyle}>2 years left</Text>
+        }
+        if (diff >= 730) {
+            return <Text style={rightTextStyle}>3 years left</Text>
+        }
 
     }
 

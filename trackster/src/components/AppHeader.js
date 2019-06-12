@@ -14,7 +14,10 @@ class AppHeader extends React.Component {
         return (
             <View style={headerStyle}>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => this.props.navProp.openDrawer()}
+
+                >
                     <Image
                         resizeMode="contain"
                         source={require('../../assets/menu.png')} style={iconStyle} />
@@ -48,7 +51,7 @@ const styles = {
         color: "#fff",
         fontWeight: "700",
         marginBottom: 10,
-        marginLeft: -40,
+        marginLeft: -50,
         marginTop: 10
     },
     textHeaderStyle2: {

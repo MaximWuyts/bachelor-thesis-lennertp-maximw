@@ -25,7 +25,7 @@ class HomeScreen extends React.Component {
                     backgroundColor="transparent"
                     barStyle="light-content" />
 
-                <AppHeader headerText="Home" />
+                <AppHeader headerText="Home" navProp={this.props.navigation} />
 
                 <Content style={listViewstyle}>
                     <View>
