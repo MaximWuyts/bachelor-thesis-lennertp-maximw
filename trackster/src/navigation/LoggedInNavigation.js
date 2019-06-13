@@ -14,6 +14,7 @@ import AddSubscriptionScreen from '../screens/AddSubscriptionScreen';
 import DetailScreen from '../screens/DetailScreen';
 import EditDetailScreen from '../screens/EditDetailScreen';
 import TimelineScreen from '../screens/TimeLineScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const TabNavigator = createBottomTabNavigator({
     Home: {
@@ -95,7 +96,7 @@ const AppDrawerNavigator = createDrawerNavigator({
         }
     },
     Profile: {
-        screen: TimelineScreen,
+        screen: ProfileScreen,
         navigationOptions: {
             header: null
         }

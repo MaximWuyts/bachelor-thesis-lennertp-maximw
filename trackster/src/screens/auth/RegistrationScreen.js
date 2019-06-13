@@ -41,7 +41,7 @@ class RegistrationScreen extends React.Component {
                 //saving it to the users table
                 db.ref('users').child(createdUser.user.uid).set({
                     name: createdUser.user.displayName,
-                    email: createdUser.user.email
+                    email: createdUser.user.email,
                 })
                     .then(() => {
                         this.setState({ loading: false })
@@ -73,88 +73,88 @@ class RegistrationScreen extends React.Component {
     render = () => {
         return (
             <ImageBackground source={Back} style={styles.backgroundContainer}>
-              <KeyboardAwareScrollView
-                style={styles.scrollView}
-                automaticallyAdjustContentInsets={false}
-                keyboardShouldPersistTaps='always'
-                scrollEventThrottle={10}
-                extraHeight={250}
-                resetScrollToCoords={{x: 0, y: 0}}
-              >
-                <StatusBar
-                    translucent={true}
-                    animated={false}
-                    hidden={false}
-                    backgroundColor="black"
-                    opacity={0.7}
-                    barStyle="light-content" />
-                <View style={styles.logoContainer}>
-                    <Image source={Logo} style={styles.logo} />
-                </View>
-
-                <Card style={styles.cardStyle}>
-                    <View style={styles.inputContainer}>
-                        <Icon name='md-contact' size={30} color={'#fff'}
-                            style={styles.inputIcon}
-                        />
-                        <TextInput
-                            selectionColor={"#fff"}
-                            style={styles.inputStyle}
-                            placeholder={'first name'}
-                            placeholderTextColor={'#fff'}
-                            underlineColorAndroid='transparent'
-                        />
+                <KeyboardAwareScrollView
+                    style={styles.scrollView}
+                    automaticallyAdjustContentInsets={false}
+                    keyboardShouldPersistTaps='always'
+                    scrollEventThrottle={10}
+                    extraHeight={250}
+                    resetScrollToCoords={{ x: 0, y: 0 }}
+                >
+                    <StatusBar
+                        translucent={true}
+                        animated={false}
+                        hidden={false}
+                        backgroundColor="black"
+                        opacity={0.7}
+                        barStyle="light-content" />
+                    <View style={styles.logoContainer}>
+                        <Image source={Logo} style={styles.logo} />
                     </View>
 
-                    <View style={styles.inputContainer}>
-                        <Icon name='md-contact' size={30} color={'#fff'}
-                            style={styles.inputIcon}
-                        />
-                        <TextInput
-                            style={styles.inputStyle}
-                            placeholder={'last name'}
-                            placeholderTextColor={'#fff'}
-                            underlineColorAndroid='transparent'
-                        />
-                    </View>
+                    <Card style={styles.cardStyle}>
+                        <View style={styles.inputContainer}>
+                            <Icon name='md-contact' size={30} color={'#fff'}
+                                style={styles.inputIcon}
+                            />
+                            <TextInput
+                                selectionColor={"#fff"}
+                                style={styles.inputStyle}
+                                placeholder={'first name'}
+                                placeholderTextColor={'#fff'}
+                                underlineColorAndroid='transparent'
+                            />
+                        </View>
 
-                    <View style={styles.inputContainer}>
-                        <Icon name='md-mail' size={30} color={'#fff'}
-                            style={styles.inputIcon}
-                        />
-                        <TextInput
-                            style={styles.inputStyle}
-                            placeholder={'user@mail.com'}
-                            placeholderTextColor={'#fff'}
-                            underlineColorAndroid='transparent'
-                            value={this.state.email}
-                            onChangeText={(text) => { this.setState({ email: text }) }}
-                        />
-                    </View>
-                    <View style={styles.inputContainer}>
-                        <Icon name='md-lock' size={32} color={'#fff'}
-                            style={styles.lockIcon}
-                        />
-                        <TextInput
-                            style={styles.inputStyle}
-                            placeholder={'password'}
-                            secureTextEntry={this.state.showPassword}
-                            placeholderTextColor={'#fff'}
-                            underlineColorAndroid='transparent'
-                            value={this.state.password}
-                            onChangeText={(text) => { this.setState({ password: text }) }}
-                        />
-                        <TouchableOpacity onPress={this.showPassword} style={styles.btnEye}>
-                            <Icon name={this.state.pressed == false ? "md-eye-off" : "md-eye"} size={25} color={"#fff"} />
-                        </TouchableOpacity>
-                    </View>
+                        <View style={styles.inputContainer}>
+                            <Icon name='md-contact' size={30} color={'#fff'}
+                                style={styles.inputIcon}
+                            />
+                            <TextInput
+                                style={styles.inputStyle}
+                                placeholder={'last name'}
+                                placeholderTextColor={'#fff'}
+                                underlineColorAndroid='transparent'
+                            />
+                        </View>
 
-                </Card>
+                        <View style={styles.inputContainer}>
+                            <Icon name='md-mail' size={30} color={'#fff'}
+                                style={styles.inputIcon}
+                            />
+                            <TextInput
+                                style={styles.inputStyle}
+                                placeholder={'user@mail.com'}
+                                placeholderTextColor={'#fff'}
+                                underlineColorAndroid='transparent'
+                                value={this.state.email}
+                                onChangeText={(text) => { this.setState({ email: text }) }}
+                            />
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <Icon name='md-lock' size={32} color={'#fff'}
+                                style={styles.lockIcon}
+                            />
+                            <TextInput
+                                style={styles.inputStyle}
+                                placeholder={'password'}
+                                secureTextEntry={this.state.showPassword}
+                                placeholderTextColor={'#fff'}
+                                underlineColorAndroid='transparent'
+                                value={this.state.password}
+                                onChangeText={(text) => { this.setState({ password: text }) }}
+                            />
+                            <TouchableOpacity onPress={this.showPassword} style={styles.btnEye}>
+                                <Icon name={this.state.pressed == false ? "md-eye-off" : "md-eye"} size={25} color={"#fff"} />
+                            </TouchableOpacity>
+                        </View>
 
-                {this.renderButton()}
+                    </Card>
+
+                    {this.renderButton()}
 
 
-              </KeyboardAwareScrollView>
+                </KeyboardAwareScrollView>
             </ImageBackground>
         )
     }

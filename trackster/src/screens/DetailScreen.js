@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import EditDocument from '../components/EditDocument';
 import ShowDocument from '../components/ShowDocument';
 import moment from "moment";
+import { db, fire } from '../keys/firebaseKeys';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class DetailScreen extends React.Component {
@@ -74,12 +75,25 @@ class DetailScreen extends React.Component {
     }
 
     onDeletePress = () => {
-
+        if (this.props.navigation.state.params.formType === "warranty") {
+            fire.database().ref(`warranties/${this.props.screenProps.user.uid}/${this.props.navigation.state.params.item.id}`)
+                .remove()
+                .then(() => {
+                    this.props.navigation.navigate("Home");
+                })
+        }
+        else {
+            fire.database().ref(`subscriptions/${this.props.screenProps.user.uid}/${this.props.navigation.state.params.item.id}`)
+                .remove()
+                .then(() => {
+                    this.props.navigation.navigate("Home");
+                })
+        }
     }
 
 
     render = () => {
-        console.log('tests', this.props.navigation.state.params.item);
+        console.log('tests', this.props.navigation.state.params.formType);
         const { listViewstyle, textHeaderStyle, contentStyle, contentStyle2, importIconStyle, deleteTextStyle } = styles
         return (
             <ImageBackground source={bgImage} style={styles.backgroundContainer}>
@@ -125,7 +139,7 @@ class DetailScreen extends React.Component {
                         <Text style={deleteTextStyle}>Delete</Text>
                     </View>
                 </TouchableOpacity>
-            </ImageBackground >
+            </ImageBackground>
         )
     }
 }
