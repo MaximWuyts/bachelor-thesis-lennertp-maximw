@@ -7,7 +7,7 @@ class TimelineScreen extends React.Component {
     render = () => {
         const { backgroundContainer, headerStyle } = styles
         return (
-            <ImageBackground source={require('../../assets/axchtergrond.png')} style={backgroundContainer}>
+            <ImageBackground source={require('../../assets/timeline.png')} style={backgroundContainer}>
                 <StatusBar
                     translucent={true}
                     animated={false}

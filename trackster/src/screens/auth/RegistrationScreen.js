@@ -21,6 +21,8 @@ class RegistrationScreen extends React.Component {
             loading: false,
             email: "",
             password: "",
+            // firstName: "",
+            // lastName: ""
         };
     }
 
@@ -32,7 +34,7 @@ class RegistrationScreen extends React.Component {
     }
 
     onSignupPress = () => {
-        const { email, password } = this.state;
+        const { email, password, firstName, lastName } = this.state;
         this.setState({ loading: true })
         fire.auth().createUserWithEmailAndPassword(email, password)
             .then((createdUser) => {
@@ -42,6 +44,8 @@ class RegistrationScreen extends React.Component {
                 db.ref('users').child(createdUser.user.uid).set({
                     name: createdUser.user.displayName,
                     email: createdUser.user.email,
+                    // firstName: createdUser.user.firstName,
+                    // LastName: createdUser.user.LastName,
                 })
                     .then(() => {
                         this.setState({ loading: false })
@@ -103,6 +107,8 @@ class RegistrationScreen extends React.Component {
                                 placeholder={'first name'}
                                 placeholderTextColor={'#fff'}
                                 underlineColorAndroid='transparent'
+                            // value={this.state.firstName}
+                            // onChangeText={(text) => { this.setState({ firstName: text }) }}
                             />
                         </View>
 
@@ -115,6 +121,8 @@ class RegistrationScreen extends React.Component {
                                 placeholder={'last name'}
                                 placeholderTextColor={'#fff'}
                                 underlineColorAndroid='transparent'
+                            // value={this.state.lastName}
+                            // onChangeText={(text) => { this.setState({ lastName: text }) }}
                             />
                         </View>
 

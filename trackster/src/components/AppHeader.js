@@ -47,7 +47,7 @@ const styles = {
     },
     textHeaderStyle: {
         flex: 1,
-        fontSize: 23,
+        fontSize: 26,
         color: "#fff",
         fontWeight: "700",
         marginBottom: 10,

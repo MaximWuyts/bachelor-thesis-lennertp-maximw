@@ -53,6 +53,7 @@ class SubscriptionList extends React.Component {
         endDate = !moment.isMoment(endDate) && moment(endDate)
         let startDate = moment().startOf('day');
         let diff = moment.duration(endDate.diff(startDate)).asDays();
+        console.log('defs', diff);
         if (diff <= 30) {
             return <Text style={rightTextStyle}>{diff} days left</Text>
         }
@@ -77,19 +78,23 @@ class SubscriptionList extends React.Component {
         if (diff >= 730) {
             return <Text style={rightTextStyle}>3 years left</Text>
         }
+        else {
+            return <Text style={rightTextStyle}>testing</Text>
+        }
 
     }
 
 
     render() {
-        const { listViewstyle, leftTextStyle, rightTextStyle, listViewstyleNoBorder, noListViewstyle, noListTextStyle, noListTextStyle2, iconStyle } = styles
+        const { listViewstyle, leftTextStyle, rightTextStyle, listViewstyleNoBorder, noListViewstyle, noListTextStyle, noListTextStyle2, iconStyle } = styles;
+        console.log('testing', this.state.subscriptions);
         return (
             // <TouchableOpacity onPress={() =>
             //     this.props.navigation.navigate('AccountDetails', { account: account })}
             // >
             <View>
                 {
-                    this.state.subscriptions.length === 1 ?
+                    this.state.subscriptions.length === 0 ?
                         <View style={noListViewstyle}>
                             <Text style={noListTextStyle}>No saved subscriptions</Text>
                             <TouchableOpacity
@@ -103,6 +108,7 @@ class SubscriptionList extends React.Component {
                             <FlatList
                                 data={this.state.subscriptions}
                                 renderItem={({ item, index }) => {
+                                    console.log('testing', item.value.chosenDate);
                                     return (
                                         <TouchableOpacity onPress={() =>
                                             this.props.navProp.navigate('Detail', { item: item, formType: "subscription" })}
@@ -112,6 +118,7 @@ class SubscriptionList extends React.Component {
                                                 <Text style={leftTextStyle}>{item.value.name}</Text>
                                                 <Text style={rightTextStyle}>€ {item.value.price}</Text>
                                                 {this.calculateDaysLeft(item.value.chosenDate)}
+
                                             </View>
                                         </TouchableOpacity>
                                     )
