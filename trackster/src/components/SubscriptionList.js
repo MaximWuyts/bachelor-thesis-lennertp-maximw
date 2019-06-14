@@ -53,7 +53,6 @@ class SubscriptionList extends React.Component {
         endDate = !moment.isMoment(endDate) && moment(endDate)
         let startDate = moment().startOf('day');
         let diff = moment.duration(endDate.diff(startDate)).asDays();
-        console.log('defs', diff);
         if (diff <= 30) {
             return <Text style={rightTextStyle}>{diff} days left</Text>
         }

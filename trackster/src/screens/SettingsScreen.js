@@ -1,35 +1,107 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert, } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground, StatusBar } from 'react-native';
 import { fire } from '../keys/firebaseKeys';
+import AppHeader from '../components/AppHeader';
+import { Content, Card } from 'native-base'
+import Icon from 'react-native-vector-icons/Ionicons'
+import AccountSettings from '../components/AccountSettings';
 
-import Icon from 'react-native-vector-icons/Ionicons';
 class SettingsScreen extends React.Component {
 
-    onSignOutPress = () => {
-        fire.auth().signOut()
-            .then(() => { Alert.alert('Goodbye!') }, (error) => { Alert.alert(error.message); });
+    constructor(props) {
+        super(props);
+        this.state = {
+            toggleAccount: true
+        }
+    }
+
+    ShowHideAccountComponentView = () => {
+        if (this.state.toggleAccount == true) {
+            this.setState({ toggleAccount: false })
+        }
+        else {
+            this.setState({ toggleAccount: true })
+        }
     }
 
     render = () => {
+        const { backgroundContainer, listViewstyle, headerStyle, textHeaderStyle, arrowStyle } = styles;
+        const { toggleAccount } = this.state;
         return (
-            <View>
-                <Text>SettingsScreen</Text>
+            <ImageBackground source={require('../../assets/betterHeader.png')} style={backgroundContainer}>
+                <StatusBar
+                    translucent={true}
+                    animated={false}
+                    hidden={false}
+                    backgroundColor="transparent"
+                    barStyle="light-content" />
 
-                <TouchableOpacity
-                    onPress={this.onSignOutPress}
-                >
-                    <Icon name="md-power" size={25} color={'red'} style={{ marginRight: 20, marginTop: 5 }} />
-                </TouchableOpacity>
-            </View>
+                <AppHeader headerText="Settings" navProp={this.props.navigation} />
+
+                <Content style={listViewstyle}>
+                    <View style={headerStyle}>
+                        <Text style={textHeaderStyle}>Account</Text>
+                        <TouchableOpacity
+                            style={arrowStyle}
+                            onPress={this.ShowHideAccountComponentView}
+                        >
+                            <Icon
+
+                                name="ios-arrow-down" size={30} color={"#575757"} />
+                        </TouchableOpacity>
+
+                    </View>
+                    {toggleAccount ? null : <AccountSettings />}
+                    <View style={headerStyle}>
+                        <Text style={textHeaderStyle}>Notifications</Text>
+                    </View>
+
+                    <View style={headerStyle}>
+                        <Text style={textHeaderStyle}>Credits</Text>
+                    </View>
+
+                </Content>
+
+
+
+            </ImageBackground>
 
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-
-    }
+    backgroundContainer: {
+        flex: 1,
+        height: null,
+        width: null,
+        fontFamily: "HelveticaNeueBold",
+    },
+    textHeaderStyle: {
+        fontSize: 25,
+        color: "#575757",
+        marginBottom: 15,
+        fontWeight: "700",
+        textAlign: "center"
+    },
+    headerStyle: {
+        marginTop: 50,
+        backgroundColor: "transparent",
+        alignItems: "center",
+        justifyContent: "center",
+        borderBottomWidth: 1,
+        borderColor: "#D8D8D8"
+    },
+    arrowStyle: {
+        position: 'absolute',
+        top: 5,
+        right: 25,
+        opacity: 0.8
+    },
+    listViewstyle: {
+        paddingRight: 20,
+        paddingLeft: 20
+    },
 });
 
 export default SettingsScreen;

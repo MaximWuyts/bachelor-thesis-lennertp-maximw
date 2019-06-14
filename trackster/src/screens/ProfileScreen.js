@@ -38,7 +38,7 @@ class ProfileScreen extends React.Component {
         console.log('soenfdnfkddskjnf', this.props.screenProps.user.email);
         const { backgroundContainer, headerStyle, listViewstyle, textHeaderStyle } = styles
         return (
-            <ImageBackground source={require('../../assets/profileb.png')} style={backgroundContainer}>
+            <ImageBackground source={require('../../assets/profileHeader.png')} style={backgroundContainer}>
                 <StatusBar
                     translucent={true}
                     animated={false}
