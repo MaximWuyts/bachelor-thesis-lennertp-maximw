@@ -188,17 +188,16 @@ const styles = StyleSheet.create({
         color: "#343434",
         textAlign: 'left',
         fontWeight: "bold",
-        flex: 3
+        flex: 50
     },
     rightTextStyle: {
         fontSize: 17,
         color: "#343434",
         textAlign: 'right',
-        fontWeight: "bold",
-        flex: 2
+        fontWeight: "bold"
     },
     daysContStyle: {
-        flex: 2,
+        flex: 35,
         fontSize: 17,
         color: "#343434",
         fontWeight: "bold",
@@ -210,7 +209,7 @@ const styles = StyleSheet.create({
         zIndex: +2
     },
     iconContStyle: {
-        flex: 1,
+        flex: 15,
         justifyContent: 'center'
     },
     carStyle: {

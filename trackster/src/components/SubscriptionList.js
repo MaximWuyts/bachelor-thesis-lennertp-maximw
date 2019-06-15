@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         color: "#343434",
         fontWeight: "bold",
-        flex: 4
+        flex: 40
 
     },
     rightTextStyle: {
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
         color: "#343434",
         fontWeight: "bold",
         textAlign: 'left',
-        flex: 2
+        flex: 20
     },
 
     noListViewstyle: {
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
         paddingBottom: 20
     },
     daysContStyle: {
-        flex: 2,
+        flex: 25,
         fontSize: 17,
         color: "#343434",
         fontWeight: "bold",
@@ -213,8 +213,9 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
     iconContStyle: {
-        flex: 1,
-        justifyContent: 'center'
+        flex: 15,
+        justifyContent: 'center',
+        width: 100
     },
     iconStyle: {
         marginTop: -5,
