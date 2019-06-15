@@ -86,7 +86,7 @@ class SubscriptionPaidList extends React.Component {
                                                 </View>
                                                 <Text style={leftTextStyle}>{item.value.name}</Text>
                                                 <Text style={rightTextStyle}>€ {item.value.price}</Text>
-                                                <Text style={dateStyle}>{item.value.chosenDate}</Text>
+                                                <Text style={dateStyle}>{moment(item.value.chosenDate).format('DD/MM/YYYY')}</Text>
                                             </View>)
                                     }
                                 }}

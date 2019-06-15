@@ -30,10 +30,7 @@ class WarrantieList extends React.Component {
                             value: values[key]
                         })
                     });
-                    warranties.sort(function (a, b) {
-                        var dateA = new Date(a.value.chosenDate), dateB = new Date(b.value.chosenDate);
-                        return dateA - dateB;
-                    });
+                    warranties.sort((a, b) => moment(a.value.chosenDate) - moment(b.value.chosenDate));
                     console.log('war', warranties);
                     this.props.setWarranties(warranties);
                 }
@@ -124,11 +121,11 @@ class WarrantieList extends React.Component {
                                             >
                                                 <View style={(index === this.props.warranties.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
                                                     <View style={iconContStyle}>
-                                                      {this.getIcon(item.value.productType)}
+                                                        {this.getIcon(item.value.productType)}
                                                     </View>
                                                     <Text style={leftTextStyle}>{item.value.name}</Text>
                                                     <View style={daysContStyle}>
-                                                      {this.calculateDaysLeft(item.value.chosenDate)}
+                                                        {this.calculateDaysLeft(item.value.chosenDate)}
                                                     </View>
                                                 </View>
                                             </TouchableOpacity>
@@ -214,10 +211,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     carStyle: {
-      marginLeft: 3.5
+        marginLeft: 3.5
     },
     phoneStyle: {
-      marginLeft: 6.5
+        marginLeft: 6.5
     }
 });
 

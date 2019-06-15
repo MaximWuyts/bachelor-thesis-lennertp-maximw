@@ -28,10 +28,8 @@ class SubscriptionList extends React.Component {
                             value: values[key]
                         })
                     });
-                    subscriptions.sort(function (a, b) {
-                        var dateA = new Date(a.value.chosenDate), dateB = new Date(b.value.chosenDate);
-                        return dateA - dateB;
-                    });
+
+                    subscriptions.sort((a, b) => moment(a.value.chosenDate) - moment(b.value.chosenDate));
                     this.props.setSubscriptions(subscriptions);
                 }
             });
