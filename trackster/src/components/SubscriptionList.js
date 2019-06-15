@@ -38,57 +38,57 @@ class SubscriptionList extends React.Component {
     }
 
     getIcon = (productType) => {
+        const { iconStyle } = styles;
         if (productType === 'online') {
-            return <Icon name='md-laptop' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+            return <Icon name='md-laptop' size={32} color={'#04A7F1'} style={iconStyle} />
         }
         if (productType === 'financial') {
-            return <Icon name='md-card' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+            return <Icon name='md-card' size={32} color={'#04A7F1'} style={iconStyle} />
         }
         if (productType === 'transport') {
-            return <Icon name='md-car' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+            return <Icon name='md-car' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 3.5}} />
         }
-        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 6.5}} />
     }
 
 
     calculateDaysLeft = (endDate) => {
-        const { rightTextStyle } = styles;
+        const { dayStyle } = styles;
         endDate = !moment.isMoment(endDate) && moment(endDate)
         let startDate = moment().startOf('day');
         let diff = moment.duration(endDate.diff(startDate)).asDays();
         if (diff <= 30) {
-            return <Text style={rightTextStyle}>{diff} days left</Text>
+            return <Text style={dayStyle}>{diff} days</Text>
         }
         if (diff >= 30 && diff < 40) {
-            return <Text style={rightTextStyle}>1 month left</Text>
+            return <Text style={dayStyle}>1 month</Text>
         }
         if (diff >= 40 && diff < 75) {
-            return <Text style={rightTextStyle}>3 months left</Text>
+            return <Text style={dayStyle}>3 months</Text>
         }
         if (diff >= 75 && diff < 200) {
-            return <Text style={rightTextStyle}>5 months left</Text>
+            return <Text style={dayStyle}>5 months</Text>
         }
         if (diff >= 200 && diff < 365) {
-            return <Text style={rightTextStyle}>8 months left</Text>
+            return <Text style={dayStyle}>8 months</Text>
         }
         if (diff >= 365 && diff < 500) {
-            return <Text style={rightTextStyle}>1 year left</Text>
+            return <Text style={dayStyle}>1 year</Text>
         }
         if (diff >= 500 & diff < 730) {
-            return <Text style={rightTextStyle}>2 years left</Text>
+            return <Text style={dayStyle}>2 years</Text>
         }
         if (diff >= 730) {
-            return <Text style={rightTextStyle}>3 years left</Text>
+            return <Text style={dayStyle}>3 years</Text>
         }
         else {
-            return <Text style={rightTextStyle}>testing</Text>
+            return <Text style={dayStyle}>date error</Text>
         }
-
     }
 
 
     render() {
-        const { listViewstyle, leftTextStyle, rightTextStyle, listViewstyleNoBorder, noListViewstyle, noListTextStyle, noListTextStyle2, iconStyle } = styles;
+        const { listViewstyle, daysContStyle, leftTextStyle, rightTextStyle, listViewstyleNoBorder, noListViewstyle, noListTextStyle, noListTextStyle2, iconStyle, iconContStyle } = styles;
         return (
             // <TouchableOpacity onPress={() =>
             //     this.props.navigation.navigate('AccountDetails', { account: account })}
@@ -123,10 +123,14 @@ class SubscriptionList extends React.Component {
                                                 this.props.navProp.navigate('Detail', { item: item, formType: "subscription" })}
                                             >
                                                 <View style={(index === this.props.subscriptions.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
-                                                    {this.getIcon(item.value.productType)}
+                                                    <View style={iconContStyle}>
+                                                      {this.getIcon(item.value.productType)}
+                                                    </View>
                                                     <Text style={leftTextStyle}>{item.value.name}</Text>
                                                     <Text style={rightTextStyle}>€ {item.value.price}</Text>
-                                                    {this.calculateDaysLeft(item.value.chosenDate)}
+                                                    <View style={daysContStyle}>
+                                                      {this.calculateDaysLeft(item.value.chosenDate)}
+                                                    </View>
                                                 </View>
                                             </TouchableOpacity>
                                         )
@@ -164,14 +168,16 @@ const styles = StyleSheet.create({
     leftTextStyle: {
         fontSize: 17,
         color: "#343434",
-        fontWeight: "bold"
+        fontWeight: "bold",
+        flex: 3
 
     },
     rightTextStyle: {
         fontSize: 17,
         color: "#343434",
-        fontWeight: "bold"
-
+        fontWeight: "bold",
+        textAlign: 'left',
+        flex: 2
     },
 
     noListViewstyle: {
@@ -193,12 +199,26 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         paddingBottom: 20
     },
-
+    daysContStyle: {
+        flex: 2,
+        fontSize: 17,
+        color: "#343434",
+        fontWeight: "bold",
+        textAlign: 'right',
+    },
+    dayStyle: {
+        fontSize: 17,
+        color: "#343434",
+        fontWeight: "bold",
+        textAlign: 'right',
+    },
+    iconContStyle: {
+        flex: 1,
+        justifyContent: 'center'
+    },
     iconStyle: {
-        width: 50,
-        height: 50,
-
-        paddingBottom: 20,
+        marginTop: -5,
+        paddingBottom: 5,
         zIndex: +2
     }
 });

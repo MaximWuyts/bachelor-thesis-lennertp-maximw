@@ -32,20 +32,21 @@ class WarrantieListPaid extends React.Component {
     }
 
     getIcon = (productType) => {
+        const { iconStyle } = styles;
         if (productType === 'online') {
-            return <Icon name='md-laptop' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+            return <Icon name='md-laptop' size={32} color={'#04A7F1'} style={iconStyle} />
         }
         if (productType === 'financial') {
-            return <Icon name='md-card' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+            return <Icon name='md-card' size={32} color={'#04A7F1'} style={iconStyle} />
         }
         if (productType === 'transport') {
-            return <Icon name='md-car' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+            return <Icon name='md-car' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 3.5}} />
         }
-        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 6.5}} />
     }
 
     render() {
-        const { listViewstyle, leftTextStyle, rightTextStyle, listViewstyleNoBorder, iconStyle, noListViewstyle, noListTextStyle, noListTextStyle2 } = styles
+        const { listViewstyle, iconContStyle, leftTextStyle, dateStyle, rightTextStyle, listViewstyleNoBorder, iconStyle, noListViewstyle, noListTextStyle, noListTextStyle2 } = styles
         return (
             // <TouchableOpacity onPress={() =>
             //     this.props.navigation.navigate('AccountDetails', { account: account })}
@@ -67,9 +68,11 @@ class WarrantieListPaid extends React.Component {
                             if (compare(item.value.chosenDate, moment().format('MM/DD/YYYY')) < 1) {
                                 return (
                                     <View style={(index === this.state.warrantiesPaid.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
-                                        {this.getIcon(item.value.productType)}
+                                        <View style={iconContStyle}>
+                                          {this.getIcon(item.value.productType)}
+                                        </View>
                                         <Text style={leftTextStyle}>{item.value.name}</Text>
-                                        <Text style={leftTextStyle}>{moment(item.value.chosenDate).format('DD/MM/YYYY')}</Text>
+                                        <Text style={dateStyle}>{moment(item.value.chosenDate).format('DD/MM/YYYY')}</Text>
                                     </View>
                                 )
 
@@ -90,17 +93,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 15,
         paddingBottom: 7.5,
+        paddingLeft: 15,
+        paddingRight: 15,
         justifyContent: "space-around",
         borderBottomWidth: 1,
         borderBottomColor: "#D8D8D8"
     },
     noListViewstyle: {
-        flexDirection: 'column',
+        flexDirection: 'row',
         marginTop: 15,
-        padding: 30,
-
-        justifyContent: "center",
-        alignItems: "center",
+        paddingBottom: 7.5,
+        paddingLeft: 15,
+        paddingRight: 15,
+        justifyContent: "space-around",
     },
     noListTextStyle: {
         fontSize: 19,
@@ -125,23 +130,25 @@ const styles = StyleSheet.create({
         fontSize: 17,
         color: "#343434",
         textAlign: 'left',
-        fontWeight: "bold"
-
+        fontWeight: "bold",
+        flex: 3
     },
-    rightTextStyle: {
+    dateStyle: {
         fontSize: 17,
         color: "#343434",
+        fontWeight: "bold",
         textAlign: 'right',
-        fontWeight: "bold"
-
+        flex: 2
+    },
+    iconContStyle: {
+        flex: 1,
+        justifyContent: 'center'
     },
     iconStyle: {
-        paddingBottom: 0,
-        marginTop: 10,
-        width: 45,
-        height: 45,
-
-
+        width: 44.6,
+        marginTop: -5,
+        paddingBottom: 5,
+        zIndex: +2
     }
 });
 
