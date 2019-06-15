@@ -70,9 +70,15 @@ class AccountSettings extends React.Component {
                         Alert.alert("password was changed!")
                         this.setState({ loading: false, togglePassword: true })
                     })
-                    .catch((error) => { Alert.alert(error.message) })
+                    .catch((error) => {
+                        this.setState({ loading: false })
+                        Alert.alert(error.message)
+                    })
             })
-            .catch((error) => { Alert.alert(error.message) })
+            .catch((error) => {
+                this.setState({ loading: false })
+                Alert.alert(error.message)
+            })
     }
 
     renderSpinner() {

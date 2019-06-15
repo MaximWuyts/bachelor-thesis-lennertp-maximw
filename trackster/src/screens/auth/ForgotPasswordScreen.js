@@ -9,49 +9,44 @@ import { Spinner } from '../../components/Spinner';
 
 const { width: WIDTH } = Dimensions.get('window');
 
-class LoginScreen extends React.Component {
+class ForgotPasswordScreen extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            showPassword: true,
-            pressed: false,
             email: "",
-            password: "",
             loading: false
-        }
+        };
     }
 
-    showPassword = () => {
-        if (!this.state.pressed) {
-            this.setState({ showPassword: false, pressed: true })
-        }
-        else this.setState({ showPassword: true, pressed: false })
-    }
-
-    onLoginPress = () => {
-        const { email, password } = this.state;
+    onResetPasswordPress = () => {
         this.setState({ loading: true })
-        fire.auth().signInWithEmailAndPassword(email, password)
+        fire.auth().sendPasswordResetEmail(this.state.email)
             .then(() => {
-                Alert.alert('Welcome back!')
                 this.setState({ loading: false })
+                Alert.alert("Password reset email has been sent.");
+                this.props.navigation.navigate('Login')
             }, (error) => {
-                Alert.alert(error.message);
                 this.setState({ loading: false })
+                Alert.alert(error.message);
             });
     }
 
+
     renderButton() {
         if (this.state.loading) {
-            return <Spinner size="small" />
+            return (
+                <View style={{ marginTop: 15 }}>
+                    <Spinner size="small" />
+                </View>
+            )
         }
         return (
 
             <TouchableOpacity
-                onPress={this.onLoginPress}
+                onPress={this.onResetPasswordPress}
                 style={styles.btnLogin}>
-                <Text style={styles.textStyle}>Login</Text>
+                <Text style={styles.textStyle}>Send Mail</Text>
             </TouchableOpacity>
         );
     }
@@ -97,30 +92,7 @@ class LoginScreen extends React.Component {
 
                             />
                         </View>
-                        <View style={styles.inputContainer}>
-                            <Icon name='md-lock' size={32} color={'#FFFFFF'}
-                                style={styles.lockIcon}
-                            />
-                            <TextInput
-                                style={styles.inputStyle}
-                                value={this.state.password}
-                                placeholder={'password'}
-                                selectionColor={"#fff"}
-                                secureTextEntry={this.state.showPassword}
-                                placeholderTextColor={'#FFFFFF'}
-                                underlineColorAndroid='transparent'
-                                onChangeText={(text) => { this.setState({ password: text }) }}
-                            />
-                            <TouchableOpacity onPress={this.showPassword} style={styles.btnEye}>
-                                <Icon name={this.state.pressed == false ? "md-eye-off" : "md-eye"} size={25} color={"#fff"} />
-                            </TouchableOpacity>
-                        </View>
 
-                        <TouchableOpacity style={{ marginTop: 20 }}
-                            onPress={() => this.props.navigation.navigate('ForgotPassword')}>
-
-                            <Text style={styles.textStyle2}>Forgot password?</Text>
-                        </TouchableOpacity>
                     </View>
 
 
@@ -231,4 +203,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoginScreen;
+export default ForgotPasswordScreen;
