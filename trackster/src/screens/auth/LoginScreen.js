@@ -44,7 +44,11 @@ class LoginScreen extends React.Component {
 
     renderButton() {
         if (this.state.loading) {
-            return <Spinner size="small" />
+            return (
+                <View style={{ marginTop: 15 }}>
+                    <Spinner size="small" />
+                </View>
+            )
         }
         return (
 
