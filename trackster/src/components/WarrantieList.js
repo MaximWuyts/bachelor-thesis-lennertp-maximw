@@ -4,6 +4,10 @@ import { db, fire } from '../keys/firebaseKeys';
 import Icon from 'react-native-vector-icons/Ionicons'
 import moment from "moment";
 
+import { connect } from 'react-redux'
+import { setWarranties } from '../actions';
+
+
 class WarrantieList extends React.Component {
     constructor(props) {
         super(props);
@@ -26,9 +30,7 @@ class WarrantieList extends React.Component {
                             value: values[key]
                         })
                     });
-                    this.setState({
-                        warranties
-                    })
+                    this.props.setWarranties(warranties);
                 }
             });
     }
@@ -87,7 +89,7 @@ class WarrantieList extends React.Component {
             // >
             <View>
                 {
-                    this.state.warranties.length === 0 ?
+                    this.props.warranties.length === 0 ?
                         <View style={noListViewstyle}>
                             <Text style={noListTextStyle}>No saved warranties</Text>
                             <TouchableOpacity
@@ -100,14 +102,14 @@ class WarrantieList extends React.Component {
                         <View>
                             <FlatList
 
-                                data={this.state.warranties}
+                                data={this.props.warranties}
                                 renderItem={({ item, index }) => {
 
                                     return (
                                         <TouchableOpacity onPress={() =>
                                             this.props.navProp.navigate('Detail', { item: item, formType: "warranty" })}
                                         >
-                                            <View style={(index === this.state.warranties.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
+                                            <View style={(index === this.props.warranties.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
                                                 {this.getIcon(item.value.productType)}
                                                 <Text style={leftTextStyle}>{item.value.name}</Text>
                                                 {this.calculateDaysLeft(item.value.chosenDate)}
@@ -187,5 +189,12 @@ const styles = StyleSheet.create({
     }
 });
 
+function mapStateToProps(state) {
 
-export default WarrantieList;
+    return {
+        warranties: state.documentReducer.warranties
+
+    }
+};
+
+export default connect(mapStateToProps, { setWarranties })(WarrantieList);

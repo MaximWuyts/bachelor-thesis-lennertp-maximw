@@ -4,12 +4,13 @@ import { db, fire } from '../keys/firebaseKeys';
 import Icon from 'react-native-vector-icons/Ionicons'
 import moment from "moment";
 
+import { connect } from 'react-redux'
+import { setSubscriptions } from '../actions';
+
+
 class SubscriptionList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            subscriptions: []
-        }
     }
 
     componentDidMount = () => {
@@ -27,9 +28,7 @@ class SubscriptionList extends React.Component {
                             value: values[key]
                         })
                     });
-                    this.setState({
-                        subscriptions
-                    })
+                    this.props.setSubscriptions(subscriptions);
                 }
             });
     }
@@ -86,14 +85,13 @@ class SubscriptionList extends React.Component {
 
     render() {
         const { listViewstyle, leftTextStyle, rightTextStyle, listViewstyleNoBorder, noListViewstyle, noListTextStyle, noListTextStyle2, iconStyle } = styles;
-        console.log('testing', this.state.subscriptions);
         return (
             // <TouchableOpacity onPress={() =>
             //     this.props.navigation.navigate('AccountDetails', { account: account })}
             // >
             <View>
                 {
-                    this.state.subscriptions.length === 0 ?
+                    this.props.subscriptions.length === 0 ?
                         <View style={noListViewstyle}>
                             <Text style={noListTextStyle}>No saved subscriptions</Text>
                             <TouchableOpacity
@@ -105,14 +103,14 @@ class SubscriptionList extends React.Component {
                         :
                         <View>
                             <FlatList
-                                data={this.state.subscriptions}
+                                data={this.props.subscriptions}
                                 renderItem={({ item, index }) => {
                                     console.log('testing', item.value.chosenDate);
                                     return (
                                         <TouchableOpacity onPress={() =>
                                             this.props.navProp.navigate('Detail', { item: item, formType: "subscription" })}
                                         >
-                                            <View style={(index === this.state.subscriptions.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
+                                            <View style={(index === this.props.subscriptions.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
                                                 {this.getIcon(item.value.productType)}
                                                 <Text style={leftTextStyle}>{item.value.name}</Text>
                                                 <Text style={rightTextStyle}>€ {item.value.price}</Text>
@@ -193,4 +191,12 @@ const styles = StyleSheet.create({
 });
 
 
-export default SubscriptionList;
+function mapStateToProps(state) {
+
+    return {
+        subscriptions: state.documentReducer.subscriptions,
+
+    }
+};
+
+export default connect(mapStateToProps, { setSubscriptions })(SubscriptionList);
