@@ -117,7 +117,7 @@ class SubscriptionList extends React.Component {
                                         else if (momentA < momentB) return -1;
                                         else return 0;
                                     }
-                                    if (compare(item.value.chosenDate, moment().format('MM/DD/YYYY')) >= 1) {
+                                    if (compare(item.value.chosenDate, moment().format('MM/DD/YYYY')) === 1) {
                                         return (
                                             <TouchableOpacity onPress={() =>
                                                 this.props.navProp.navigate('Detail', { item: item, formType: "subscription" })}
