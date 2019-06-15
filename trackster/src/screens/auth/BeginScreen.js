@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Dimensions, Text, View, TouchableOpacity, Image, StatusBar, ImageBackground } from 'react-native';
 import Logo from '../../../assets/white-logo-rev.png';
-import Back from '../../../assets/home.jpg';
-///dit is een test
+import Back from '../../../assets/backbegin.jpg';
+
+
 const { width: WIDTH } = Dimensions.get('window');
 
 class BeginScreen extends React.Component {

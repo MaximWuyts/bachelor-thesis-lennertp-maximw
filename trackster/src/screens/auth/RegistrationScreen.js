@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ImageBackground, StatusBar, Image, Dimensions, 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Logo from '../../../assets/white-logo-rev.png';
-import Back from '../../../assets/register.jpg';
+import Back from '../../../assets/backreg.jpg';
 import { Card } from 'native-base';
 import { fire } from '../../keys/firebaseKeys';
 import { db } from '../../keys/firebaseKeys';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
+import moment from "moment";
 
 const ShowDocument = ({ price, productType, urlLink, type, formType, calculateDaysLeft, chosenDate, warrantyDuration }) => {
 
@@ -16,7 +16,7 @@ const ShowDocument = ({ price, productType, urlLink, type, formType, calculateDa
                     </View>
                     <View style={listViewstyle}>
                         <Text style={textStyle}>{calculateDaysLeft(chosenDate)}</Text>
-                        <Text style={textStyle}>{chosenDate}</Text>
+                        <Text style={textStyle}>{moment(chosenDate).format('DD/MM/YYYY')}</Text>
                     </View>
                     <View style={NoBorderlistViewstyle}>
                         <Text style={BoldtextStyle}>{type}</Text>
@@ -38,7 +38,7 @@ const ShowDocument = ({ price, productType, urlLink, type, formType, calculateDa
                     </View>
                     <View style={listViewstyle}>
                         <Text style={textStyle}>{calculateDaysLeft(chosenDate)}</Text>
-                        <Text style={textStyle}>{chosenDate}</Text>
+                        <Text style={textStyle}>{moment(chosenDate).format('DD/MM/YYYY')}</Text>
                     </View>
                     <View style={NoBorderlistViewstyle}>
                         <Text style={BoldtextStyle}>Cost</Text>

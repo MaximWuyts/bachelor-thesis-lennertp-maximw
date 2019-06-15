@@ -19,7 +19,7 @@ class WarrantieList extends React.Component {
     componentDidMount = () => {
         let warranties = [];
         db.ref(`warranties/${this.props.screenProps.user.uid}`)
-            .orderByChild('date')
+            .orderByChild('chosenDate')
             .on('value', (snap) => {
                 if (snap.val()) {
                     let values = snap.val();
@@ -30,6 +30,11 @@ class WarrantieList extends React.Component {
                             value: values[key]
                         })
                     });
+                    warranties.sort(function (a, b) {
+                        var dateA = new Date(a.value.chosenDate), dateB = new Date(b.value.chosenDate);
+                        return dateA - dateB;
+                    });
+                    console.log('war', warranties);
                     this.props.setWarranties(warranties);
                 }
             });
@@ -104,18 +109,26 @@ class WarrantieList extends React.Component {
 
                                 data={this.props.warranties}
                                 renderItem={({ item, index }) => {
-
-                                    return (
-                                        <TouchableOpacity onPress={() =>
-                                            this.props.navProp.navigate('Detail', { item: item, formType: "warranty" })}
-                                        >
-                                            <View style={(index === this.props.warranties.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
-                                                {this.getIcon(item.value.productType)}
-                                                <Text style={leftTextStyle}>{item.value.name}</Text>
-                                                {this.calculateDaysLeft(item.value.chosenDate)}
-                                            </View>
-                                        </TouchableOpacity>
-                                    )
+                                    function compare(dateTimeA, dateTimeB) {
+                                        var momentA = moment(dateTimeA, "MM/DD/YYYY");
+                                        var momentB = moment(dateTimeB, "MM/DD/YYYY");
+                                        if (momentA > momentB) return 1;
+                                        else if (momentA < momentB) return -1;
+                                        else return 0;
+                                    }
+                                    if (compare(item.value.chosenDate, moment().format('MM/DD/YYYY')) === 1) {
+                                        return (
+                                            <TouchableOpacity onPress={() =>
+                                                this.props.navProp.navigate('Detail', { item: item, formType: "warranty" })}
+                                            >
+                                                <View style={(index === this.props.warranties.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
+                                                    {this.getIcon(item.value.productType)}
+                                                    <Text style={leftTextStyle}>{item.value.name}</Text>
+                                                    {this.calculateDaysLeft(item.value.chosenDate)}
+                                                </View>
+                                            </TouchableOpacity>
+                                        )
+                                    }
                                 }}
                             />
                         </View>
