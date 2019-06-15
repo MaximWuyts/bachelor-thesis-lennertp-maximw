@@ -38,7 +38,7 @@ class SubscriptionList extends React.Component {
     }
 
     getIcon = (productType) => {
-        const { iconStyle } = styles;
+        const { iconStyle, carStyle, phoneStyle } = styles;
         if (productType === 'online') {
             return <Icon name='md-laptop' size={32} color={'#04A7F1'} style={iconStyle} />
         }
@@ -46,9 +46,9 @@ class SubscriptionList extends React.Component {
             return <Icon name='md-card' size={32} color={'#04A7F1'} style={iconStyle} />
         }
         if (productType === 'transport') {
-            return <Icon name='md-car' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 3.5}} />
+            return <Icon name='md-car' size={32} color={'#04A7F1'} style={[iconStyle, carStyle]} />
         }
-        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 6.5}} />
+        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={[iconStyle, phoneStyle]} />
     }
 
 
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         color: "#343434",
         fontWeight: "bold",
-        flex: 3
+        flex: 4
 
     },
     rightTextStyle: {
@@ -220,6 +220,12 @@ const styles = StyleSheet.create({
         marginTop: -5,
         paddingBottom: 5,
         zIndex: +2
+    },
+    carStyle: {
+      marginLeft: 3.5
+    },
+    phoneStyle: {
+      marginLeft: 6.5
     }
 });
 

@@ -32,7 +32,7 @@ class WarrantieListPaid extends React.Component {
     }
 
     getIcon = (productType) => {
-        const { iconStyle } = styles;
+        const { iconStyle, carStyle, phoneStyle } = styles;
         if (productType === 'online') {
             return <Icon name='md-laptop' size={32} color={'#04A7F1'} style={iconStyle} />
         }
@@ -40,13 +40,13 @@ class WarrantieListPaid extends React.Component {
             return <Icon name='md-card' size={32} color={'#04A7F1'} style={iconStyle} />
         }
         if (productType === 'transport') {
-            return <Icon name='md-car' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 3.5}} />
+            return <Icon name='md-car' size={32} color={'#04A7F1'} style={[iconStyle, carStyle]} />
         }
-        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 6.5}} />
+        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={[iconStyle, phoneStyle]} />
     }
 
     render() {
-        const { listViewstyle, iconContStyle, leftTextStyle, dateStyle, rightTextStyle, listViewstyleNoBorder, iconStyle, noListViewstyle, noListTextStyle, noListTextStyle2 } = styles
+        const { listViewstyle, iconContStyle, leftTextStyle, dateStyle, rightTextStyle, listViewstyleNoBorder, iconStyle, noListViewstyle, noListTextStyle, noListTextStyle2 } = styles;
         return (
             // <TouchableOpacity onPress={() =>
             //     this.props.navigation.navigate('AccountDetails', { account: account })}
@@ -100,12 +100,12 @@ const styles = StyleSheet.create({
         borderBottomColor: "#D8D8D8"
     },
     noListViewstyle: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         marginTop: 15,
-        paddingBottom: 7.5,
-        paddingLeft: 15,
-        paddingRight: 15,
-        justifyContent: "space-around",
+        padding: 30,
+
+        justifyContent: "center",
+        alignItems: "center",
     },
     noListTextStyle: {
         fontSize: 19,
@@ -124,6 +124,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 15,
         paddingBottom: 7.5,
+        paddingLeft: 15,
+        paddingRight: 15,
         justifyContent: "space-around",
     },
     leftTextStyle: {
@@ -145,10 +147,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     iconStyle: {
-        width: 44.6,
         marginTop: -5,
         paddingBottom: 5,
-        zIndex: +2
+        zIndex: +2,
+        width: 44.6
+    },
+    carStyle: {
+      marginLeft: 3.5
+    },
+    phoneStyle: {
+      marginLeft: 6.5
     }
 });
 

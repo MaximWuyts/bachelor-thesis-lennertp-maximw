@@ -41,7 +41,7 @@ class WarrantieList extends React.Component {
     }
 
     getIcon = (productType) => {
-        const { iconStyle } = styles;
+        const { iconStyle, carStyle, phoneStyle } = styles;
         if (productType === 'online') {
             return <Icon name='md-laptop' size={32} color={'#04A7F1'} style={iconStyle} />
         }
@@ -49,9 +49,9 @@ class WarrantieList extends React.Component {
             return <Icon name='md-card' size={32} color={'#04A7F1'} style={iconStyle} />
         }
         if (productType === 'transport') {
-            return <Icon name='md-car' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 3.5}} />
+            return <Icon name='md-car' size={32} color={'#04A7F1'} style={[iconStyle, carStyle]} />
         }
-        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 6.5}} />
+        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={[iconStyle, phoneStyle]} />
     }
 
 
@@ -61,28 +61,28 @@ class WarrantieList extends React.Component {
         let startDate = moment().startOf('day');
         let diff = moment.duration(endDate.diff(startDate)).asDays();
         if (diff <= 30) {
-            return <Text style={rightTextStyle}>{diff} days left</Text>
+            return <Text style={rightTextStyle}>{diff} days</Text>
         }
         if (diff >= 30 && diff < 40) {
-            return <Text style={rightTextStyle}>1 month left</Text>
+            return <Text style={rightTextStyle}>1 month</Text>
         }
         if (diff >= 40 && diff < 75) {
-            return <Text style={rightTextStyle}>3 months left</Text>
+            return <Text style={rightTextStyle}>3 months</Text>
         }
         if (diff >= 75 && diff < 200) {
-            return <Text style={rightTextStyle}>5 months left</Text>
+            return <Text style={rightTextStyle}>5 months</Text>
         }
         if (diff >= 200 && diff < 365) {
-            return <Text style={rightTextStyle}>8 months left</Text>
+            return <Text style={rightTextStyle}>8 months</Text>
         }
         if (diff >= 365 && diff < 500) {
-            return <Text style={rightTextStyle}>1 year left</Text>
+            return <Text style={rightTextStyle}>1 year</Text>
         }
         if (diff >= 500 & diff < 730) {
-            return <Text style={rightTextStyle}>2 years left</Text>
+            return <Text style={rightTextStyle}>2 years</Text>
         }
         if (diff >= 730) {
-            return <Text style={rightTextStyle}>3 years left</Text>
+            return <Text style={rightTextStyle}>3 years</Text>
         }
 
     }
@@ -212,6 +212,12 @@ const styles = StyleSheet.create({
     iconContStyle: {
         flex: 1,
         justifyContent: 'center'
+    },
+    carStyle: {
+      marginLeft: 3.5
+    },
+    phoneStyle: {
+      marginLeft: 6.5
     }
 });
 
