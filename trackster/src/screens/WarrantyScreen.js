@@ -23,7 +23,7 @@ class WarrantieScreen extends React.Component {
                     <View style={{ marginTop: 20, marginBottom: 5 }}>
                         <Text style={textHeaderStyle}>Upcomming Warranties</Text>
                     </View>
-                    <Card style={contentStyle}>
+                    <Card style={contentStyle2}>
                         <WarrantieList screenProps={this.props.screenProps} navProp={this.props.navigation} />
                         <View style={iconAddStyle}>
                             <TouchableOpacity

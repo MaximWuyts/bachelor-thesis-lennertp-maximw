@@ -34,16 +34,17 @@ class WarrantieList extends React.Component {
     }
 
     getIcon = (productType) => {
+        const { iconStyle } = styles;
         if (productType === 'online') {
-            return <Icon name='md-laptop' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+            return <Icon name='md-laptop' size={32} color={'#04A7F1'} style={iconStyle} />
         }
         if (productType === 'financial') {
-            return <Icon name='md-card' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+            return <Icon name='md-card' size={32} color={'#04A7F1'} style={iconStyle} />
         }
         if (productType === 'transport') {
-            return <Icon name='md-car' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+            return <Icon name='md-car' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 3.5}} />
         }
-        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 6.5}} />
     }
 
     calculateDaysLeft = (endDate) => {
@@ -69,7 +70,7 @@ class WarrantieList extends React.Component {
     }
 
     render() {
-        const { listViewstyle, leftTextStyle, rightTextStyle, listViewstyleNoBorder, iconStyle, noListViewstyle, noListTextStyle, noListTextStyle2 } = styles
+        const { listViewstyle, leftTextStyle, daysContStyle, rightTextStyle, listViewstyleNoBorder, iconStyle, iconContStyle, noListViewstyle, noListTextStyle, noListTextStyle2 } = styles
         return (
             // <TouchableOpacity onPress={() =>
             //     this.props.navigation.navigate('AccountDetails', { account: account })}
@@ -97,9 +98,13 @@ class WarrantieList extends React.Component {
                                             this.props.navProp.navigate('Detail', { item: item, formType: "warranty" })}
                                         >
                                             <View style={(index === this.state.warranties.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
+                                              <View style={iconContStyle}>
                                                 {this.getIcon(item.value.productType)}
+                                              </View>
                                                 <Text style={leftTextStyle}>{item.value.name}</Text>
+                                              <View style={daysContStyle}>
                                                 {this.calculateDaysLeft(item.value.chosenDate)}
+                                              </View>
                                             </View>
                                         </TouchableOpacity>
                                     )
@@ -156,23 +161,31 @@ const styles = StyleSheet.create({
         fontSize: 17,
         color: "#343434",
         textAlign: 'left',
-        fontWeight: "bold"
-
+        fontWeight: "bold",
+        flex: 3
     },
     rightTextStyle: {
         fontSize: 17,
         color: "#343434",
         textAlign: 'right',
-        fontWeight: "bold"
-
+        fontWeight: "bold",
+        flex: 2
+    },
+    daysContStyle: {
+        flex: 2,
+        fontSize: 17,
+        color: "#343434",
+        fontWeight: "bold",
+        textAlign: 'right',
     },
     iconStyle: {
-        paddingBottom: 0,
-        marginTop: 10,
-        width: 45,
-        height: 45,
-
-
+        marginTop: -5,
+        paddingBottom: 5,
+        zIndex: +2
+    },
+    iconContStyle: {
+        flex: 1,
+        justifyContent: 'center'
     }
 });
 

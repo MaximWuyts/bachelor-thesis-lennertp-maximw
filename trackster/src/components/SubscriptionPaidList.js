@@ -35,22 +35,23 @@ class SubscriptionPaidList extends React.Component {
     }
 
     getIcon = (productType) => {
+        const { iconStyle } = styles;
         if (productType === 'online') {
-            return <Icon name='md-laptop' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+            return <Icon name='md-laptop' size={32} color={'#04A7F1'} style={iconStyle} />
         }
         if (productType === 'financial') {
-            return <Icon name='md-card' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+            return <Icon name='md-card' size={32} color={'#04A7F1'} style={iconStyle} />
         }
         if (productType === 'transport') {
-            return <Icon name='md-car' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+            return <Icon name='md-car' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 3.5}} />
         }
-        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={{ marginTop: -5 }} />
+        return <Icon name='md-phone-portrait' size={32} color={'#04A7F1'} style={iconStyle, {marginLeft: 6.5}} />
     }
 
 
 
     render() {
-        const { listViewstyle, leftTextStyle, rightTextStyle, listViewstyleNoBorder, noListViewstyle, noListTextStyle, noListTextStyle2, iconStyle } = styles
+        const { listViewstyle, leftTextStyle, iconContStyle, dateStyle, rightTextStyle, listViewstyleNoBorder, noListViewstyle, noListTextStyle, noListTextStyle2, iconStyle } = styles
         return (
             // <TouchableOpacity onPress={() =>
             //     this.props.navigation.navigate('AccountDetails', { account: account })}
@@ -73,10 +74,12 @@ class SubscriptionPaidList extends React.Component {
                                 renderItem={({ item, index }) => {
                                     return (
                                         <View style={(index === this.state.subscriptionsPaid.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
+                                          <View style={iconContStyle}>
                                             {this.getIcon(item.value.productType)}
+                                          </View>
                                             <Text style={leftTextStyle}>{item.value.name}</Text>
                                             <Text style={rightTextStyle}>€ {item.value.price}</Text>
-                                            <Text style={rightTextStyle}>€ {item.value.chosenDate}</Text>
+                                            <Text style={dateStyle}>{item.value.chosenDate}</Text>
                                         </View>)
                                 }}
                             />
@@ -92,6 +95,8 @@ const styles = StyleSheet.create({
     listViewstyle: {
         flexDirection: 'row',
         marginTop: 15,
+        paddingLeft: 15,
+        paddingRight: 15,
         paddingBottom: 7.5,
         justifyContent: "space-around",
         borderBottomWidth: 1,
@@ -101,21 +106,23 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 15,
         paddingBottom: 7.5,
+        paddingLeft: 15,
+        paddingRight: 15,
         justifyContent: "space-around",
     },
     leftTextStyle: {
         fontSize: 17,
         color: "#343434",
         textAlign: 'left',
-        fontWeight: "bold"
-
+        fontWeight: "bold",
+        flex: 3
     },
     rightTextStyle: {
         fontSize: 17,
         color: "#343434",
-        textAlign: 'right',
-        fontWeight: "bold"
-
+        textAlign: 'left',
+        fontWeight: "bold",
+        flex: 1
     },
 
     noListViewstyle: {
@@ -138,12 +145,21 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         paddingBottom: 20
     },
-
+    dateStyle: {
+        fontSize: 17,
+        color: "#343434",
+        fontWeight: "bold",
+        textAlign: 'right',
+        flex: 2
+    },
+    iconContStyle: {
+        flex: 1,
+        justifyContent: 'center'
+    },
     iconStyle: {
-        width: 50,
-        height: 50,
-
-        paddingBottom: 20,
+        width: 44.6,
+        marginTop: -5,
+        paddingBottom: 5,
         zIndex: +2
     }
 });
