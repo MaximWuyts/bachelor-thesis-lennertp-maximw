@@ -124,12 +124,12 @@ class SubscriptionList extends React.Component {
                                             >
                                                 <View style={(index === this.props.subscriptions.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
                                                     <View style={iconContStyle}>
-                                                      {this.getIcon(item.value.productType)}
+                                                        {this.getIcon(item.value.productType)}
                                                     </View>
                                                     <Text style={leftTextStyle}>{item.value.name}</Text>
                                                     <Text style={rightTextStyle}>€ {item.value.price}</Text>
                                                     <View style={daysContStyle}>
-                                                      {this.calculateDaysLeft(item.value.chosenDate)}
+                                                        {this.calculateDaysLeft(item.value.chosenDate)}
                                                     </View>
                                                 </View>
                                             </TouchableOpacity>
@@ -222,10 +222,10 @@ const styles = StyleSheet.create({
         zIndex: +2
     },
     carStyle: {
-      marginLeft: 3.5
+        marginLeft: 3.5
     },
     phoneStyle: {
-      marginLeft: 6.5
+        marginLeft: 6.5
     }
 });
 

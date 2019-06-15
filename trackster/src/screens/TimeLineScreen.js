@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, StatusBar, TouchableOpacity } from 'react-native';
 import AppHeader from '../components/AppHeader';
 import NavHeader from '../components/NavHeader';
+import TimelineSubs from '../components/TimelineSubs';
+
 
 class TimelineScreen extends React.Component {
     render = () => {
@@ -18,6 +20,8 @@ class TimelineScreen extends React.Component {
                 <AppHeader headerText="Timeline" navProp={this.props.navigation} />
 
                 <NavHeader />
+
+                <TimelineSubs />
             </ImageBackground>
         )
     }
