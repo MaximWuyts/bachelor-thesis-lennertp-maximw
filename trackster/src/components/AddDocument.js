@@ -10,7 +10,11 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
     return (
         <View>
             <Form>
-                <Item style={{ marginTop: 20, flexDirection: 'row-reverse' }}>
+                <Item style={{
+                  flexDirection: 'row-reverse',
+                  width: '100%',
+                  height: 50
+                }}>
                     <Input placeholder='Enter Name'
                         placeholderTextColor='#d3d3d3'
                         onChangeText={(text) => handleChange('name', text)}
@@ -19,7 +23,12 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                     />
                 </Item>
                 {formType === "subscription" ?
-                    <Item picker>
+                    <Item picker style={{
+                      paddingLeft: 10,
+                      paddingRight: 10,
+                      width: '100%',
+                      height: 50
+                    }}>
                         <Picker
                             mode="dropdown"
                             style={{ color: '#d3d3d3' }}
@@ -34,7 +43,12 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                         </Picker>
                     </Item>
                     :
-                    <Item picker>
+                    <Item picker style={{
+                      paddingLeft: 10,
+                      paddingRight: 10,
+                      width: '100%',
+                      height: 50
+                    }}>
                         <Picker
                             mode="dropdown"
                             style={{ color: '#d3d3d3' }}
@@ -49,17 +63,33 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                             <Picker.Item label="3 years" value="3 years" />
                         </Picker>
                     </Item>}
-                <Item style={{ marginTop: 20, flexDirection: 'row-reverse' }}>
-                    <Icon name='euro' style={{ color: '#d3d3d3', fontSize: 20 }} />
+                <Item style={{
+                      flexDirection: 'row-reverse',
+                      paddingLeft: 20,
+                      paddingRight: 20,
+                      marginLeft: 0,
+                      width: '100%',
+                      height: 50
+                }}>
+                    <Icon name='euro' style={{ color: '#d3d3d3', fontSize: 20, marginRight: 5 }} />
                     <Input placeholder='Enter Price'
                         placeholderTextColor='#d3d3d3'
                         keyboardType="numeric"
                         onChangeText={(text) => handleChange('price', text)}
                         value={price}
-                        style={{ color: '#d3d3d3', paddingLeft: 20 }}
+                        style={{
+                          color: '#d3d3d3',
+                          paddingLeft: 0,
+                          paddingRight: 0
+                        }}
                     />
                 </Item>
-                <Item picker>
+                <Item picker style={{
+                      paddingLeft: 10,
+                      paddingRight: 10,
+                      width: '100%',
+                      height: 50
+                }}>
                     <Picker
                         mode="dropdown"
                         style={{ color: '#d3d3d3' }}
@@ -74,7 +104,12 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                         <Picker.Item label="electronics" value="electronics" />
                     </Picker>
                 </Item>
-                <Item>
+                <Item style={{
+                  marginLeft: 0,
+                  paddingLeft: 10,
+                  width: '100%',
+                  height: 50
+                }}>
                     <DatePicker
                         defaultDate={new Date(2019, 5, 6)}
                         minimumDate={new Date(2019, 1, 1)}
@@ -93,7 +128,11 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                     />
                 </Item>
 
-                <Item style={{ marginTop: 20, flexDirection: 'row-reverse' }}>
+                <Item style={{
+                  flexDirection: 'row-reverse',
+                  width: '100%',
+                  height: 50
+                }}>
 
                     <Input placeholder='Url Link'
                         placeholderTextColor='#d3d3d3'
