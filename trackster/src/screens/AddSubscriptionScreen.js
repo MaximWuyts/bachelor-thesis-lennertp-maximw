@@ -29,7 +29,7 @@ class AddSubscriptionScreen extends React.Component {
     }
 
     setDate = (newDate) => {
-        let formattedDate = moment(newDate).format('MM-DD-YYYY');
+        let formattedDate = moment(newDate).format('DD/MM/YYYY');
         this.setState({ chosenDate: formattedDate });
     }
 

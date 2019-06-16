@@ -29,7 +29,7 @@ class AddWarrantieScreen extends React.Component {
     }
 
     setDate = (newDate) => {
-        let formattedDate = moment(newDate).format();
+        let formattedDate = moment(newDate).format('DD/MM/YYYY');
         console.log('m', formattedDate);
         this.setState({ chosenDate: formattedDate });
     }
