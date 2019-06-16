@@ -71,15 +71,24 @@ class SubscriptionPaidList extends React.Component {
                             <FlatList
                                 data={this.state.subscriptionsPaid}
                                 renderItem={({ item, index }) => {
-                                    return (
-                                        <View style={(index === this.state.subscriptionsPaid.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
-                                          <View style={iconContStyle}>
-                                            {this.getIcon(item.value.productType)}
-                                          </View>
-                                            <Text style={leftTextStyle}>{item.value.name}</Text>
-                                            <Text style={rightTextStyle}>€ {item.value.price}</Text>
-                                            <Text style={dateStyle}>{item.value.chosenDate}</Text>
-                                        </View>)
+                                    function compare(dateTimeA, dateTimeB) {
+                                        var momentA = moment(dateTimeA, "MM/DD/YYYY");
+                                        var momentB = moment(dateTimeB, "MM/DD/YYYY");
+                                        if (momentA > momentB) return 1;
+                                        else if (momentA < momentB) return -1;
+                                        else return 0;
+                                    }
+                                    if (compare(item.value.chosenDate, moment().format('MM/DD/YYYY')) < 1) {
+                                        return (
+                                            <View style={(index === this.state.subscriptionsPaid.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
+                                                <View style={iconContStyle}>
+                                                    {this.getIcon(item.value.productType)}
+                                                </View>
+                                                <Text style={leftTextStyle}>{item.value.name}</Text>
+                                                <Text style={rightTextStyle}>€ {item.value.price}</Text>
+                                                <Text style={dateStyle}>{moment(item.value.chosenDate).format('DD/MM/YYYY')}</Text>
+                                            </View>)
+                                    }
                                 }}
                             />
                         </View>
@@ -162,10 +171,10 @@ const styles = StyleSheet.create({
         zIndex: +2
     },
     carStyle: {
-      marginLeft: 3.5
+        marginLeft: 3.5
     },
     phoneStyle: {
-      marginLeft: 6.5
+        marginLeft: 6.5
     }
 });
 
