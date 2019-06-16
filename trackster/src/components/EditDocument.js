@@ -132,7 +132,8 @@ const EditDocument = ({ handleChange, name, price, productType, urlLink, type, s
                 <Item style={{
                   flexDirection: 'row-reverse',
                   width: '100%',
-                  height: 50
+                  height: 50,
+                  borderBottomWidth: 0
                 }}>
 
                     <Input placeholder='Url Link'

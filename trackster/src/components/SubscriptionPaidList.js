@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         color: "#343434",
         textAlign: 'left',
         fontWeight: "bold",
-        flex: 20
+        flex: 15
     },
 
     noListViewstyle: {
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
         color: "#343434",
         fontWeight: "bold",
         textAlign: 'right',
-        flex: 25
+        flex: 30
     },
     iconContStyle: {
         flex: 15,
