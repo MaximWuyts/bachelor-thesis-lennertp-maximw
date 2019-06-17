@@ -89,20 +89,8 @@ const AppDrawerNavigator = createDrawerNavigator({
             header: null
         }
     },
-    Dashboard: {
-        screen: TimelineScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
     Profile: {
         screen: ProfileScreen,
-        navigationOptions: {
-            header: null
-        }
-    },
-    Logout: {
-        screen: TimelineScreen,
         navigationOptions: {
             header: null
         }
