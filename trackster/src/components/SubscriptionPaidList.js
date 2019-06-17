@@ -70,6 +70,7 @@ class SubscriptionPaidList extends React.Component {
                         <View>
                             <FlatList
                                 data={this.state.subscriptionsPaid}
+                                keyExtractor={item => item.value.name}
                                 renderItem={({ item, index }) => {
                                     function compare(dateTimeA, dateTimeB) {
                                         var momentA = moment(dateTimeA, "MM/DD/YYYY");

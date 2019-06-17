@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "613405233733",
+    "firebase_url": "https://xpyre-cb04d.firebaseio.com",
+    "project_id": "xpyre-cb04d",
+    "storage_bucket": "xpyre-cb04d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613405233733:android:02a6fbe38775847c",
+        "android_client_info": {
+          "package_name": "com.trackster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "613405233733-pm88tgie899816h1is1e6dcg3kae0jt0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmWM9abBXDjy3bAhzEQnrGhdWfvxg-U9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "613405233733-pm88tgie899816h1is1e6dcg3kae0jt0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

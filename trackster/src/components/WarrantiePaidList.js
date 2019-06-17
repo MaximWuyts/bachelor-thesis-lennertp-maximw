@@ -57,6 +57,7 @@ class WarrantieListPaid extends React.Component {
                     <FlatList
 
                         data={this.state.warrantiesPaid}
+                        keyExtractor={item => item.value.name}
                         renderItem={({ item, index }) => {
                             function compare(dateTimeA, dateTimeB) {
                                 var momentA = moment(dateTimeA, "MM/DD/YYYY");
@@ -69,7 +70,7 @@ class WarrantieListPaid extends React.Component {
                                 return (
                                     <View style={(index === this.state.warrantiesPaid.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
                                         <View style={iconContStyle}>
-                                          {this.getIcon(item.value.productType)}
+                                            {this.getIcon(item.value.productType)}
                                         </View>
                                         <Text style={leftTextStyle}>{item.value.name}</Text>
                                         <Text style={dateStyle}>{moment(item.value.chosenDate).format('DD/MM/YYYY')}</Text>
@@ -153,10 +154,10 @@ const styles = StyleSheet.create({
         width: 44.6
     },
     carStyle: {
-      marginLeft: 3.5
+        marginLeft: 3.5
     },
     phoneStyle: {
-      marginLeft: 6.5
+        marginLeft: 6.5
     }
 });
 

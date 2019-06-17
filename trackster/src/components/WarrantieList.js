@@ -106,6 +106,7 @@ class WarrantieList extends React.Component {
                             <FlatList
 
                                 data={this.props.warranties}
+                                keyExtractor={item => item.value.name}
                                 renderItem={({ item, index }) => {
                                     function compare(dateTimeA, dateTimeB) {
                                         var momentA = moment(dateTimeA, "MM/DD/YYYY");
