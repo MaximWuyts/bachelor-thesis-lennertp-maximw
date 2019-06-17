@@ -2,20 +2,30 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 class NavHeader extends React.Component {
+    constructor(props) {
+        super(props);
+
+    }
     render = () => {
+        console.log('deze props', this.props);
         const { textHeaderStyle, textHeaderStyle2, textHeaderStyle3, headerStyle } = styles
+        const { pressAll, pressSubscriptions, pressWarranties } = this.props
         return (
             <View style={headerStyle}>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={pressAll}
+                >
                     <Text style={textHeaderStyle}>All</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={pressSubscriptions}>
                     <Text style={textHeaderStyle2}>Sub</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={pressWarranties}>
                     <Text style={textHeaderStyle3}>War</Text>
                 </TouchableOpacity>
             </View>

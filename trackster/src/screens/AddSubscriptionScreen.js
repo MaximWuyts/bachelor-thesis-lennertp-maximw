@@ -18,7 +18,8 @@ class AddSubscriptionScreen extends React.Component {
             price: undefined,
             productType: undefined,
             chosenDate: new Date(),
-            urlLink: undefined
+            urlLink: undefined,
+            docType: undefined
         };
     }
 
@@ -29,7 +30,7 @@ class AddSubscriptionScreen extends React.Component {
     }
 
     setDate = (newDate) => {
-        let formattedDate = moment(newDate).format('DD/MM/YYYY');
+        let formattedDate = moment(newDate).format('MM/DD/YYYY');
         this.setState({ chosenDate: formattedDate });
     }
 
@@ -41,7 +42,8 @@ class AddSubscriptionScreen extends React.Component {
             price: this.state.price,
             productType: this.state.productType,
             chosenDate: this.state.chosenDate,
-            urlLink: this.state.urlLink
+            urlLink: this.state.urlLink,
+            docType: "subscription"
         }).then(() => {
             this.props.navigation.navigate("Home");
         })
