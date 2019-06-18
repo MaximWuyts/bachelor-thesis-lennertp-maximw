@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native';
 
 class NavHeader extends React.Component {
     constructor(props) {
@@ -45,10 +45,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "rgba(255,255,255,0.3)",
         borderRadius: 15,
-        backgroundColor: "rgba(255,255,255,0.3)",
-        marginLeft: 20,
-        paddingLeft: 40,
-        paddingRight: 40,
+        marginLeft: Platform.OS === 'ios' ? 15 : 25,
+        paddingLeft: 35,
+        paddingRight: 35,
         fontSize: 23,
         color: "#fff",
     },
@@ -56,9 +55,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "rgba(255,255,255,0.3)",
         borderRadius: 15,
-        backgroundColor: "rgba(255,255,255,0.3)",
-        paddingLeft: 40,
-        paddingRight: 40,
+        paddingLeft: 35,
+        paddingRight: 35,
         fontSize: 23,
         color: "#fff",
 
@@ -67,10 +65,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "rgba(255,255,255,0.3)",
         borderRadius: 15,
-        backgroundColor: "rgba(255,255,255,0.3)",
-        marginRight: 20,
-        paddingLeft: 40,
-        paddingRight: 40,
+        marginRight: Platform.OS === 'ios' ? 15 : 25,
+
+        paddingLeft: 35,
+        paddingRight: 35,
         fontSize: 23,
         color: "#fff",
     }

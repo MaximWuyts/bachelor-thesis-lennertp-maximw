@@ -51,7 +51,7 @@ class ProfileScreen extends React.Component {
                     <View style={headerStyle}>
                         <Text style={textHeaderStyle}>General</Text>
                     </View>
-                    <ProfileDetail email={this.props.screenProps.user.email} />
+                    <ProfileDetail email={this.props.screenProps.user.email} navProp={this.props.navigation} />
                     {/* <View style={headerStyle}>
                         <Text style={textHeaderStyle}>Personal</Text>
                     </View> */}

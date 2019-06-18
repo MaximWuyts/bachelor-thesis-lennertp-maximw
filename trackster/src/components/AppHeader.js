@@ -1,8 +1,6 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { Text, View, TouchableOpacity, Image, Platform } from 'react-native';
 import { withNavigation } from 'react-navigation';
-import { Left, Body } from 'native-base';
 
 class AppHeader extends React.Component {
     constructor(props) {
@@ -38,7 +36,7 @@ const styles = {
 
     headerStyle: {
         flex: 1,
-        marginTop: 30,
+        marginTop: Platform.OS === 'ios' ? 40 : 30,
         maxHeight: 50,
         backgroundColor: "transparent",
         flexDirection: "row",

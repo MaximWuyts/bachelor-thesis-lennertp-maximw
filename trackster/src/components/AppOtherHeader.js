@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class AppOtherHeader extends React.Component {
@@ -40,7 +40,7 @@ class AppOtherHeader extends React.Component {
 const styles = StyleSheet.create({
     headerStyle: {
         flex: 1,
-        marginTop: 30,
+        marginTop: Platform.OS === 'ios' ? 50 : 30,
         maxHeight: 50,
         backgroundColor: "transparent",
         flexDirection: "row",

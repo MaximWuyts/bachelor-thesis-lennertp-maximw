@@ -1,38 +1,51 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 
-const ProfileDetail = ({ email, }) => {
+class ProfileDetail extends React.Component {
 
-    const { listViewstyle, NoBorderlistViewstyle, textStyle, valueTextStyle, linktextStyle, lastChildStyle } = styles;
-    return (
+    constructor(props) {
+        super(props);
+    }
 
-        <View>
-            <View style={{ paddingLeft: 20, paddingRight: 20 }}>
-                <View style={listViewstyle}>
-                    <Text style={textStyle}>First Name</Text>
-                    <Text style={valueTextStyle}>Naam</Text>
-                </View>
-                <View style={listViewstyle}>
-                    <Text style={textStyle}>Last Name</Text>
-                    <Text style={valueTextStyle}>Naam</Text>
-                </View>
-                <View style={listViewstyle}>
-                    <Text style={textStyle}>E-mail</Text>
-                    <Text style={valueTextStyle}>{email}</Text>
-                </View>
-                <View style={NoBorderlistViewstyle}>
-                    <Text style={textStyle}>Password</Text>
-                    <Text style={valueTextStyle}>*********</Text>
-                </View>
-                <View style={lastChildStyle}>
-                    <Text style={linktextStyle}>Change Password</Text>
+
+    render() {
+        const { email } = this.props
+        const { listViewstyle, NoBorderlistViewstyle, textStyle, valueTextStyle, linktextStyle, lastChildStyle } = styles;
+        return (
+
+            <View>
+                <View style={{ paddingLeft: 20, paddingRight: 20 }}>
+                    <View style={listViewstyle}>
+                        <Text style={textStyle}>First Name</Text>
+                        <Text style={valueTextStyle}>Naam</Text>
+                    </View>
+                    <View style={listViewstyle}>
+                        <Text style={textStyle}>Last Name</Text>
+                        <Text style={valueTextStyle}>Naam</Text>
+                    </View>
+                    <View style={listViewstyle}>
+                        <Text style={textStyle}>E-mail</Text>
+                        <Text style={valueTextStyle}>{email}</Text>
+                    </View>
+                    <View style={NoBorderlistViewstyle}>
+                        <Text style={textStyle}>Password</Text>
+                        <Text style={valueTextStyle}>*********</Text>
+                    </View>
+                    <TouchableOpacity
+
+                        onPress={() => { this.props.navProp.navigate('Settings') }}
+                    >
+                        <View style={lastChildStyle}>
+                            <Text style={linktextStyle}>Change Password</Text>
+                        </View>
+                    </TouchableOpacity>
+
                 </View>
             </View>
-        </View>
-    );
+        );
+    }
 }
-
 const styles = StyleSheet.create({
 
     listViewstyle: {
