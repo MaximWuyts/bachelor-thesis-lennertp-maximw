@@ -5,13 +5,15 @@ import AppHeader from '../components/AppHeader';
 import { Content, Card } from 'native-base'
 import Icon from 'react-native-vector-icons/Ionicons'
 import AccountSettings from '../components/AccountSettings';
+import Notifications from '../notifications/Notifications';
 
 class SettingsScreen extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            toggleAccount: true
+            toggleAccount: true,
+            toggleNotification: true
         }
     }
 
@@ -23,10 +25,18 @@ class SettingsScreen extends React.Component {
             this.setState({ toggleAccount: true })
         }
     }
+    ShowHideNotificationComponentView = () => {
+        if (this.state.toggleNotification == true) {
+            this.setState({ toggleNotification: false })
+        }
+        else {
+            this.setState({ toggleNotification: true })
+        }
+    }
 
     render = () => {
         const { backgroundContainer, listViewstyle, headerStyle, textHeaderStyle, arrowStyle } = styles;
-        const { toggleAccount } = this.state;
+        const { toggleAccount, toggleNotification } = this.state;
         return (
             <ImageBackground source={require('../../assets/betterHeader.png')} style={backgroundContainer}>
                 <StatusBar
@@ -52,9 +62,20 @@ class SettingsScreen extends React.Component {
 
                     </View>
                     {toggleAccount ? null : <AccountSettings />}
+
                     <View style={headerStyle}>
                         <Text style={textHeaderStyle}>Notifications</Text>
+                        <TouchableOpacity
+                            style={arrowStyle}
+                            onPress={this.ShowHideNotificationComponentView}
+                        >
+                            <Icon
+
+                                name="ios-arrow-down" size={30} color={"#575757"} />
+                        </TouchableOpacity>
                     </View>
+                    {toggleNotification ? null : <Notifications />}
+
 
                     <View style={headerStyle}>
                         <Text style={textHeaderStyle}>Credits</Text>
