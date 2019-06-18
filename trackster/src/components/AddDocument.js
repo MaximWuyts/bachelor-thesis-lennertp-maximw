@@ -60,7 +60,7 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                         keyboardType="numeric"
                         onChangeText={(text) => handleChange('price', text)}
                         value={price}
-                        style={{ color: '#A9A9A9', paddingLeft: 20, height: 10, paddingBottom: 20 }}
+                        style={{ color: '#A9A9A9', paddingLeft: 20, paddingBottom: 20 }}
                     />
                 </Item>
                 <Item picker>

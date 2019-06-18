@@ -13,9 +13,9 @@ class WarrantieListPaid extends React.Component {
     }
 
     componentDidMount = () => {
-        let warrantiesPaid = [];
         db.ref(`warranties/${this.props.screenProps.user.uid}`).on('value', (snap) => {
             if (snap.val()) {
+                let warrantiesPaid = [];
                 let values = snap.val();
                 Object.keys(values).forEach(key => {
                     console.log('valll', values);

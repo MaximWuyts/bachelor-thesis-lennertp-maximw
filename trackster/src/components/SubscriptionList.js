@@ -14,23 +14,21 @@ class SubscriptionList extends React.Component {
     }
 
     componentDidMount = () => {
-        let subscriptions = [];
+
         db.ref(`subscriptions/${this.props.screenProps.user.uid}`)
             .orderByChild('chosenDate')
             .on('value', (snap) => {
-
                 if (snap.val()) {
+                    let subscriptions = [];
                     let values = snap.val();
-
                     Object.keys(values).forEach(key => {
                         subscriptions.push({
                             id: key,
                             value: values[key]
                         })
                     });
-
                     subscriptions.sort((a, b) => moment(a.value.chosenDate) - moment(b.value.chosenDate));
-                    this.props.setSubscriptions(subscriptions);
+                    this.props.setSubscriptions([...subscriptions]);
                 }
             });
     }
@@ -88,9 +86,6 @@ class SubscriptionList extends React.Component {
     render() {
         const { listViewstyle, daysContStyle, leftTextStyle, rightTextStyle, listViewstyleNoBorder, noListViewstyle, noListTextStyle, noListTextStyle2, iconStyle, iconContStyle } = styles;
         return (
-            // <TouchableOpacity onPress={() =>
-            //     this.props.navigation.navigate('AccountDetails', { account: account })}
-            // >
             <View>
                 {
                     this.props.subscriptions.length === 0 ?

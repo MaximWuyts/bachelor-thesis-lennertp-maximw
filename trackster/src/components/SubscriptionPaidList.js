@@ -13,14 +13,13 @@ class SubscriptionPaidList extends React.Component {
     }
 
     componentDidMount = () => {
-        let subscriptionsPaid = [];
+
         db.ref(`subscriptions/${this.props.screenProps.user.uid}`)
             .orderByChild('chosenDate')
             .on('value', (snap) => {
-
                 if (snap.val()) {
+                    let subscriptionsPaid = [];
                     let values = snap.val();
-
                     Object.keys(values).forEach(key => {
                         subscriptionsPaid.push({
                             id: key,

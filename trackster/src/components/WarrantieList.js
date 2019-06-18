@@ -17,11 +17,12 @@ class WarrantieList extends React.Component {
     }
 
     componentDidMount = () => {
-        let warranties = [];
+
         db.ref(`warranties/${this.props.screenProps.user.uid}`)
             .orderByChild('chosenDate')
             .on('value', (snap) => {
                 if (snap.val()) {
+                    let warranties = [];
                     let values = snap.val();
                     console.log('dwee2', values);
                     Object.keys(values).forEach(key => {
