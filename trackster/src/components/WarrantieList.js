@@ -19,7 +19,6 @@ class WarrantieList extends React.Component {
     componentDidMount = () => {
 
         db.ref(`warranties/${this.props.screenProps.user.uid}`)
-            .orderByChild('chosenDate')
             .on('value', (snap) => {
                 if (snap.val()) {
                     let warranties = [];
@@ -118,6 +117,7 @@ class WarrantieList extends React.Component {
                                     }
                                     if (compare(item.value.chosenDate, moment().format('MM/DD/YYYY')) === 1) {
                                         return (
+
                                             <TouchableOpacity onPress={() =>
                                                 this.props.navProp.navigate('Detail', { item: item, formType: "warranty" })}
                                             >
@@ -131,10 +131,13 @@ class WarrantieList extends React.Component {
                                                     </View>
                                                 </View>
                                             </TouchableOpacity>
+
+
                                         )
                                     }
                                 }}
                             />
+
                         </View>
                 }
             </View>

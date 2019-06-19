@@ -4,7 +4,7 @@ import { Form, Item, Input, Picker, DatePicker } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 
-const AddDocument = ({ handleChange, name, price, productType, urlLink, type, setDate, formType, warrantyDuration }) => {
+const AddDocument = ({ handleChange, name, price, productType, urlLink, type, setDate, formType, warrantyDuration, }) => {
 
 
     return (
@@ -21,15 +21,13 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                 {formType === "subscription" ?
                     <Item picker>
                         <Picker
-
-
                             iosHeader="Select type"
                             placeholder="Subscription Type"
-                            placeholderStyle={{ color: "#A9A9A9", marginLeft: 3 }}
+
                             selectedValue={type}
                             onValueChange={(value) => handleChange('type', value)}
                         >
-                            <Picker.Item label="Select Your Type" value="dfsfd" />
+                            <Picker.Item label="Select Your Type" value="" />
                             <Picker.Item label="weekly" value="weekly" />
                             <Picker.Item label="monthly" value="monthly" />
                             <Picker.Item label="yearly" value="yearly" />
@@ -41,7 +39,6 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                             mode="dropdown"
                             iosHeader="Select type"
                             placeholder="Subscription Type"
-                            style={{ color: '#A9A9A9', marginLeft: 3 }}
                             placeholderStyle={{ color: "#A9A9A9" }}
                             selectedValue={warrantyDuration}
                             onValueChange={(value) => handleChange('warrantyDuration', value)}
@@ -66,7 +63,7 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                 <Item picker>
                     <Picker
                         mode="dropdown"
-                        style={{ color: '#A9A9A9', marginLeft: 3 }}
+                        style={{ marginLeft: 3 }}
                         placeholderStyle={{ color: "#A9A9A9" }}
                         selectedValue={productType}
                         iosHeader="Select type"

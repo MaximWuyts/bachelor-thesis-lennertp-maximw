@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, StatusBar, TouchableOpacity, Image } from 'react-native';
 import bgImage from '../../assets/otherback.png';
 import AppOtherHeader from '../components/AppOtherHeader';
 import { Content, Card } from 'native-base'
@@ -9,7 +9,7 @@ import EditDocument from '../components/EditDocument';
 import ShowDocument from '../components/ShowDocument';
 import moment from "moment";
 import { db, fire } from '../keys/firebaseKeys';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 class DetailScreen extends React.Component {
 
@@ -21,23 +21,11 @@ class DetailScreen extends React.Component {
             price: this.props.navigation.state.params.item.value.price,
             productType: this.props.navigation.state.params.item.value.productType,
             chosenDate: this.props.navigation.state.params.item.value.chosenDate,
-            urlLink: this.props.navigation.state.params.item.value.urlLink
+            urlLink: this.props.navigation.state.params.item.value.urlLink,
+            photo: this.props.navigation.state.params.item.value.photo.uri,
         };
     }
 
-
-    // handleSubmit = (event) => {
-    //     fire.database().ref(`subscriptions/${this.props.screenProps.user.uid}/${this.props.navigation.state.params.item.id}`).update({
-    //         name: this.state.name,
-    //         type: this.state.type,
-    //         price: this.state.price,
-    //         productType: this.state.productType,
-    //         chosenDate: this.state.chosenDate,
-    //         urlLink: this.state.urlLink
-    //     }).then(() => {
-    //         this.props.navigation.navigate("Home");
-    //     })
-    // }
 
     calculateDaysLeft = (endDate) => {
         endDate = !moment.isMoment(endDate) && moment(endDate)
@@ -93,7 +81,8 @@ class DetailScreen extends React.Component {
 
 
     render = () => {
-        console.log('tests', this.props.navigation.state.params.formType);
+        console.log('ohoto', this.state.photo);
+
         const { listViewstyle, textHeaderStyle, contentStyle, contentStyle2, importIconStyle, deleteTextStyle } = styles
         return (
             <ImageBackground source={bgImage} style={styles.backgroundContainer}>
@@ -126,9 +115,20 @@ class DetailScreen extends React.Component {
                         <Text style={textHeaderStyle}>Important Documents</Text>
                     </View>
                     <Card style={contentStyle}>
-                        <View style={contentStyle2}>
-                            <Icon name="upload" size={30} color={"#04A7F1"} style={importIconStyle} />
-                        </View>
+                        <TouchableOpacity onPress={this.onEditPress}>
+                            {this.state.photo === undefined ? <View style={contentStyle2}>
+                                <Icon name="upload" size={30} color={"#04A7F1"} style={importIconStyle} />
+                            </View> :
+                                <View style={{ justifyContent: "center", padding: 20 }}>
+                                    <Image
+                                        source={{ uri: this.state.photo }}
+                                        style={{ width: 150, height: 150, textAlign: "center" }}
+                                    />
+                                </View>
+                            }
+
+
+                        </TouchableOpacity>
                     </Card>
 
                 </Content>

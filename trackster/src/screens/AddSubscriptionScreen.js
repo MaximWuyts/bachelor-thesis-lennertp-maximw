@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, StatusBar, TouchableOpacity, Alert } from 'react-native';
 import bgImage from '../../assets/otherback.png';
 import AppOtherHeader from '../components/AppOtherHeader';
 import { Content, Card } from 'native-base'
@@ -8,6 +8,9 @@ import { fire } from '../keys/firebaseKeys';
 import Icon from 'react-native-vector-icons/AntDesign';
 import moment from "moment";
 import AddButton from '../components/AddButton';
+import ImagePicker from "react-native-image-picker";
+
+
 
 class AddSubscriptionScreen extends React.Component {
     constructor(props) {
@@ -19,9 +22,12 @@ class AddSubscriptionScreen extends React.Component {
             productType: undefined,
             chosenDate: new Date(),
             urlLink: undefined,
-            docType: undefined
+            docType: undefined,
+            photo: ""
         };
     }
+
+
 
     handleChange = (name, event) => {
         this.setState({
@@ -43,13 +49,26 @@ class AddSubscriptionScreen extends React.Component {
             productType: this.state.productType,
             chosenDate: this.state.chosenDate,
             urlLink: this.state.urlLink,
+            photo: this.state.photo,
             docType: "subscription"
         }).then(() => {
             this.props.navigation.navigate("Home");
         })
     }
 
+    handleChoosePhoto = () => {
+        const options = {
+            noData: true
+        }
+        ImagePicker.launchImageLibrary(options, response => {
+            console.log('response', response);
+            if (response.uri) {
+                this.setState({ photo: response })
+            }
+            Alert.alert('Image is added!')
+        })
 
+    }
 
     render = () => {
         const { listViewstyle, textHeaderStyle, contentStyle, contentStyle2, importIconStyle } = styles
@@ -77,15 +96,19 @@ class AddSubscriptionScreen extends React.Component {
                             productType={this.state.productType}
                             price={this.state.price}
                             urlLink={this.state.urlLink}
+
                         />
                     </Card>
                     <View style={{ marginTop: 20, marginBottom: 5 }}>
                         <Text style={textHeaderStyle}>Important Documents</Text>
                     </View>
                     <Card style={contentStyle}>
-                        <View style={contentStyle2}>
-                            <Icon name="upload" size={30} color={"#04A7F1"} style={importIconStyle} />
-                        </View>
+                        <TouchableOpacity onPress={this.handleChoosePhoto}>
+                            <View style={contentStyle2}>
+                                <Icon name="upload" size={30} color={"#04A7F1"} style={importIconStyle} />
+                            </View>
+                        </TouchableOpacity>
+
                     </Card>
 
                 </Content>

@@ -32,26 +32,22 @@ class HomeScreen extends React.Component {
                     </View>
                     <Card style={contentStyle}>
                         <WarrantieList screenProps={this.props.screenProps} navProp={this.props.navigation} />
-                        {this.props.warranties === 0 ? null :
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Warranties')}>
-                                <Text
-                                    style={{ color: "#04A7F1", textAlign: "right", paddingRight: 20, paddingBottom: 10 }}>more</Text>
-                            </TouchableOpacity>}
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Warranties')}>
+                            <Text
+                                style={{ color: "#04A7F1", textAlign: "right", paddingRight: 20, paddingBottom: 10 }}>more</Text>
+                        </TouchableOpacity>
                     </Card>
                     <View style={{ marginTop: 20, marginBottom: 15 }}>
                         <Text style={textHeaderStyle2}>Upcomming Subscriptions</Text>
                     </View>
                     <Card style={contentStyle}>
                         <SubscriptionList screenProps={this.props.screenProps} navProp={this.props.navigation} />
-                        {this.props.subscriptions === 0 ? null :
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subscription')}>
-                                <Text
-                                    style={{ color: "#04A7F1", textAlign: "right", paddingRight: 20, paddingBottom: 10 }}>more</Text>
-                            </TouchableOpacity>}
 
-
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Subscription')}>
+                            <Text
+                                style={{ color: "#04A7F1", textAlign: "right", paddingRight: 20, paddingBottom: 10 }}>more</Text>
+                        </TouchableOpacity>
                     </Card>
-
                 </Content>
             </ImageBackground>
         )

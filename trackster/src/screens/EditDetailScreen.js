@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, StatusBar, TouchableOpacity, Alert } from 'react-native';
 import bgImage from '../../assets/otherback.png';
 import AppOtherHeader from '../components/AppOtherHeader';
 import { Content, Card } from 'native-base'
@@ -9,6 +9,7 @@ import EditDocument from '../components/EditDocument';
 import AddButton from '../components/AddButton';
 import moment from "moment";
 import { fire } from '../keys/firebaseKeys';
+import ImagePicker from "react-native-image-picker";
 
 class EditDetailScreen extends React.Component {
 
@@ -20,7 +21,8 @@ class EditDetailScreen extends React.Component {
             price: this.props.navigation.state.params.item.value.price,
             productType: this.props.navigation.state.params.item.value.productType,
             chosenDate: this.props.navigation.state.params.item.value.chosenDate,
-            urlLink: this.props.navigation.state.params.item.value.urlLink
+            urlLink: this.props.navigation.state.params.item.value.urlLink,
+            photo: this.props.navigation.state.params.item.value.photo.uri,
         };
     }
 
@@ -43,7 +45,8 @@ class EditDetailScreen extends React.Component {
             price: this.state.price,
             productType: this.state.productType,
             chosenDate: this.state.chosenDate,
-            urlLink: this.state.urlLink
+            urlLink: this.state.urlLink,
+            photo: this.state.photo
         }).then(() => {
             this.props.navigation.navigate("Home");
         })
@@ -85,6 +88,20 @@ class EditDetailScreen extends React.Component {
     }
 
 
+    handleChoosePhoto = () => {
+        const options = {
+            noData: true
+        }
+        ImagePicker.launchImageLibrary(options, response => {
+            console.log('response', response);
+            if (response.uri) {
+                this.setState({ photo: response })
+            }
+            Alert.alert('Image is added!')
+        })
+
+    }
+
     render = () => {
         console.log('tests', this.props.navigation.state.params.formType);
         const { listViewstyle, textHeaderStyle, contentStyle, contentStyle2, importIconStyle } = styles
@@ -120,9 +137,11 @@ class EditDetailScreen extends React.Component {
                         <Text style={textHeaderStyle}>Important Documents</Text>
                     </View>
                     <Card style={contentStyle}>
-                        <View style={contentStyle2}>
-                            <Icon name="upload" size={30} color={"#04A7F1"} style={importIconStyle} />
-                        </View>
+                        <TouchableOpacity onPress={this.handleChoosePhoto}>
+                            <View style={contentStyle2}>
+                                <Icon name="upload" size={30} color={"#04A7F1"} style={importIconStyle} />
+                            </View>
+                        </TouchableOpacity>
                     </Card>
 
                 </Content>

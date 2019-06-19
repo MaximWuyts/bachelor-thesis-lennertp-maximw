@@ -14,9 +14,7 @@ class SubscriptionList extends React.Component {
     }
 
     componentDidMount = () => {
-
         db.ref(`subscriptions/${this.props.screenProps.user.uid}`)
-            .orderByChild('chosenDate')
             .on('value', (snap) => {
                 if (snap.val()) {
                     let subscriptions = [];
@@ -28,7 +26,7 @@ class SubscriptionList extends React.Component {
                         })
                     });
                     subscriptions.sort((a, b) => moment(a.value.chosenDate) - moment(b.value.chosenDate));
-                    this.props.setSubscriptions([...subscriptions]);
+                    this.props.setSubscriptions(subscriptions);
                 }
             });
     }
@@ -127,11 +125,13 @@ class SubscriptionList extends React.Component {
                                                     </View>
                                                 </View>
                                             </TouchableOpacity>
+
                                         )
                                     }
 
                                 }}
                             />
+
                         </View>
                 }
             </View>
