@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, StatusBar, Image, Dimensions, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, StatusBar, Image, Dimensions, TextInput, TouchableOpacity, Alert, Platform } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Logo from '../../../assets/white-logo-rev.png';
@@ -8,6 +8,7 @@ import { Card } from 'native-base';
 import { fire } from '../../keys/firebaseKeys';
 import { db } from '../../keys/firebaseKeys';
 import { Spinner } from '../../components/Spinner';
+
 
 const { width: WIDTH } = Dimensions.get('window');
 
@@ -102,13 +103,14 @@ class RegistrationScreen extends React.Component {
                                 style={styles.inputIcon}
                             />
                             <TextInput
+                                autoCorrect={false}
+                                autoCapitalize={"none"}
                                 selectionColor={"#fff"}
                                 style={styles.inputStyle}
                                 placeholder={'first name'}
                                 placeholderTextColor={'#fff'}
                                 underlineColorAndroid='transparent'
-                            // value={this.state.firstName}
-                            // onChangeText={(text) => { this.setState({ firstName: text }) }}
+
                             />
                         </View>
 
@@ -117,12 +119,13 @@ class RegistrationScreen extends React.Component {
                                 style={styles.inputIcon}
                             />
                             <TextInput
+                                autoCorrect={false}
+                                autoCapitalize={"none"}
                                 style={styles.inputStyle}
                                 placeholder={'last name'}
                                 placeholderTextColor={'#fff'}
                                 underlineColorAndroid='transparent'
-                            // value={this.state.lastName}
-                            // onChangeText={(text) => { this.setState({ lastName: text }) }}
+
                             />
                         </View>
 
@@ -131,6 +134,8 @@ class RegistrationScreen extends React.Component {
                                 style={styles.inputIcon}
                             />
                             <TextInput
+                                autoCorrect={false}
+                                autoCapitalize={"none"}
                                 style={styles.inputStyle}
                                 placeholder={'user@mail.com'}
                                 placeholderTextColor={'#fff'}
@@ -144,6 +149,8 @@ class RegistrationScreen extends React.Component {
                                 style={styles.lockIcon}
                             />
                             <TextInput
+                                autoCorrect={false}
+                                autoCapitalize={"none"}
                                 style={styles.inputStyle}
                                 placeholder={'password'}
                                 secureTextEntry={this.state.showPassword}
@@ -152,15 +159,17 @@ class RegistrationScreen extends React.Component {
                                 value={this.state.password}
                                 onChangeText={(text) => { this.setState({ password: text }) }}
                             />
-                            <TouchableOpacity onPress={this.showPassword} style={styles.btnEye}>
-                                <Icon name={this.state.pressed == false ? "md-eye-off" : "md-eye"} size={25} color={"#fff"} />
+                            <TouchableOpacity onPress={this.showPassword}>
+                                <Icon name={this.state.pressed == false ? "md-eye-off" : "md-eye"} size={25} color={"#fff"} style={styles.btnEye} />
                             </TouchableOpacity>
                         </View>
 
                     </Card>
 
                     {this.renderButton()}
-
+                    {Platform.OS === "ios" ? <TouchableOpacity onPress={() => { this.props.navigation.navigate('Login') }} style={{ marginTop: 40 }}>
+                        <Text style={styles.textStyle}>Already have an account? Log In!</Text>
+                    </TouchableOpacity> : null}
 
                 </KeyboardAwareScrollView>
             </ImageBackground>
@@ -230,7 +239,7 @@ const styles = StyleSheet.create({
     },
     btnEye: {
         position: 'absolute',
-        top: 13,
+        top: -27,
         right: 50,
         opacity: 0.6
     },

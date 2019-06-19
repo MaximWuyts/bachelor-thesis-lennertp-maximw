@@ -24,7 +24,6 @@ class TimelineDocs extends React.Component {
         let allDocuments;
         allDocuments = [...this.props.subscriptions, ...this.props.warranties]
         allDocuments.sort((a, b) => moment(a.value.chosenDate) - moment(b.value.chosenDate));
-        console.log('all', allDocuments);
         this.setState({
             allDocuments
         })

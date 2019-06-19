@@ -62,6 +62,7 @@
 		B8A8D7C7F2884F64ADB4D6F2 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 220F6A97A4684D3D9A06E331 /* EvilIcons.ttf */; };
 		B9E8A85F6F2C4C61ABB9A23E /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 693C924EDA6E4E75A3CAF03C /* FontAwesome.ttf */; };
 		CD1A52E7FDD7416D968D1A97 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6803EFF6CEF64A4D9E14973F /* Entypo.ttf */; };
+		D3210A2522B9764000862B9A /* launchIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D3210A2422B9764000862B9A /* launchIcon.png */; };
 		D3E939BB22B853A100582434 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E939B822B852AE00582434 /* libRCTPushNotification.a */; };
 		DD3CCDA628F54A339DE63C7D /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2196A4372814B7B85E0C710 /* Foundation.ttf */; };
 		E02FFB49F1CE458085278932 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCD234F13261450FA067415F /* rubicon-icon-font.ttf */; };
@@ -461,6 +462,7 @@
 		CA8BA00078C34015AD0732A8 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		CD8566C61FD44CD68652F399 /* Taibaijan Italic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Taibaijan Italic.otf"; path = "../assets/fonts/Taibaijan Italic.otf"; sourceTree = "<group>"; };
 		D2F366CF37CD4E949966C021 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
+		D3210A2422B9764000862B9A /* launchIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchIcon.png; path = ../../../../../Downloads/launchIcon.png; sourceTree = "<group>"; };
 		D3E939B222B852AE00582434 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -619,6 +621,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				D3210A2422B9764000862B9A /* launchIcon.png */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -1361,6 +1364,7 @@
 				89B2C96BB9D94A859797BF72 /* Octicons.ttf in Resources */,
 				411DCB5C90864F94B7985EBE /* Roboto_medium.ttf in Resources */,
 				10BDB94C49F045FB8E5E4AA6 /* Roboto.ttf in Resources */,
+				D3210A2522B9764000862B9A /* launchIcon.png in Resources */,
 				E02FFB49F1CE458085278932 /* rubicon-icon-font.ttf in Resources */,
 				6C1AB40F87D14C0E8321310A /* SimpleLineIcons.ttf in Resources */,
 				35966EAF06B248A1AF0721CA /* Zocial.ttf in Resources */,

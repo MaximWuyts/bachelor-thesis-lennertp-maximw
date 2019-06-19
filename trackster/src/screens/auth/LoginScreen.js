@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Alert, StatusBar, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Alert, StatusBar, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground, ScrollView, Platform } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/Ionicons'
 import Logo from '../../../assets/white-logo-rev.png';
@@ -91,6 +91,8 @@ class LoginScreen extends React.Component {
                                 style={styles.inputIcon}
                             />
                             <TextInput
+                                autoCapitalize={false}
+                                autoCompleteType={false}
                                 style={styles.inputStyle}
                                 selectionColor={"#fff"}
                                 value={this.state.email}
@@ -106,6 +108,7 @@ class LoginScreen extends React.Component {
                                 style={styles.lockIcon}
                             />
                             <TextInput
+                                autoCapitalize={false}
                                 style={styles.inputStyle}
                                 value={this.state.password}
                                 placeholder={'password'}
@@ -130,6 +133,9 @@ class LoginScreen extends React.Component {
 
                     {this.renderButton()}
 
+                    {Platform.OS === "ios" ? <TouchableOpacity onPress={() => { this.props.navigation.navigate('Registration') }} style={{ marginTop: 40 }}>
+                        <Text style={styles.textStyle}>New Here? Sign Up!</Text>
+                    </TouchableOpacity> : null}
                 </KeyboardAwareScrollView>
             </ImageBackground>
 
@@ -160,10 +166,11 @@ const styles = StyleSheet.create({
             width: 5,            // Same rules apply from above
             height: 1,           // Can't both be 0
         },
+
     },
     logoContainer: {
         alignItems: 'center',
-        marginTop: 20
+        marginTop: Platform.OS === 'ios' ? 40 : 20,
     },
     inputStyle: {
         width: WIDTH - 100,

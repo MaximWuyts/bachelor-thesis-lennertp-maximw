@@ -5,8 +5,7 @@ import AppHeader from '../components/AppHeader';
 import { Content, Card } from 'native-base';
 import WarrantieList from '../components/WarrantieList';
 import SubscriptionList from '../components/SubscriptionList';
-
-
+import { connect } from 'react-redux';
 
 class HomeScreen extends React.Component {
 
@@ -33,20 +32,22 @@ class HomeScreen extends React.Component {
                     </View>
                     <Card style={contentStyle}>
                         <WarrantieList screenProps={this.props.screenProps} navProp={this.props.navigation} />
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Warranties')}>
-                            <Text
-                                style={{ color: "#04A7F1", textAlign: "right", paddingRight: 20, paddingBottom: 10 }}>more</Text>
-                        </TouchableOpacity>
+                        {this.props.warranties === 0 ? null :
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Warranties')}>
+                                <Text
+                                    style={{ color: "#04A7F1", textAlign: "right", paddingRight: 20, paddingBottom: 10 }}>more</Text>
+                            </TouchableOpacity>}
                     </Card>
                     <View style={{ marginTop: 20, marginBottom: 15 }}>
                         <Text style={textHeaderStyle2}>Upcomming Subscriptions</Text>
                     </View>
                     <Card style={contentStyle}>
                         <SubscriptionList screenProps={this.props.screenProps} navProp={this.props.navigation} />
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Subscription')}>
-                            <Text
-                                style={{ color: "#04A7F1", textAlign: "right", paddingRight: 20, paddingBottom: 10 }}>more</Text>
-                        </TouchableOpacity>
+                        {this.props.subscriptions === 0 ? null :
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subscription')}>
+                                <Text
+                                    style={{ color: "#04A7F1", textAlign: "right", paddingRight: 20, paddingBottom: 10 }}>more</Text>
+                            </TouchableOpacity>}
 
 
                     </Card>
@@ -94,4 +95,12 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen;
+function mapStateToProps(state) {
+
+    return {
+        subscriptions: state.documentReducer.subscriptions,
+        warranties: state.documentReducer.warranties
+    }
+};
+
+export default connect(mapStateToProps, null)(HomeScreen);
