@@ -1,11 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, StatusBar, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, StatusBar, TouchableOpacity, Image, Alert } from 'react-native';
 import bgImage from '../../assets/otherback.png';
 import AppOtherHeader from '../components/AppOtherHeader';
 import { Content, Card } from 'native-base'
-import AddDocument from '../components/AddDocument';
 import Icon from 'react-native-vector-icons/AntDesign';
-import EditDocument from '../components/EditDocument';
 import ShowDocument from '../components/ShowDocument';
 import moment from "moment";
 import { db, fire } from '../keys/firebaseKeys';
@@ -63,6 +61,7 @@ class DetailScreen extends React.Component {
     }
 
     onDeletePress = () => {
+
         if (this.props.navigation.state.params.formType === "warranty") {
             fire.database().ref(`warranties/${this.props.screenProps.user.uid}/${this.props.navigation.state.params.item.id}`)
                 .remove()
@@ -119,10 +118,12 @@ class DetailScreen extends React.Component {
                             {this.state.photo === undefined ? <View style={contentStyle2}>
                                 <Icon name="upload" size={30} color={"#04A7F1"} style={importIconStyle} />
                             </View> :
-                                <View style={{ justifyContent: "center", padding: 20 }}>
+                                <View style={{ justifyContent: "center", padding: 20, alignItems: "center" }}>
                                     <Image
                                         source={{ uri: this.state.photo }}
-                                        style={{ width: 150, height: 150, textAlign: "center" }}
+                                        style={{
+                                            width: 150, height: 150,
+                                        }}
                                     />
                                 </View>
                             }
@@ -133,7 +134,15 @@ class DetailScreen extends React.Component {
 
                 </Content>
                 <TouchableOpacity
-                    onPress={this.onDeletePress}
+                    onPress={() => Alert.alert(
+                        'Delete Document',
+                        'Are you sure you want to delete it?',
+                        [
+                            { text: 'Cancel', onPress: () => console.log('Cancel Pressed!') },
+                            { text: 'OK', onPress: this.onDeletePress },
+                        ],
+                        { cancelable: false }
+                    )}
                 >
                     <View>
                         <Text style={deleteTextStyle}>Delete</Text>
