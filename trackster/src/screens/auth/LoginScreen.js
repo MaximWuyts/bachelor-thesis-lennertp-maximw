@@ -91,8 +91,8 @@ class LoginScreen extends React.Component {
                                 style={styles.inputIcon}
                             />
                             <TextInput
-                                autoCapitalize={false}
-                                autoCompleteType={false}
+                                autoCorrect={false}
+                                autoCapitalize={"none"}
                                 style={styles.inputStyle}
                                 selectionColor={"#fff"}
                                 value={this.state.email}
@@ -108,7 +108,8 @@ class LoginScreen extends React.Component {
                                 style={styles.lockIcon}
                             />
                             <TextInput
-                                autoCapitalize={false}
+                                autoCorrect={false}
+                                autoCapitalize={"none"}
                                 style={styles.inputStyle}
                                 value={this.state.password}
                                 placeholder={'password'}

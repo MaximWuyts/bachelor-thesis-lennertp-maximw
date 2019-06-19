@@ -45,8 +45,6 @@ class RegistrationScreen extends React.Component {
                 db.ref('users').child(createdUser.user.uid).set({
                     name: createdUser.user.displayName,
                     email: createdUser.user.email,
-                    // firstName: createdUser.user.firstName,
-                    // LastName: createdUser.user.LastName,
                 })
                     .then(() => {
                         this.setState({ loading: false })

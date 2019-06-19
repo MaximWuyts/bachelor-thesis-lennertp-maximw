@@ -34,7 +34,7 @@ class Notifications extends Component {
         this.calculateDaysLeft(notExpired[0].value.chosenDate);
         let daysLeft = this.calculateDaysLeft(notExpired[0].value.chosenDate)
         if (daysLeft < this.state.days) {
-            console.log(notExpired[0].value.name, 'is expiring in', daysLeft, 'days');
+            return (notExpired[0].value.name, 'is expiring in', daysLeft, 'days');
         }
         else console.log('nenen');
     }
@@ -59,7 +59,7 @@ class Notifications extends Component {
             let date = new Date(Date.now() + (6 * 1000));
 
             PushNotification.localNotificationSchedule({
-                message: "My Notification Message", // (required)
+                message: getRecentstItem(), // <----
                 date: date // in 60 secs
             })
         }
@@ -71,7 +71,7 @@ class Notifications extends Component {
             <View style={styles.container}>
                 {this.getRecentstItem()}
                 <Text style={styles.welcome}>
-                    Choose your notification time in seconds.
+                    Choose your notification time in days.
         </Text>
                 <Picker
                     style={styles.picker}

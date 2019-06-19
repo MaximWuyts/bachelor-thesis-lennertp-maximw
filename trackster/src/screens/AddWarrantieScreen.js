@@ -48,9 +48,13 @@ class AddWarrantieScreen extends React.Component {
             urlLink: this.state.urlLink,
             photo: this.state.photo,
             docType: "warranty"
-        }).then(() => {
-            this.props.navigation.navigate("Home");
         })
+            .then(() => {
+                this.props.navigation.navigate("Home");
+            }), (error) => {
+                Alert.alert(error.message);
+
+            };
     }
 
     handleChoosePhoto = () => {
