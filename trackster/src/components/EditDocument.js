@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 const EditDocument = ({ handleChange, name, price, productType, urlLink, type, setDate, formType, warrantyDuration, chosenDate }) => {
 
-    console.log('this', productType, "en", type);
     return (
         <View>
             <Form>
@@ -23,8 +22,8 @@ const EditDocument = ({ handleChange, name, price, productType, urlLink, type, s
                     <Item picker>
                         <Picker
                             mode="dropdown"
-                            style={{ color: '#A9A9A9' }}
-                            placeholderStyle={{ color: "#A9A9A9" }}
+
+                            placeholderStyle={{ color: "#000" }}
                             selectedValue={type}
                             onValueChange={(value) => handleChange('type', value)}
                         >
@@ -38,12 +37,12 @@ const EditDocument = ({ handleChange, name, price, productType, urlLink, type, s
                     <Item picker>
                         <Picker
                             mode="dropdown"
-                            style={{ color: '#000' }}
-                            placeholderStyle={{ color: "#A9A9A9" }}
+                            value={"test"}
+                            placeholderStyle={{ color: "#000" }}
                             selectedValue={warrantyDuration}
                             onValueChange={(value) => handleChange('warrantyDuration', value)}
                         >
-                            <Picker.Item label="Warranty Duration" value="" />
+                            <Picker.Item label="Warranty Duration" value={""} />
                             <Picker.Item label="6 months" value="6 months" />
                             <Picker.Item label="1 year" value="1 year" />
                             <Picker.Item label="2 years" value="2 years" />
@@ -51,20 +50,19 @@ const EditDocument = ({ handleChange, name, price, productType, urlLink, type, s
                         </Picker>
                     </Item>}
                 <Item style={{ marginTop: 20, flexDirection: 'row-reverse' }}>
-                    <Icon name='euro' style={{ color: '#A9A9A9', fontSize: 20 }} />
+                    <Icon name='euro' style={{ color: '#A9A9A9', fontSize: 20, marginTop: -10 }} />
                     <Input placeholder='Enter Price'
                         placeholderTextColor='#A9A9A9'
                         keyboardType="numeric"
                         onChangeText={(text) => handleChange('price', text)}
                         value={price}
-                        style={{ color: '#000', paddingLeft: 20 }}
+                        style={{ color: '#000', paddingLeft: 20, maxHeight: 40, marginTop: -20 }}
                     />
                 </Item>
                 <Item picker>
                     <Picker
                         mode="dropdown"
-                        style={{ color: '#A9A9A9' }}
-                        placeholderStyle={{ color: "#A9A9A9" }}
+                        placeholderStyle={{ color: "#000" }}
                         selectedValue={productType}
                         itemTextStyle={{ color: '#A9A9A9' }}
                         onValueChange={(value) => handleChange('productType', value)}
@@ -76,33 +74,33 @@ const EditDocument = ({ handleChange, name, price, productType, urlLink, type, s
                         <Picker.Item label="electronics" value="electronics" />
                     </Picker>
                 </Item>
+                <Item style={{ marginTop: 10, flexDirection: 'row-reverse' }}>
+
+                    <Input placeholder='Url Link'
+                        placeholderTextColor='#A9A9A9'
+                        onChangeText={(text) => handleChange('urlLink', text)}
+                        value={urlLink}
+                        placeHolderTextStyle={{ paddingBottom: 0, }}
+                        style={{ color: '#000', paddingLeft: 20, height: 35 }}
+                    />
+                </Item>
                 <Item>
                     <DatePicker
                         defaultDate={new Date(2019, 5, 6)}
                         minimumDate={new Date(2019, 1, 1)}
                         maximumDate={new Date(2021, 12, 31)}
-                        locale={"be"}
+                        locale={"en"}
+                        value={chosenDate}
+                        placeHolderText={chosenDate}
                         timeZoneOffsetInMinutes={undefined}
                         modalTransparent={false}
                         animationType={"fade"}
-                        androidMode={"spinner"}
-                        value={chosenDate}
-                        placeHolderText={chosenDate}
-                        textStyle={{ color: "green" }}
-                        placeHolderTextStyle={{ color: "#000" }}
+                        androidMode={"default"}
+                        placeHolderText="Select date"
+                        placeHolderTextStyle={{ color: "#000", paddingBottom: 35, marginLeft: -5, marginTop: 10 }}
                         onDateChange={setDate}
                         disabled={false}
-                        style={{ fontSize: 25, paddingTop: 33, paddingLeft: -40, color: "#d3d3d3" }}
-                    />
-                </Item>
-
-                <Item style={{ marginTop: 20, flexDirection: 'row-reverse' }}>
-
-                    <Input placeholder='Url Link'
-                        placeholderTextColor='#000'
-                        onChangeText={(text) => handleChange('urlLink', text)}
-                        value={urlLink}
-                        style={{ color: '#000', paddingLeft: 20 }}
+                        style={{ fontSize: 25, paddingTop: 25, height: 10, paddingBottom: 15 }}
                     />
                 </Item>
             </Form>

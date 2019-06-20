@@ -18,7 +18,6 @@ class WarrantieListPaid extends React.Component {
                 let warrantiesPaid = [];
                 let values = snap.val();
                 Object.keys(values).forEach(key => {
-                    console.log('valll', values);
                     warrantiesPaid.push({
                         id: key,
                         value: values[key]
@@ -68,6 +67,7 @@ class WarrantieListPaid extends React.Component {
                             }
                             if (compare(item.value.chosenDate, moment().format('MM/DD/YYYY')) < 1) {
                                 return (
+
                                     <View style={(index === this.state.warrantiesPaid.length - 1) ? listViewstyleNoBorder : listViewstyle} key={index}>
                                         <View style={iconContStyle}>
                                             {this.getIcon(item.value.productType)}

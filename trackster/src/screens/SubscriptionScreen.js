@@ -8,7 +8,6 @@ import SubscriptionPaidList from '../components/SubscriptionPaidList';
 class SubscriptionScreen extends React.Component {
 
     render = () => {
-        console.log('ander', this.props.navigation);
         const { listViewstyle, textHeaderStyle, contentStyle, textHeaderStyle2, iconAddStyle } = styles
         return (
             <ImageBackground source={require('../../assets/achtergrond.png')} style={styles.backgroundContainer}>

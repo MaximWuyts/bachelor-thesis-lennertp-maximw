@@ -42,18 +42,24 @@ class AddSubscriptionScreen extends React.Component {
 
 
     handleSubmit = (event) => {
-        fire.database().ref(`subscriptions/${this.props.screenProps.user.uid}`).push({
-            name: this.state.name,
-            type: this.state.type,
-            price: this.state.price,
-            productType: this.state.productType,
-            chosenDate: this.state.chosenDate,
-            urlLink: this.state.urlLink,
-            photo: this.state.photo,
-            docType: "subscription"
-        }).then(() => {
-            this.props.navigation.navigate("Home");
-        })
+        if (this.state.name && this.state.type && this.state.price && this.state.productType && this.state.chosenDate && this.state.urlLink) {
+            fire.database().ref(`subscriptions/${this.props.screenProps.user.uid}`).push({
+                name: this.state.name,
+                type: this.state.type,
+                price: this.state.price,
+                productType: this.state.productType,
+                chosenDate: this.state.chosenDate,
+                urlLink: this.state.urlLink,
+                photo: this.state.photo,
+                docType: "subscription"
+            }).then(() => {
+                this.props.navigation.navigate("Home");
+            })
+        }
+        else {
+            alert('Please fill in all the items!')
+        }
+
     }
 
     handleChoosePhoto = () => {
@@ -61,7 +67,6 @@ class AddSubscriptionScreen extends React.Component {
             noData: true
         }
         ImagePicker.launchImageLibrary(options, response => {
-            console.log('response', response);
             if (response.uri) {
                 this.setState({ photo: response })
             }

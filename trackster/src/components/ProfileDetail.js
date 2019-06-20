@@ -18,11 +18,11 @@ class ProfileDetail extends React.Component {
                 <View style={{ paddingLeft: 20, paddingRight: 20 }}>
                     <View style={listViewstyle}>
                         <Text style={textStyle}>First Name</Text>
-                        <Text style={valueTextStyle}>Naam</Text>
+                        <Text style={valueTextStyle}>Maxim</Text>
                     </View>
                     <View style={listViewstyle}>
                         <Text style={textStyle}>Last Name</Text>
-                        <Text style={valueTextStyle}>Naam</Text>
+                        <Text style={valueTextStyle}>Wuyts</Text>
                     </View>
                     <View style={listViewstyle}>
                         <Text style={textStyle}>E-mail</Text>

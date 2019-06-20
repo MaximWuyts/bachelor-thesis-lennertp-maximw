@@ -39,7 +39,6 @@ class TimelineDocs extends React.Component {
 
 
     render = () => {
-        console.log('clogsd', this.state.allDocuments);
         const { listViewstyle, daysContStyle, dateStyle, textStyle } = styles
 
         return (

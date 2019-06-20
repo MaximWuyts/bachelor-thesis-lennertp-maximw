@@ -6,6 +6,7 @@ import { Content, Card } from 'native-base'
 import Icon from 'react-native-vector-icons/Ionicons'
 import AccountSettings from '../components/AccountSettings';
 import Notifications from '../notifications/Notifications';
+import CreditsComponent from '../components/CredtisComponent';
 
 class SettingsScreen extends React.Component {
 
@@ -13,7 +14,8 @@ class SettingsScreen extends React.Component {
         super(props);
         this.state = {
             toggleAccount: true,
-            toggleNotification: true
+            toggleNotification: true,
+            toggleCredits: true
         }
     }
 
@@ -34,9 +36,17 @@ class SettingsScreen extends React.Component {
         }
     }
 
+    ShowHideCreditsComponentView = () => {
+        if (this.state.toggleCredits == true) {
+            this.setState({ toggleCredits: false })
+        }
+        else {
+            this.setState({ toggleCredits: true })
+        }
+    }
     render = () => {
         const { backgroundContainer, listViewstyle, headerStyle, textHeaderStyle, arrowStyle } = styles;
-        const { toggleAccount, toggleNotification } = this.state;
+        const { toggleAccount, toggleNotification, toggleCredits } = this.state;
         return (
             <ImageBackground source={require('../../assets/betterHeader.png')} style={backgroundContainer}>
                 <StatusBar
@@ -76,10 +86,18 @@ class SettingsScreen extends React.Component {
                     </View>
                     {toggleNotification ? null : <Notifications />}
 
-
                     <View style={headerStyle}>
                         <Text style={textHeaderStyle}>Credits</Text>
+                        <TouchableOpacity
+                            style={arrowStyle}
+                            onPress={this.ShowHideCreditsComponentView}
+                        >
+                            <Icon
+
+                                name="ios-arrow-down" size={30} color={"#575757"} />
+                        </TouchableOpacity>
                     </View>
+                    {toggleCredits ? null : <CreditsComponent />}
 
                 </Content>
 

@@ -20,7 +20,6 @@ class TimelineScreen extends React.Component {
     }
 
     onPressAll = () => {
-        console.log('press All!');
         this.setState({
             toggleSubsriptions: false,
             toggleWarranties: false,
@@ -29,7 +28,6 @@ class TimelineScreen extends React.Component {
     }
 
     onPressSubscriptions = () => {
-        console.log('press All!');
         this.setState({
             toggleSubsriptions: true,
             toggleWarranties: false,

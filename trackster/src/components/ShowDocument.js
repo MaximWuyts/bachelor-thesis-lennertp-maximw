@@ -52,6 +52,7 @@ const ShowDocument = ({ price, productType, urlLink, type, formType, calculateDa
                         <Text style={linktextStyle}>{urlLink}</Text>
                     </View>
                 </View>}
+
         </View>
     );
 }

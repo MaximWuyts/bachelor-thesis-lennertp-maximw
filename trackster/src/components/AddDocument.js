@@ -11,23 +11,23 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
         <View>
             <Form>
                 <Item style={{ marginTop: 20, flexDirection: 'row-reverse' }}>
-                    <Input placeholder='Enter Name'
+                    <Input placeholder='Enter name'
                         placeholderTextColor='#A9A9A9'
                         onChangeText={(text) => handleChange('name', text)}
                         value={name}
-                        style={{ color: '#A9A9A9', paddingLeft: 20 }}
+                        style={{ color: '#000', paddingLeft: 20 }}
                     />
                 </Item>
                 {formType === "subscription" ?
                     <Item picker>
                         <Picker
                             iosHeader="Select type"
-                            placeholder="Subscription Type"
+                            placeholder="Subscription type"
 
                             selectedValue={type}
                             onValueChange={(value) => handleChange('type', value)}
                         >
-                            <Picker.Item label="Select Your Type" value="" />
+                            <Picker.Item label="Select your type" value="" />
                             <Picker.Item label="weekly" value="weekly" />
                             <Picker.Item label="monthly" value="monthly" />
                             <Picker.Item label="yearly" value="yearly" />
@@ -38,7 +38,7 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                         <Picker
                             mode="dropdown"
                             iosHeader="Select type"
-                            placeholder="Subscription Type"
+                            placeholder="Warranty duration"
                             placeholderStyle={{ color: "#A9A9A9" }}
                             selectedValue={warrantyDuration}
                             onValueChange={(value) => handleChange('warrantyDuration', value)}
@@ -52,12 +52,12 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                     </Item>}
                 <Item style={{ marginTop: 20, flexDirection: 'row-reverse' }}>
                     <Icon name='euro' style={{ color: '#A9A9A9', fontSize: 20, paddingBottom: 15 }} />
-                    <Input placeholder='Enter Price'
+                    <Input placeholder='Enter price'
                         placeholderTextColor='#A9A9A9'
                         keyboardType="numeric"
                         onChangeText={(text) => handleChange('price', text)}
                         value={price}
-                        style={{ color: '#A9A9A9', paddingLeft: 20, paddingBottom: 20 }}
+                        style={{ color: '#000', paddingLeft: 20, maxHeight: 40, marginTop: -20 }}
                     />
                 </Item>
                 <Item picker>
@@ -67,7 +67,7 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                         placeholderStyle={{ color: "#A9A9A9" }}
                         selectedValue={productType}
                         iosHeader="Select type"
-                        placeholder="Product Type"
+                        placeholder="Product type"
                         onValueChange={(value) => handleChange('productType', value)}
                     >
                         <Picker.Item label="Select Your Product Type" value="" />
@@ -79,14 +79,16 @@ const AddDocument = ({ handleChange, name, price, productType, urlLink, type, se
                 </Item>
                 <Item style={{ marginTop: 10, flexDirection: 'row-reverse' }}>
 
-                    <Input placeholder='Url Link'
+                    <Input placeholder='URL link'
+                        autoCapitalize={"none"}
                         placeholderTextColor='#A9A9A9'
                         onChangeText={(text) => handleChange('urlLink', text)}
                         value={urlLink}
                         placeHolderTextStyle={{ color: "#A9A9A9", paddingBottom: 0, }}
-                        style={{ color: '#A9A9A9', paddingLeft: 20, height: 35 }}
+                        style={{ color: '#000', paddingLeft: 20, height: 35 }}
                     />
                 </Item>
+
                 <Item>
                     <DatePicker
                         defaultDate={new Date(2019, 5, 6)}

@@ -22,7 +22,9 @@ class EditDetailScreen extends React.Component {
             productType: this.props.navigation.state.params.item.value.productType,
             chosenDate: this.props.navigation.state.params.item.value.chosenDate,
             urlLink: this.props.navigation.state.params.item.value.urlLink,
+            warrantyDuration: this.props.navigation.state.params.item.value.warrantyDuration,
             photo: this.props.navigation.state.params.item.value.photo.uri,
+
         };
     }
 
@@ -34,37 +36,45 @@ class EditDetailScreen extends React.Component {
 
     setDate = (newDate) => {
         let formattedDate = moment(newDate).format('MM-DD-YYYY');
-        console.log('m', formattedDate);
         this.setState({ chosenDate: formattedDate });
     }
 
     handleSubmitSubscription = (event) => {
-        fire.database().ref(`subscriptions/${this.props.screenProps.user.uid}/${this.props.navigation.state.params.item.id}`).update({
-            name: this.state.name,
-            type: this.state.type,
-            price: this.state.price,
-            productType: this.state.productType,
-            chosenDate: this.state.chosenDate,
-            urlLink: this.state.urlLink,
-            photo: this.state.photo
-        }).then(() => {
-            this.props.navigation.navigate("Home");
-        })
+        if (this.state.name && this.state.type && this.state.price && this.state.productType && this.state.chosenDate && this.state.urlLink) {
+            fire.database().ref(`subscriptions/${this.props.screenProps.user.uid}/${this.props.navigation.state.params.item.id}`).update({
+                name: this.state.name,
+                type: this.state.type,
+                price: this.state.price,
+                productType: this.state.productType,
+                chosenDate: this.state.chosenDate,
+                urlLink: this.state.urlLink,
+                photo: this.state.photo
+            }).then(() => {
+                this.props.navigation.navigate("Home");
+            })
+        }
+        else {
+            alert('Please fill in all the items!')
+        }
     }
-
     handleSubmitWarranty = (event) => {
-        fire.database().ref(`warranties/${this.props.screenProps.user.uid}/${this.props.navigation.state.params.item.id}`).update({
-            name: this.state.name,
-            price: this.state.price,
-            warrantyDuration: this.state.warrantyDuration,
-            productType: this.state.productType,
-            chosenDate: this.state.chosenDate,
-            urlLink: this.state.urlLink
-        }).then(() => {
-            this.props.navigation.navigate("Home");
-        })
+        if (this.state.name && this.state.warrantyDuration && this.state.price && this.state.productType && this.state.chosenDate && this.state.urlLink) {
+            fire.database().ref(`warranties/${this.props.screenProps.user.uid}/${this.props.navigation.state.params.item.id}`).update({
+                name: this.state.name,
+                price: this.state.price,
+                warrantyDuration: this.state.warrantyDuration,
+                productType: this.state.productType,
+                chosenDate: this.state.chosenDate,
+                urlLink: this.state.urlLink,
+                photo: this.state.photo
+            }).then(() => {
+                this.props.navigation.navigate("Home");
+            })
+        }
+        else {
+            alert('Please fill in all the items!')
+        }
     }
-
     calculateDaysLeft = (endDate) => {
         let startDate = moment()
         if (!moment.isMoment(startDate)) startDate = moment(startDate);
@@ -93,7 +103,6 @@ class EditDetailScreen extends React.Component {
             noData: true
         }
         ImagePicker.launchImageLibrary(options, response => {
-            console.log('response', response);
             if (response.uri) {
                 this.setState({ photo: response })
             }
@@ -103,7 +112,6 @@ class EditDetailScreen extends React.Component {
     }
 
     render = () => {
-        console.log('tests', this.props.navigation.state.params.formType);
         const { listViewstyle, textHeaderStyle, contentStyle, contentStyle2, importIconStyle } = styles
         return (
             <ImageBackground source={bgImage} style={styles.backgroundContainer}>
@@ -113,7 +121,7 @@ class EditDetailScreen extends React.Component {
                     hidden={false}
                     backgroundColor="transparent"
                     barStyle="light-content" />
-                <AppOtherHeader formType={"detail"} headerText={this.props.navigation.state.params.item.value.name} navProp={this.props.navigation} />
+                <AppOtherHeader headerText={this.props.navigation.state.params.item.value.name} navProp={this.props.navigation} />
 
                 <Content style={listViewstyle}>
                     <View>

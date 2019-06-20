@@ -9,7 +9,6 @@ class AppOtherHeader extends React.Component {
     }
 
     render = () => {
-        console.log('ppp', this.props.formType)
         const { headerStyle, textHeaderStyle, iconStyle, textHeaderStyle2 } = styles;
         return (
             <View style={headerStyle}>

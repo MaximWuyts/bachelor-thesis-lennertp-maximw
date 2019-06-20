@@ -33,28 +33,31 @@ class AddWarrantieScreen extends React.Component {
 
     setDate = (newDate) => {
         let formattedDate = moment(newDate).format('MM/DD/YYYY');
-        console.log('m', formattedDate);
         this.setState({ chosenDate: formattedDate });
     }
 
 
     handleSubmit = (event) => {
-        fire.database().ref(`warranties/${this.props.screenProps.user.uid}`).push({
-            name: this.state.name,
-            warrantyDuration: this.state.warrantyDuration,
-            price: this.state.price,
-            productType: this.state.productType,
-            chosenDate: this.state.chosenDate,
-            urlLink: this.state.urlLink,
-            photo: this.state.photo,
-            docType: "warranty"
-        })
-            .then(() => {
-                this.props.navigation.navigate("Home");
-            }), (error) => {
-                Alert.alert(error.message);
+        if (this.state.name && this.state.warrantyDuration && this.state.price && this.state.productType && this.state.chosenDate && this.state.urlLink) {
+            fire.database().ref(`warranties/${this.props.screenProps.user.uid}`).push({
+                name: this.state.name,
+                warrantyDuration: this.state.warrantyDuration,
+                price: this.state.price,
+                productType: this.state.productType,
+                chosenDate: this.state.chosenDate,
+                urlLink: this.state.urlLink,
+                photo: this.state.photo,
+                docType: "warranty"
+            })
+                .then(() => {
+                    this.props.navigation.navigate("Home");
+                })
+        }
 
-            };
+        else {
+            alert('Please fill in all the items!')
+        }
+
     }
 
     handleChoosePhoto = () => {
@@ -62,7 +65,6 @@ class AddWarrantieScreen extends React.Component {
             noData: true
         }
         ImagePicker.launchImageLibrary(options, response => {
-            console.log('response', response);
             if (response.uri) {
                 this.setState({ photo: response })
             }
@@ -112,7 +114,7 @@ class AddWarrantieScreen extends React.Component {
 
                     </Card>
                 </Content>
-                <AddButton handleSubmit={this.handleSubmit}>Add Subscription</AddButton>
+                <AddButton handleSubmit={this.handleSubmit}>Add Warrantie</AddButton>
             </ImageBackground>
         )
     }

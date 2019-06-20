@@ -28,13 +28,11 @@ class Notifications extends Component {
     getRecentstItem = () => {
         let allDocuments = [...this.props.subscriptions, ...this.props.warranties]
         allDocuments.sort((a, b) => moment(a.value.chosenDate) - moment(b.value.chosenDate));
-        console.log('all', allDocuments);
         let notExpired = allDocuments.filter(val => moment(val.value.chosenDate).isAfter(moment()))
-        console.log('allllfl', notExpired[0].value.chosenDate);
         this.calculateDaysLeft(notExpired[0].value.chosenDate);
         let daysLeft = this.calculateDaysLeft(notExpired[0].value.chosenDate)
         if (daysLeft < this.state.days) {
-            return (notExpired[0].value.name, 'is expiring in', daysLeft, 'days');
+            console.log(notExpired[0].value.name, 'is expiring in', daysLeft, 'days');
         }
         else console.log('nenen');
     }
@@ -55,11 +53,10 @@ class Notifications extends Component {
 
     handleAppStateChange = (appState) => {
         if (appState === 'background') {
-            console.log('appStat', appState);
             let date = new Date(Date.now() + (6 * 1000));
 
             PushNotification.localNotificationSchedule({
-                message: getRecentstItem(), // <----
+                message: 'this message', // <----
                 date: date // in 60 secs
             })
         }

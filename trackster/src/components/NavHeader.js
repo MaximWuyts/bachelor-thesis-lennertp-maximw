@@ -7,7 +7,6 @@ class NavHeader extends React.Component {
 
     }
     render = () => {
-        console.log('deze props', this.props);
         const { textHeaderStyle, textHeaderStyle2, textHeaderStyle3, headerStyle } = styles
         const { pressAll, pressSubscriptions, pressWarranties } = this.props
         return (

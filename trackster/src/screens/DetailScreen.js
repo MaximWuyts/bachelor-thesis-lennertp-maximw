@@ -20,7 +20,7 @@ class DetailScreen extends React.Component {
             productType: this.props.navigation.state.params.item.value.productType,
             chosenDate: this.props.navigation.state.params.item.value.chosenDate,
             urlLink: this.props.navigation.state.params.item.value.urlLink,
-            photo: this.props.navigation.state.params.item.value.photo.uri,
+            photo: this.props.navigation.state.params.item.value.photo,
         };
     }
 
@@ -80,7 +80,6 @@ class DetailScreen extends React.Component {
 
 
     render = () => {
-        console.log('ohoto', this.state.photo);
 
         const { listViewstyle, textHeaderStyle, contentStyle, contentStyle2, importIconStyle, deleteTextStyle } = styles
         return (
@@ -115,12 +114,12 @@ class DetailScreen extends React.Component {
                     </View>
                     <Card style={contentStyle}>
                         <TouchableOpacity onPress={this.onEditPress}>
-                            {this.state.photo === undefined ? <View style={contentStyle2}>
+                            {this.state.photo.uri === undefined ? <View style={contentStyle2}>
                                 <Icon name="upload" size={30} color={"#04A7F1"} style={importIconStyle} />
                             </View> :
                                 <View style={{ justifyContent: "center", padding: 20, alignItems: "center" }}>
                                     <Image
-                                        source={{ uri: this.state.photo }}
+                                        source={{ uri: this.state.photo.uri }}
                                         style={{
                                             width: 150, height: 150,
                                         }}

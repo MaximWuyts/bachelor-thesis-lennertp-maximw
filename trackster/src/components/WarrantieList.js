@@ -23,7 +23,6 @@ class WarrantieList extends React.Component {
                 if (snap.val()) {
                     let warranties = [];
                     let values = snap.val();
-                    console.log('dwee2', values);
                     Object.keys(values).forEach(key => {
                         warranties.push({
                             id: key,
@@ -31,7 +30,6 @@ class WarrantieList extends React.Component {
                         })
                     });
                     warranties.sort((a, b) => moment(a.value.chosenDate) - moment(b.value.chosenDate));
-                    console.log('war', warranties);
                     this.props.setWarranties(warranties);
                 }
             });

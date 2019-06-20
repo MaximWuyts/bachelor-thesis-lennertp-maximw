@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
         color: "#343434",
         fontWeight: "bold",
         textAlign: 'right',
-        flex: 25
+        flex: 35
     },
     iconContStyle: {
         flex: 15,

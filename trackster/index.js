@@ -9,6 +9,7 @@ import reducers from './src/reducers/index.js';
 
 
 const store = createStore(reducers, {}, devToolsEnhancer({ realtime: true }));
+console.disableYellowBox = true;
 
 const AppContainer = () => {
     return (

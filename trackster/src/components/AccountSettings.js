@@ -25,7 +25,7 @@ class AccountSettings extends React.Component {
     }
 
     ShowHideTextComponentView = () => {
-        console.log('en werkte ');
+
         if (this.state.togglePassword == true) {
             this.setState({ togglePassword: false })
         }
@@ -91,7 +91,7 @@ class AccountSettings extends React.Component {
     render() {
         const { togglePassword, newPassword, showPassword, currentPassword, showPassword2 } = this.state;
         const { inputStyle, btnEye, btnTextStyle, btnStyle, linktextStyle, lastChildStyle } = styles;
-        console.log('toggle', togglePassword);
+
         return (
 
             <View>

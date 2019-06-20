@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     },
     btnEye: {
         position: 'absolute',
-        top: -27,
+        top: -35,
         right: 50,
         opacity: 0.6
     },
