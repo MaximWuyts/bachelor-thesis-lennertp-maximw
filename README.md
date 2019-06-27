@@ -2,7 +2,7 @@
 Bachelor Thesis 
 Lennert Peeters & Maxim Wuyts
 
-# what is Xpyre
+# What is Xpyre
 Xpyre is an React Native App for tracking your saved warranties and subscriptions
 
 # Setup
